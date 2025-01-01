@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/mesh">
+        <file>ah64_APACHE_mesh.mesh</file>
+        <file>glass_mesh.mesh</file>
+    </qresource>
+</RCC>

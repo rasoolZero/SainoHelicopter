@@ -23,6 +23,15 @@ ApplicationWindow {
         copterColor: "white"
         id : view
     }
+
+    TumblerSelector{
+        id: selector
+        anchors.top: parent.anchors.top
+        anchors.right: parent.right
+        height: parent.height
+        width: parent.width*1/4
+    }
+
     Item{
         height: parent.height*3/5
         width : parent.width * 3/4

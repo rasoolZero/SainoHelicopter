@@ -26,6 +26,7 @@ qt_add_qml_module(appSainoHelicopter
     QML_FILES HelicopterView.qml
     QML_FILES Helicopter.qml
     RESOURCES assets/rotor.png assets/top-down.png
+    QML_FILES TumblerSelector.qml
     # RESOURCES mesh/APACHE_0.mesh #[[mesh/APACHE_1.mesh]]
     # RESOURCES shaders/wireframe.frag.qsb shaders/wireframe.vert.qsb
 )

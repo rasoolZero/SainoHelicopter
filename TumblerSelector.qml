@@ -3,7 +3,19 @@ import QtQuick.Controls.Basic
 
 Tumbler {
     id: control
-    model: 15
+    model: ListModel {
+        ListElement { text: "Description" }
+        ListElement { text: "Fuel" }
+        ListElement { text: "Battery" }
+        ListElement { text: "Air Temperature" }
+        ListElement { text: "Fixed Camera" }
+        ListElement { text: "Speed" }
+        ListElement { text: "Lamps" }
+        ListElement { text: "Rotor Speed" }
+        ListElement { text: "Control Panel" }
+        ListElement { text: "Radio" }
+
+    }
 
     background: Item {
         Rectangle {
@@ -24,7 +36,7 @@ Tumbler {
     }
 
     delegate: Text {
-        text: qsTr("Item %1").arg(modelData + 1)
+        text: modelData
         font: control.font
         horizontalAlignment: Text.AlignHCenter
         verticalAlignment: Text.AlignVCenter

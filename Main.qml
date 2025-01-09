@@ -1,9 +1,7 @@
 
 import QtQuick
 import QtQuick.Window
-import QtQuick.Controls
 import QtQuick.Controls.Material
-import Qt5Compat.GraphicalEffects
 
 ApplicationWindow {
     id: window
@@ -24,63 +22,64 @@ ApplicationWindow {
         id : view
     }
 
+    HelicopterTopDown {
+        id: topDownView
+        height: parent.height*3/5
+        width : parent.width * 3/4
+        anchors.bottom: parent.bottom
+        anchors.left: parent.left
+    }
+
     TumblerSelector{
         id: selector
         anchors.top: parent.anchors.top
         anchors.right: parent.right
         height: parent.height
         width: parent.width*1/4
-    }
-
-    Item{
-        height: parent.height*3/5
-        width : parent.width * 3/4
-        anchors.bottom: parent.bottom
-        anchors.left: parent.left
-        Image{
-            anchors.horizontalCenter: parent.horizontalCenter
-            anchors.verticalCenter: parent.verticalCenter
-            height: parent.height
-            antialiasing: true
-            fillMode: Image.PreserveAspectFit
-            source: "assets/top-down.png"
-        }
-        Image{
-            id: overlay
-            anchors.horizontalCenter: parent.horizontalCenter
-            anchors.verticalCenter: parent.verticalCenter
-            height: parent.height
-            antialiasing: true
-            fillMode: Image.PreserveAspectFit
-            smooth: true
-            source: "assets/rotor.png"
-            visible: false
-        }
-        ColorOverlay {
-            anchors.fill: overlay
-            source: overlay
-            color: "#FF0000"
-            SequentialAnimation on opacity{
-                loops: Animation.Infinite
-                NumberAnimation{
-                    from: 0
-                    to: 1
-                    duration:1000
-                    easing.type:Easing.Linear
-                }
-                PauseAnimation {
-                    duration: 100
-                }
-                NumberAnimation{
-                    from: 1
-                    to: 0
-                    duration:1000
-                    easing.type:Easing.Linear
-                }
-                PauseAnimation {
-                    duration: 100
-                }
+        onCurrentIndexChanged: {
+            switch (currentIndex) {
+                case 0:
+                    topDownView.source = "assets/top-down.png";
+                    topDownView.enabled = false
+                    break;
+                case 1:
+                    topDownView.source = "assets/fuel.png";
+                    topDownView.enabled = true
+                    break;
+                case 2:
+                    topDownView.source = "assets/battery.png";
+                    topDownView.enabled = true
+                    break;
+                case 3:
+                    topDownView.source = "assets/cockpit.png";
+                    topDownView.enabled = true
+                    break;
+                case 4:
+                    topDownView.source = "assets/camera.png";
+                    topDownView.enabled = true
+                    break;
+                case 5:
+                    topDownView.source = "assets/top-down.png";
+                    topDownView.enabled = true
+                    break;
+                case 6:
+                    topDownView.source = "assets/lamps.png";
+                    topDownView.enabled = true
+                    break;
+                case 7:
+                    topDownView.source = "assets/rotor.png";
+                    topDownView.enabled = true
+                    break;
+                case 8:
+                    topDownView.source = "assets/control-panel.png";
+                    topDownView.enabled = true
+                    break;
+                case 9:
+                    topDownView.source = "assets/radio.png";
+                    topDownView.enabled = true
+                    break;
             }
         }
     }
+
 }

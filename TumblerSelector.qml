@@ -1,5 +1,6 @@
 import QtQuick
 import QtQuick.Controls.Basic
+import QtQuick.Controls
 
 Tumbler {
     id: control
@@ -7,7 +8,7 @@ Tumbler {
         ListElement { text: "Description" }
         ListElement { text: "Fuel" }
         ListElement { text: "Battery" }
-        ListElement { text: "Air Temperature" }
+        ListElement { text: "Temperature" }
         ListElement { text: "Fixed Camera" }
         ListElement { text: "Speed" }
         ListElement { text: "Lamps" }

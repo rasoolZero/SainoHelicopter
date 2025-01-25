@@ -24,7 +24,7 @@ ApplicationWindow {
 
     HelicopterTopDown {
         id: topDownView
-        height: parent.height*3/5
+        height: parent.height * 3/5
         width : parent.width * 3/4
         anchors.bottom: parent.bottom
         anchors.left: parent.left
@@ -32,7 +32,7 @@ ApplicationWindow {
 
     TumblerSelector{
         id: selector
-        anchors.top: parent.anchors.top
+        anchors.top: parent.top
         anchors.right: parent.right
         height: parent.height
         width: parent.width*1/4
@@ -80,6 +80,33 @@ ApplicationWindow {
                     break;
             }
         }
+    }
+
+    LinearIndicator{
+        start:0
+        end:100
+        midRangeColor: "#37f7ff"
+        lowRangeColor: "red"
+        highRangeColor: "white"
+
+        value:50
+        barsSpacing: 0
+        postfix: "%"
+        boxText: "Battery Charge"
+        boxTextColor: "white"
+        innerLoaderBackgroundColor: window.color
+
+        circleColor : "#37f7ff"
+        outerRotatorColor: "#37f7ff"
+        innerLoaderColor: "#37f7ff"
+        valueColor: "#37f7ff"
+        outerBoxColor: "#37f7ff"
+
+        anchors.bottom: parent.bottom
+        anchors.right: selector.left
+        anchors.margins: 10
+        width:topDownView.width - topDownView.actualWidth
+        height:topDownView.height/4
     }
 
 }

@@ -83,14 +83,16 @@ ApplicationWindow {
     }
 
     LinearIndicator{
+        id:batteryIndicator
         start:0
         end:100
         midRangeColor: "#37f7ff"
         lowRangeColor: "red"
         highRangeColor: "white"
 
-        value:50
-        barsSpacing: 0
+        value:20
+        barsCount: 20
+        barsSpacing: 5
         postfix: "%"
         boxText: "Battery Charge"
         boxTextColor: "white"
@@ -107,6 +109,25 @@ ApplicationWindow {
         anchors.margins: 10
         width:topDownView.width - topDownView.actualWidth
         height:topDownView.height/4
+
+        SequentialAnimation on value{
+            NumberAnimation{
+                from: 0
+                to: 100
+                duration:5000
+            }
+            PauseAnimation{
+                duration:500
+            }
+            NumberAnimation{
+                from: 100
+                to: 0
+                duration:5000
+            }
+            PauseAnimation{
+                duration:500
+            }
+        }
     }
 
 }

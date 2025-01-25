@@ -27,6 +27,7 @@ Item {
     property double disabledBarsOpacity : 0.3
 
     property int value
+    required property int barsCount
     required property int start
     required property int end
     property string postfix
@@ -194,18 +195,30 @@ Item {
         id:barsLayout
         Repeater {
             id: bars
-            model: indicator.end - indicator.start
+            model: indicator.barsCount
             delegate: Rectangle {
                 id: barsRectangle
                 color: {
-                    if((index+indicator.start) <= indicator.lowRangeThreshold)
+                    var oldValue = index;
+                    var oldBottom = 0;
+                    var oldTop = indicator.barsCount-1
+                    var newTop = indicator.end
+                    var newBottom = indicator.start
+                    var newIndex = (oldValue - oldBottom) / (oldTop - oldBottom) * (newTop - newBottom) + newBottom
+                    if(newIndex <= indicator.lowRangeThreshold)
                         return indicator.lowRangeColor
-                    if((index+indicator.start) >= indicator.highRangeThreshold)
+                    if(newIndex >= indicator.highRangeThreshold)
                         return indicator.highRangeColor
                     return indicator.midRangeColor
                 }
                 opacity: {
-                    if((index+indicator.start) <= indicator.value)
+                    var oldValue = index;
+                    var oldBottom = -1;
+                    var oldTop = indicator.barsCount-1
+                    var newTop = indicator.end
+                    var newBottom = indicator.start
+                    var newIndex = (oldValue - oldBottom) / (oldTop - oldBottom) * (newTop - newBottom) + newBottom
+                    if(newIndex <= indicator.value)
                         return 1.0
                     else
                         return indicator.disabledBarsOpacity

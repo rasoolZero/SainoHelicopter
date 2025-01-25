@@ -6,21 +6,25 @@ Item{
 
     property alias source : overlay.source
     property alias enabled : colorOverlay.visible
+    property alias actualWidth: mainImage.implicitWidth
 
     Image{
-        anchors.horizontalCenter: parent.horizontalCenter
+        id: mainImage
+        anchors.left: parent.left
         anchors.verticalCenter: parent.verticalCenter
         height: parent.height
         antialiasing: true
+        mipmap:true
         fillMode: Image.PreserveAspectFit
         source: "assets/top-down.png"
     }
     Image{
         id: overlay
-        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.left: parent.left
         anchors.verticalCenter: parent.verticalCenter
         height: parent.height
         antialiasing: true
+        mipmap:true
         fillMode: Image.PreserveAspectFit
         smooth: true
         source: "assets/top-down.png"

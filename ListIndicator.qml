@@ -230,7 +230,6 @@ Item {
         width: parent.width - circle.width - 20
         anchors.right: parent.right
         anchors.top : parent.top
-        anchors.margins: 10
         height:parent.height/2 - anchors.margins*2
     }
 }

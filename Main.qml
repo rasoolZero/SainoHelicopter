@@ -28,6 +28,7 @@ ApplicationWindow {
         width : parent.width * 3/4
         anchors.bottom: parent.bottom
         anchors.left: parent.left
+        anchors.leftMargin: 10
     }
 
     TumblerSelector{
@@ -167,5 +168,75 @@ ApplicationWindow {
         width:(topDownView.width - topDownView.actualWidth)*1.5
         height:topDownView.height/4
 
+        visible: false
+
+    }
+
+    LinearIndicator{
+        id:insideTempIndicator
+        start:-20
+        end:80
+        lowRangeThreshold: 0
+        highRangeThreshold: 60
+        midRangeColor: "#ff9e37"
+        highRangeColor: "#ff3a37"
+        lowRangeColor: "#37f7ff"
+
+        value:69
+        barsCount: 100
+        barsSpacing: 0
+        postfix: "°"
+        boxText: "Cockpit Temperature"
+        boxTextColor: "white"
+        innerLoaderBackgroundColor: window.color
+
+        circleColor : "#37f7ff"
+        outerRotatorColor: "#ff9e37"
+        innerLoaderColor: "#ff3a37"
+        valueColor: "#37f7ff"
+        outerBoxColor: "#37f7ff"
+
+        anchors.bottom: parent.bottom
+        anchors.right: selector.left
+        anchors.margins: 10
+        width:(topDownView.width - topDownView.actualWidth)*1.5
+        height:topDownView.height/4
+
+        visible: false
+    }
+
+    LinearIndicator{
+        id:outsideTempIndicator
+        start:-20
+        end:80
+        lowRangeThreshold: 0
+        highRangeThreshold: 60
+        midRangeColor: "#ff9e37"
+        highRangeColor: "#ff3a37"
+        lowRangeColor: "#37f7ff"
+
+        value:69
+        barsCount: 100
+        barsSpacing: 0
+        postfix: "°"
+        boxText: "Outside Temperature"
+        boxTextColor: "white"
+        innerLoaderBackgroundColor: window.color
+
+        circleColor : "#37f7ff"
+        outerRotatorColor: "#ff9e37"
+        innerLoaderColor: "#ff3a37"
+        valueColor: "#37f7ff"
+        outerBoxColor: "#37f7ff"
+
+        anchors.top: topDownView.top
+        anchors.right: selector.left
+        anchors.margins: 10
+        width:(topDownView.width - topDownView.actualWidth)*1.5
+        height:topDownView.height/4
+
+        verticalFlip: true
+
+        visible: false
     }
 }

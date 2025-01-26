@@ -35,6 +35,7 @@ qt_add_qml_module(appSainoHelicopter
     # RESOURCES mesh/APACHE_0.mesh #[[mesh/APACHE_1.mesh]]
     # RESOURCES shaders/wireframe.frag.qsb shaders/wireframe.vert.qsb
     QML_FILES ListIndicator.qml
+    RESOURCES assets/lamp-off.svg assets/lamp-on.svg
 )
 
 

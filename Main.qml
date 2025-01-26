@@ -40,7 +40,7 @@ ApplicationWindow {
         onCurrentIndexChanged: {
 
             let elements = [insideTempIndicator, outsideTempIndicator, batteryIndicator
-                            , fuelIndicator, speedIndicator];
+                            , fuelIndicator, speedIndicator, lampsIndicator];
 
 
             for (let i = 0; i < elements.length; i++) {
@@ -79,6 +79,7 @@ ApplicationWindow {
                 case 6:
                     topDownView.source = "assets/lamps.png";
                     topDownView.enabled = true
+                    lampsIndicator.visible = true
                     break;
                 case 7:
                     topDownView.source = "assets/rotor.png";
@@ -249,6 +250,35 @@ ApplicationWindow {
         height:topDownView.height/4
 
         verticalFlip: true
+
+        visible: false
+    }
+
+
+    ListIndicator{
+        id:lampsIndicator
+
+        value:0
+        boxText: "Lamps"
+        boxTextColor: "white"
+        swipeTextColor: "white"
+        innerLoaderBackgroundColor: window.color
+
+
+        circleColor : "#37f7ff"
+        outerRotatorColor: "#37f7ff"
+        innerLoaderColor: "#37f7ff"
+        outerBoxColor: "#37f7ff"
+
+        anchors.bottom: parent.bottom
+        anchors.right: selector.left
+        anchors.margins: 10
+        width:(topDownView.width - topDownView.actualWidth)*1.5
+        height:topDownView.height/4
+
+        model: ["On","Off"]
+        sources: ["assets/lamp-on.svg","assets/lamp-off.svg"]
+        valueImageColors: ["#ffd037","white"]
 
         visible: false
     }

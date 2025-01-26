@@ -18,6 +18,8 @@ Item {
     property alias boxTextColor: boxText.color
     property alias barsSpacing: barsLayout.spacing
 
+    property bool verticalFlip
+
     property color lowRangeColor : "black"
     required property color midRangeColor
     property color highRangeColor: "black"
@@ -32,6 +34,10 @@ Item {
     required property int end
     property string postfix
 
+    transform: Scale{   yScale: verticalFlip?-1:1
+                        origin.x: indicator.width / 2
+                        origin.y: indicator.height / 2
+                    }
 
     Rectangle {
         id: circle
@@ -150,6 +156,10 @@ Item {
             color: "black"
             font.pixelSize: parent.height/4
             anchors.centerIn: parent
+            transform: Scale{   yScale: indicator.verticalFlip?-1:1
+                                origin.x: valueText.width / 2
+                                origin.y: valueText.height / 2
+                            }
         }
     }
     SH.Shape {
@@ -189,6 +199,10 @@ Item {
             fontSizeMode: Text.Fit
             minimumPointSize : 10
             font.pointSize: 172
+            transform: Scale{   yScale: indicator.verticalFlip?-1:1
+                                origin.x: boxText.width / 2
+                                origin.y: boxText.height / 2
+                            }
         }
     }
     RowLayout{

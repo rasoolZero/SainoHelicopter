@@ -179,16 +179,16 @@ Item {
         height:box.height/2
         anchors.bottom:circle.bottom
         anchors.left:circle.right
-        anchors.leftMargin: 5
+        anchors.leftMargin: 8
         color:"transparent"
         Text{
             id: boxText
             text: "Loading..."
-            anchors.fill: parent
+            anchors.fill: textHolder
             verticalAlignment: Text.AlignVCenter
             fontSizeMode: Text.Fit
             minimumPointSize : 10
-            font.pointSize: 72
+            font.pointSize: 172
         }
     }
     RowLayout{

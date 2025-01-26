@@ -38,6 +38,15 @@ ApplicationWindow {
         height: parent.height
         width: parent.width*1/4
         onCurrentIndexChanged: {
+
+            let elements = [insideTempIndicator, outsideTempIndicator, batteryIndicator
+                            , fuelIndicator, speedIndicator];
+
+
+            for (let i = 0; i < elements.length; i++) {
+                elements[i].visible = false;
+            }
+
             switch (currentIndex) {
                 case 0:
                     topDownView.source = "assets/top-down.png";
@@ -46,14 +55,17 @@ ApplicationWindow {
                 case 1:
                     topDownView.source = "assets/fuel.png";
                     topDownView.enabled = true
+                    fuelIndicator.visible = true;
                     break;
                 case 2:
                     topDownView.source = "assets/battery.png";
                     topDownView.enabled = true
+                    batteryIndicator.visible = true;
                     break;
                 case 3:
                     topDownView.source = "assets/cockpit.png";
                     topDownView.enabled = true
+                    insideTempIndicator.visible = outsideTempIndicator.visible = true;
                     break;
                 case 4:
                     topDownView.source = "assets/camera.png";
@@ -62,6 +74,7 @@ ApplicationWindow {
                 case 5:
                     topDownView.source = "assets/top-down.png";
                     topDownView.enabled = true
+                    speedIndicator.visible = true
                     break;
                 case 6:
                     topDownView.source = "assets/lamps.png";

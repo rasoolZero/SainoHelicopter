@@ -87,8 +87,6 @@ ApplicationWindow {
         start:0
         end:100
         midRangeColor: "#37f7ff"
-        lowRangeColor: "red"
-        highRangeColor: "white"
 
         value:20
         barsCount: 20
@@ -107,27 +105,67 @@ ApplicationWindow {
         anchors.bottom: parent.bottom
         anchors.right: selector.left
         anchors.margins: 10
-        width:topDownView.width - topDownView.actualWidth
+        width:(topDownView.width - topDownView.actualWidth)*1.5
         height:topDownView.height/4
 
-        SequentialAnimation on value{
-            NumberAnimation{
-                from: 0
-                to: 100
-                duration:5000
-            }
-            PauseAnimation{
-                duration:500
-            }
-            NumberAnimation{
-                from: 100
-                to: 0
-                duration:5000
-            }
-            PauseAnimation{
-                duration:500
-            }
-        }
+        visible: false
+
+    }
+    LinearIndicator{
+        id:fuelIndicator
+        start:0
+        end:80
+        midRangeColor: "#37f7ff"
+
+        value:56
+        barsCount: 40
+        barsSpacing: 2
+        postfix: " Gal"
+        boxText: "Fuel"
+        boxTextColor: "white"
+        innerLoaderBackgroundColor: window.color
+
+        circleColor : "#37f7ff"
+        outerRotatorColor: "#37f7ff"
+        innerLoaderColor: "#37f7ff"
+        valueColor: "#37f7ff"
+        outerBoxColor: "#37f7ff"
+
+        anchors.bottom: parent.bottom
+        anchors.right: selector.left
+        anchors.margins: 10
+        width:(topDownView.width - topDownView.actualWidth)*1.5
+        height:topDownView.height/4
+
+        visible: false
+
     }
 
+    LinearIndicator{
+        id:speedIndicator
+        start:0
+        end:220
+        midRangeColor: "#37f7ff"
+
+        value:178
+        barsCount: 100
+        barsSpacing: 0
+        postfix: " KPH"
+        boxText: "Airspeed"
+        boxTextColor: "white"
+        innerLoaderBackgroundColor: window.color
+
+        circleColor : "#37f7ff"
+        outerRotatorColor: "#37f7ff"
+        innerLoaderColor: "#37f7ff"
+        valueColor: "#37f7ff"
+        outerBoxColor: "#37f7ff"
+
+        anchors.bottom: parent.bottom
+        anchors.right: selector.left
+        anchors.margins: 10
+        width:(topDownView.width - topDownView.actualWidth)*1.5
+        height:topDownView.height/4
+
+    }
 }

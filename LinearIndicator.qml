@@ -45,7 +45,7 @@ Item {
         height: parent.height // Fills the height of the indicator
         radius: height / 2 // Makes it a circle
         color: "transparent" // Example color; change as needed
-        border.width: 5
+        border.width: 3
         anchors.left: parent.left // Aligns the circle to the left of the indicator
         SH.Shape {
             z:parent.z-1
@@ -58,7 +58,7 @@ Item {
                 id: outerRotatorPath
                 strokeColor: "black"
                 fillColor:"transparent"
-                strokeWidth: 6
+                strokeWidth: 5
                 startX: width / 2
                 startY: 0
                 capStyle: SH.ShapePath.RoundCap
@@ -132,8 +132,8 @@ Item {
                 startY: 0
                 capStyle: SH.ShapePath.SquareCap
                 PathAngleArc{
-                    radiusX: innerLoader.width/2-5
-                    radiusY: innerLoader.height/2-5
+                    radiusX: innerLoader.width/2-3
+                    radiusY: innerLoader.height/2-3
                     centerX: innerLoader.height/2
                     centerY: innerLoader.width/2
                     startAngle: 0
@@ -154,6 +154,11 @@ Item {
             id: valueText
             text: indicator.value + indicator.postfix
             color: "black"
+            width:innerLoader.width/2
+            height:innerLoader.height/2
+            verticalAlignment: Text.AlignVCenter
+            horizontalAlignment: Text.AlignHCenter
+            fontSizeMode: Text.Fit
             font.pixelSize: parent.height/4
             anchors.centerIn: parent
             transform: Scale{   yScale: indicator.verticalFlip?-1:1
@@ -172,7 +177,7 @@ Item {
             id: outerBox
             fillColor: "transparent"
             strokeColor: "black"
-            strokeWidth: 1.5
+            strokeWidth: 2
             startX:height/2
             startY:0
             capStyle:SH.ShapePath.SquareCap
@@ -181,6 +186,13 @@ Item {
             PathLine{relativeX: -barsLayout.width/4; relativeY:0}
             PathLine{relativeX: -barsLayout.width/4; y:box.height}
             PathLine{x: box.height/2; relativeY: 0;}
+            PathArc{
+                relativeY:-box.height
+                relativeX:0
+                direction: PathArc.Clockwise
+                radiusY: box.height/2
+                radiusX: box.height/2
+            }
         }
     }
     Rectangle{

@@ -40,6 +40,7 @@ qt_add_qml_module(appSainoHelicopter
     RESOURCES assets/gauge-middle.svg assets/gauge-min.svg assets/gauge-high.svg assets/gauge-low.svg assets/gauge-max.svg
     QML_FILES TextDisplay.qml
     RESOURCES  assets/frame.svg
+    QML_FILES ControlPanel.qml
 )
 
 

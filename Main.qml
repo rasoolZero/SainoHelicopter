@@ -1,6 +1,7 @@
 
 import QtQuick
 import QtQuick.Window
+import QtQuick.Controls
 import QtQuick.Controls.Material
 
 ApplicationWindow {
@@ -11,6 +12,7 @@ ApplicationWindow {
     maximumHeight : 600
     visible: true
     color: "#202020"
+    title: "Saino Helicopter"
 
     HelicopterView{
         anchors.top: parent.top
@@ -409,4 +411,8 @@ ApplicationWindow {
         textColor: "white"
     }
 
+    ControlPanel{
+        Material.theme: Material.Dark
+        Material.accent: Material.Cyan
+    }
 }

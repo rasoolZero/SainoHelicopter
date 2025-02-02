@@ -41,7 +41,7 @@ ApplicationWindow {
 
             let elements = [insideTempIndicator, outsideTempIndicator, batteryIndicator
                             , fuelIndicator, speedIndicator, lampsIndicator, cameraIndicator, controlPanelIndicator
-                            , radioIndicator, rotorSpeedIndicator];
+                            , radioIndicator, rotorSpeedIndicator, description];
 
 
             for (let i = 0; i < elements.length; i++) {
@@ -52,6 +52,7 @@ ApplicationWindow {
                 case 0:
                     topDownView.source = "assets/top-down.png";
                     topDownView.enabled = false
+                    description.visible = true
                     break;
                 case 1:
                     topDownView.source = "assets/fuel.png";
@@ -378,7 +379,6 @@ ApplicationWindow {
         swipeTextColor: "white"
         innerLoaderBackgroundColor: window.color
 
-
         circleColor : "#37f7ff"
         outerRotatorColor: "#37f7ff"
         innerLoaderColor: "#37f7ff"
@@ -396,4 +396,17 @@ ApplicationWindow {
 
         visible: false
     }
+
+    TextDisplay{
+        id: description
+        width:(topDownView.width - topDownView.actualWidth)
+        height:topDownView.height
+        frameColor: "#37f7ff"
+        anchors.bottom: parent.bottom
+        anchors.right: topDownView.right
+        opacity: 0.85
+        text: "The Apache AH-64 is an advanced attack helicopter manufactured by Boeing (originally by Hughes Helicopters). First produced in 1983, it features superior air resistance with a streamlined fuselage and rotor design. It has a maximum altitude of approximately 21,000 feet (6,400 meters), making it highly effective in diverse combat environments."
+        textColor: "white"
+    }
+
 }

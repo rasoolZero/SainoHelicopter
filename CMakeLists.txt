@@ -38,6 +38,8 @@ qt_add_qml_module(appSainoHelicopter
     RESOURCES assets/lamp-off.svg assets/lamp-on.svg
     RESOURCES assets/error.svg assets/ok.svg assets/signal-good.svg assets/signal-strong.svg assets/signal-weak.svg assets/warning.svg
     RESOURCES assets/gauge-middle.svg assets/gauge-min.svg assets/gauge-high.svg assets/gauge-low.svg assets/gauge-max.svg
+    QML_FILES TextDisplay.qml
+    RESOURCES  assets/frame.svg
 )
 
 

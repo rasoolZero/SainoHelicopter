@@ -3,6 +3,12 @@ import QtQuick.Controls
 import QtQuick.Controls.Material
 
 ApplicationWindow {
+    property alias fuel : fuelSlider.value
+    property alias battery : batterySlider.value
+    property alias indoorTemp : indoorTempSlider.value
+    property alias outdoorTemp : outdoorTempSlider.value
+    property alias speed : speedSlider.value
+
     id: secondWindow
     width: 800
     height: 600
@@ -10,6 +16,8 @@ ApplicationWindow {
     Material.theme: Material.Dark
     Material.accent: Material.Cyan
     visible: true
+    flags: Qt.Dialog
+
 
     component CustomRow : Row{
         spacing: 10
@@ -31,6 +39,7 @@ ApplicationWindow {
                         text:"Fuel"
                     }
                     Slider{
+                        id: fuelSlider
                         from: 0
                         to: 80
                     }
@@ -40,6 +49,7 @@ ApplicationWindow {
                         text:"Battery"
                     }
                     Slider{
+                        id: batterySlider
                         from: 0
                         to: 100
                     }
@@ -49,6 +59,7 @@ ApplicationWindow {
                         text:"Cockpit\nTemperature"
                     }
                     Slider{
+                        id: indoorTempSlider
                         from: -20
                         to: 80
                     }
@@ -58,6 +69,7 @@ ApplicationWindow {
                         text:"Outside\nTemperature"
                     }
                     Slider{
+                        id: outdoorTempSlider
                         from: -20
                         to: 80
                     }
@@ -67,6 +79,7 @@ ApplicationWindow {
                         text:"Speed"
                     }
                     Slider{
+                        id: speedSlider
                         from: 0
                         to: 220
                     }
@@ -129,6 +142,5 @@ ApplicationWindow {
                 }
             }
         }
-
     }
 }

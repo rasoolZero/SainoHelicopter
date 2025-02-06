@@ -111,7 +111,7 @@ ApplicationWindow {
         end:100
         midRangeColor: "#37f7ff"
 
-        value:20
+        value : controlPanel.battery
         barsCount: 20
         barsSpacing: 5
         postfix: "%"
@@ -140,7 +140,7 @@ ApplicationWindow {
         end:80
         midRangeColor: "#37f7ff"
 
-        value:56
+        value:controlPanel.fuel
         barsCount: 40
         barsSpacing: 2
         postfix: " Gal"
@@ -170,7 +170,7 @@ ApplicationWindow {
         end:220
         midRangeColor: "#37f7ff"
 
-        value:178
+        value:controlPanel.speed
         barsCount: 100
         barsSpacing: 0
         postfix: " KPH"
@@ -204,7 +204,7 @@ ApplicationWindow {
         highRangeColor: "#ff3a37"
         lowRangeColor: "#37f7ff"
 
-        value:69
+        value : controlPanel.indoorTemp
         barsCount: 100
         barsSpacing: 0
         postfix: "°"
@@ -237,7 +237,7 @@ ApplicationWindow {
         highRangeColor: "#ff3a37"
         lowRangeColor: "#37f7ff"
 
-        value:69
+        value : controlPanel.outdoorTemp
         barsCount: 100
         barsSpacing: 0
         postfix: "°"
@@ -411,8 +411,20 @@ ApplicationWindow {
         textColor: "white"
     }
 
+    Item{
+        anchors.fill: parent
+        focus: !controlPanel.visible
+        Keys.onSpacePressed: {
+                controlPanel.show();
+        }
+    }
+
     ControlPanel{
         Material.theme: Material.Dark
         Material.accent: Material.Cyan
+        id : controlPanel
+        opacity: 0.95
+        visible: false
+
     }
 }

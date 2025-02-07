@@ -348,7 +348,7 @@ ApplicationWindow {
     ListIndicator{
         id:radioIndicator
 
-        value:0
+        value:controlPanel.radioSignalStrength
         boxText: "Radio Signal"
         boxTextColor: "white"
         swipeTextColor: "white"
@@ -367,7 +367,7 @@ ApplicationWindow {
         height:topDownView.height/4
 
         model: ["Weak","Good","Strong"]
-        sources: ["assets/signal-weak.svg","assets/signal-good.svg","assets/signal-good.svg"]
+        sources: ["assets/signal-weak.svg","assets/signal-good.svg","assets/signal-strong.svg"]
         valueImageColors: ["#ff3a37","#ffd037","#37f7ff"]
 
         visible: false

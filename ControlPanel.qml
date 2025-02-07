@@ -11,6 +11,7 @@ ApplicationWindow {
     property int cameraStatus : 0
     property int lampsStatus : 0
     property int controlPanelCheck : 0
+    property int radioSignalStrength
 
     id: controlPanel
     width: 800
@@ -151,13 +152,25 @@ ApplicationWindow {
                     RadioButton{
                         text:"Weak"
                         checked : true
+                        onCheckedChanged: {
+                            if (checked)
+                                controlPanel.radioSignalStrength = 0;
+                        }
                     }
                     RadioButton{
                         text:"Good"
+                        onCheckedChanged: {
+                            if (checked)
+                                controlPanel.radioSignalStrength = 1;
+                        }
                     }
 
                     RadioButton{
                         text:"Strong"
+                        onCheckedChanged: {
+                            if (checked)
+                                controlPanel.radioSignalStrength = 2;
+                        }
                     }
                 }
                 CustomRow{

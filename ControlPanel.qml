@@ -11,7 +11,8 @@ ApplicationWindow {
     property int cameraStatus : 0
     property int lampsStatus : 0
     property int controlPanelCheck : 0
-    property int radioSignalStrength
+    property int radioSignalStrength : 0
+    property int rotorSpeed : 0
 
     id: controlPanel
     width: 800
@@ -178,7 +179,12 @@ ApplicationWindow {
                         text:"Rotor Speed"
                     }
                     Tumbler{
+                        id: speedTumbler
                         model: ["Slowest","Slow","Medium","Fast","Fastest"]
+                        currentIndex: 0
+                        onCurrentIndexChanged: {
+                            controlPanel.rotorSpeed = currentIndex
+                        }
                         wrap: false
                     }
                 }

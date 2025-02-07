@@ -375,7 +375,7 @@ ApplicationWindow {
     ListIndicator{
         id:rotorSpeedIndicator
 
-        value:0
+        value:controlPanel.rotorSpeed
         boxText: "Main Rotor Speed"
         boxTextColor: "white"
         swipeTextColor: "white"

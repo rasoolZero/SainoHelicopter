@@ -294,7 +294,7 @@ ApplicationWindow {
     ListIndicator{
         id:cameraIndicator
 
-        value:0
+        value:controlPanel.cameraStatus
         boxText: "Fixed Camera"
         boxTextColor: "white"
         swipeTextColor: "white"

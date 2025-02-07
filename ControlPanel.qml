@@ -8,6 +8,7 @@ ApplicationWindow {
     property alias indoorTemp : indoorTempSlider.value
     property alias outdoorTemp : outdoorTempSlider.value
     property alias speed : speedSlider.value
+    property int cameraStatus : 0
 
     id: secondWindow
     width: 800
@@ -94,13 +95,25 @@ ApplicationWindow {
                     RadioButton{
                         text:"Good"
                         checked : true
+                        onCheckedChanged: {
+                            if(checked)
+                                controlPanel.cameraStatus = 0;
+                        }
                     }
                     RadioButton{
                         text:"Warning"
+                        onCheckedChanged: {
+                            if(checked)
+                                controlPanel.cameraStatus = 1;
+                        }
                     }
 
                     RadioButton{
                         text:"Error"
+                        onCheckedChanged: {
+                            if(checked)
+                                controlPanel.cameraStatus = 2;
+                        }
                     }
                 }
                 CustomRow{

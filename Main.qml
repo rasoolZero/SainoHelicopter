@@ -266,7 +266,7 @@ ApplicationWindow {
     ListIndicator{
         id:lampsIndicator
 
-        value:0
+        value:controlPanel.lampsStatus
         boxText: "Lamps"
         boxTextColor: "white"
         swipeTextColor: "white"

@@ -9,8 +9,9 @@ ApplicationWindow {
     property alias outdoorTemp : outdoorTempSlider.value
     property alias speed : speedSlider.value
     property int cameraStatus : 0
+    property int lampsStatus : 0
 
-    id: secondWindow
+    id: controlPanel
     width: 800
     height: 600
     title: "Control Panel"
@@ -121,6 +122,13 @@ ApplicationWindow {
                         text:"Lamps"
                     }
                     Switch{
+                        checked: true
+                        onCheckedChanged: {
+                            if(checked)
+                                controlPanel.lampsStatus = 0;
+                            else
+                                controlPanel.lampsStatus = 1;
+                        }
                     }
                 }
                 CustomRow{

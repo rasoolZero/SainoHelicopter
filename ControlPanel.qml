@@ -10,6 +10,7 @@ ApplicationWindow {
     property alias speed : speedSlider.value
     property int cameraStatus : 0
     property int lampsStatus : 0
+    property int controlPanelCheck : 0
 
     id: controlPanel
     width: 800
@@ -134,6 +135,13 @@ ApplicationWindow {
                 CustomRow{
                     CheckBox{
                         text:"Control Panel Check"
+                        checked : true
+                        onCheckedChanged:{
+                            if(checked)
+                                controlPanel.controlPanelCheck = 0
+                            else
+                                controlPanel.controlPanelCheck = 1
+                        }
                     }
                 }
                 CustomRow{

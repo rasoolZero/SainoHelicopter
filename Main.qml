@@ -42,8 +42,8 @@ ApplicationWindow {
         onCurrentIndexChanged: {
 
             let elements = [insideTempIndicator, outsideTempIndicator, batteryIndicator
-                            , fuelIndicator, speedIndicator, lampsIndicator, cameraIndicator, controlPanelIndicator
-                            , radioIndicator, rotorSpeedIndicator, description];
+                            , fuelIndicator, speedIndicator, lampsIndicator, cameraIndicator
+                            , controlPanelIndicator, radioIndicator, rotorSpeedIndicator, description];
 
 
             for (let i = 0; i < elements.length; i++) {
@@ -321,7 +321,7 @@ ApplicationWindow {
     ListIndicator{
         id:controlPanelIndicator
 
-        value:0
+        value:controlPanel.controlPanelCheck
         boxText: "Control Panel Check"
         boxTextColor: "white"
         swipeTextColor: "white"

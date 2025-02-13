@@ -9,9 +9,11 @@ find_package(Qt6 COMPONENTS ShaderTools)
 
 qt_standard_project_setup(REQUIRES 6.5)
 
+set(CMAKE_AUTORCC ON)
 
 
 qt_add_executable(appSainoHelicopter
+    icon.qrc
     main.cpp
 )
 
@@ -41,6 +43,8 @@ qt_add_qml_module(appSainoHelicopter
     QML_FILES TextDisplay.qml
     RESOURCES  assets/frame.svg
     QML_FILES ControlPanel.qml
+    RESOURCES  assets/icon.png
+    RESOURCES icon.qrc
 )
 
 

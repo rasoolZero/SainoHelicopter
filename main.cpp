@@ -1,11 +1,13 @@
 #include <QFontDatabase>
 #include <QGuiApplication>
+#include <QIcon>
 #include <QQmlApplicationEngine>
 #include <QSurfaceFormat>
 
 int main(int argc, char *argv[])
 {
     QGuiApplication app(argc, argv);
+    app.setWindowIcon(QIcon(":/assets/icon.png"));
 
     qint32 fontId = QFontDatabase::addApplicationFont(
         "E:\\programming\\SainoHelicopter\\assets\\Roboto-Regular.ttf");

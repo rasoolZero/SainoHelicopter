@@ -16,7 +16,7 @@ Item{
         antialiasing: true
         mipmap:true
         fillMode: Image.PreserveAspectFit
-        source: "assets/top-down.png"
+        source: "qrc:/assets/top-down.png"
     }
     Image{
         id: overlay
@@ -27,7 +27,7 @@ Item{
         mipmap:true
         fillMode: Image.PreserveAspectFit
         smooth: true
-        source: "assets/top-down.png"
+        source: "qrc:/assets/top-down.png"
         visible: false
     }
     ColorOverlay {

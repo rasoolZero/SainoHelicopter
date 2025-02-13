@@ -25,29 +25,17 @@ qt_add_qml_module(appSainoHelicopter
     QML_FILES Main.qml
     QML_FILES HelicopterView.qml
     QML_FILES Helicopter.qml
-    RESOURCES assets/rotor.png assets/top-down.png
     QML_FILES TumblerSelector.qml
-    RESOURCES assets/battery.png assets/camera.png assets/cockpit.png assets/control-panel.png assets/fuel.png assets/lamps.png assets/radio.png assets/rotor.png assets/top-down.png
     QML_FILES HelicopterTopDown.qml
     QML_FILES LinearIndicator.qml
-    RESOURCES fonts.qrc
     QML_FILES ListIndicator.qml
     QML_FILES TextDisplay.qml
     QML_FILES ControlPanel.qml
+    RESOURCES fonts.qrc
     RESOURCES icon.qrc
     RESOURCES vectors.qrc
+    RESOURCES images.qrc
 )
-
-
-# qt6_add_shaders(appSainoHelicopter "HelicopterShaders"
-#     PREFIX
-#         "/"
-#     FILES
-#         "shaders/wireframe.frag"
-#         "shaders/wireframe.vert"
-# )
-
-
 
 
 

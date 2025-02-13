@@ -1,0 +1,14 @@
+<RCC>
+    <qresource prefix="/">
+        <file>assets/battery.png</file>
+        <file>assets/camera.png</file>
+        <file>assets/cockpit.png</file>
+        <file>assets/control-panel.png</file>
+        <file>assets/fuel.png</file>
+        <file>assets/icon.png</file>
+        <file>assets/lamps.png</file>
+        <file>assets/radio.png</file>
+        <file>assets/rotor.png</file>
+        <file>assets/top-down.png</file>
+    </qresource>
+</RCC>

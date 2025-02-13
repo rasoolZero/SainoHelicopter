@@ -52,52 +52,52 @@ ApplicationWindow {
 
             switch (currentIndex) {
                 case 0:
-                    topDownView.source = "assets/top-down.png";
+                    topDownView.source = "qrc:/assets/top-down.png";
                     topDownView.enabled = false
                     description.visible = true
                     break;
                 case 1:
-                    topDownView.source = "assets/fuel.png";
+                    topDownView.source = "qrc:/assets/fuel.png";
                     topDownView.enabled = true
                     fuelIndicator.visible = true;
                     break;
                 case 2:
-                    topDownView.source = "assets/battery.png";
+                    topDownView.source = "qrc:/assets/battery.png";
                     topDownView.enabled = true
                     batteryIndicator.visible = true;
                     break;
                 case 3:
-                    topDownView.source = "assets/cockpit.png";
+                    topDownView.source = "qrc:/assets/cockpit.png";
                     topDownView.enabled = true
                     insideTempIndicator.visible = outsideTempIndicator.visible = true;
                     break;
                 case 4:
-                    topDownView.source = "assets/camera.png";
+                    topDownView.source = "qrc:/assets/camera.png";
                     topDownView.enabled = true
                     cameraIndicator.visible = true
                     break;
                 case 5:
-                    topDownView.source = "assets/top-down.png";
+                    topDownView.source = "qrc:/assets/top-down.png";
                     topDownView.enabled = true
                     speedIndicator.visible = true
                     break;
                 case 6:
-                    topDownView.source = "assets/lamps.png";
+                    topDownView.source = "qrc:/assets/lamps.png";
                     topDownView.enabled = true
                     lampsIndicator.visible = true
                     break;
                 case 7:
-                    topDownView.source = "assets/rotor.png";
+                    topDownView.source = "qrc:/assets/rotor.png";
                     topDownView.enabled = true
                     rotorSpeedIndicator.visible = true
                     break;
                 case 8:
-                    topDownView.source = "assets/control-panel.png";
+                    topDownView.source = "qrc:/assets/control-panel.png";
                     topDownView.enabled = true
                     controlPanelIndicator.visible = true
                     break;
                 case 9:
-                    topDownView.source = "assets/radio.png";
+                    topDownView.source = "qrc:/assets/radio.png";
                     topDownView.enabled = true
                     radioIndicator.visible = true
                     break;

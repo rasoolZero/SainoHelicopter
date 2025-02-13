@@ -1,0 +1,18 @@
+<RCC>
+    <qresource prefix="/">
+        <file>assets/error.svg</file>
+        <file>assets/frame.svg</file>
+        <file>assets/gauge-high.svg</file>
+        <file>assets/gauge-low.svg</file>
+        <file>assets/gauge-max.svg</file>
+        <file>assets/gauge-middle.svg</file>
+        <file>assets/gauge-min.svg</file>
+        <file>assets/lamp-off.svg</file>
+        <file>assets/lamp-on.svg</file>
+        <file>assets/ok.svg</file>
+        <file>assets/signal-good.svg</file>
+        <file>assets/signal-strong.svg</file>
+        <file>assets/signal-weak.svg</file>
+        <file>assets/warning.svg</file>
+    </qresource>
+</RCC>

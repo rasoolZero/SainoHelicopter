@@ -9,11 +9,9 @@ int main(int argc, char *argv[])
     QGuiApplication app(argc, argv);
     app.setWindowIcon(QIcon(":/assets/icon.png"));
 
-    qint32 fontId = QFontDatabase::addApplicationFont(
-        "E:\\programming\\SainoHelicopter\\assets\\Roboto-Regular.ttf");
+    qint32 fontId = QFontDatabase::addApplicationFont(":/assets/Roboto-Regular.ttf");
     assert(fontId != -1);
     QStringList fontList = QFontDatabase::applicationFontFamilies(fontId);
-
     QString family = fontList.first();
     QGuiApplication::setFont(QFont(family));
 

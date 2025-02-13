@@ -285,7 +285,7 @@ ApplicationWindow {
         height:topDownView.height/4
 
         model: ["On","Off"]
-        sources: ["assets/lamp-on.svg","assets/lamp-off.svg"]
+        sources: ["qrc:/assets/lamp-on.svg","qrc:/assets/lamp-off.svg"]
         valueImageColors: ["#ffd037","white"]
 
         visible: false
@@ -313,7 +313,7 @@ ApplicationWindow {
         height:topDownView.height/4
 
         model: ["Good","Warning","Error"]
-        sources: ["assets/ok.svg","assets/warning.svg","assets/error.svg"]
+        sources: ["qrc:/assets/ok.svg","qrc:/assets/warning.svg","qrc:/assets/error.svg"]
         valueImageColors: ["#37f7ff","#ffd037","#ff3a37"]
 
         visible: false
@@ -340,7 +340,7 @@ ApplicationWindow {
         height:topDownView.height/4
 
         model: ["Pass","Fail"]
-        sources: ["assets/ok.svg","assets/error.svg"]
+        sources: ["qrc:/assets/ok.svg","qrc:/assets/error.svg"]
         valueImageColors: ["#37f7ff","#ff3a37"]
 
         visible: false
@@ -367,7 +367,7 @@ ApplicationWindow {
         height:topDownView.height/4
 
         model: ["Weak","Good","Strong"]
-        sources: ["assets/signal-weak.svg","assets/signal-good.svg","assets/signal-strong.svg"]
+        sources: ["qrc:/assets/signal-weak.svg","qrc:/assets/signal-good.svg","qrc:/assets/signal-strong.svg"]
         valueImageColors: ["#ff3a37","#ffd037","#37f7ff"]
 
         visible: false
@@ -393,7 +393,7 @@ ApplicationWindow {
         height:topDownView.height/4
 
         model: ["Slowest","Slow","Medium","Fast","Fastest"]
-        sources: ["assets/gauge-min.svg","assets/gauge-low.svg","assets/gauge-middle.svg","assets/gauge-high.svg","assets/gauge-max.svg"]
+        sources: ["qrc:/assets/gauge-min.svg","qrc:/assets/gauge-low.svg","qrc:/assets/gauge-middle.svg","qrc:/assets/gauge-high.svg","qrc:/assets/gauge-max.svg"]
         valueImageColors: ["#ffffff","#ffffff","#ffffff","#ffffff","#ffffff"]
 
         visible: false

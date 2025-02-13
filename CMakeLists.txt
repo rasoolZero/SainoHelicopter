@@ -13,9 +13,8 @@ set(CMAKE_AUTORCC ON)
 
 
 qt_add_executable(appSainoHelicopter
-    vectors.qrc
-    icon.qrc
     fonts.qrc
+    icon.qrc
     main.cpp
 )
 
@@ -35,6 +34,7 @@ qt_add_qml_module(appSainoHelicopter
     RESOURCES icon.qrc
     RESOURCES vectors.qrc
     RESOURCES images.qrc
+    RESOURCES mesh.qrc
 )
 
 

@@ -7,7 +7,7 @@ Model {
     property color copterColor : "#EFEFEFFF"
 
     position: Qt.vector3d(0, 0, 0)
-    source: "E:\\programming\\SainoHelicopter\\mesh\\APACHE_1.mesh"
+    source: "qrc:/mesh/APACHE_1.mesh"
     scale:Qt.vector3d(0.45,0.45,0.45)
     eulerRotation: Qt.vector3d(0,r,0)
     castsShadows: true

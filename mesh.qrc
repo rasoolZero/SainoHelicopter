@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/">
+        <file>mesh/APACHE_1.mesh</file>
+    </qresource>
+</RCC>

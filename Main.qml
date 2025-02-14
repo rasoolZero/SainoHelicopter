@@ -11,7 +11,18 @@ ApplicationWindow {
     minimumHeight : 600
     maximumHeight : 600
     visible: true
-    color: "#202020"
+
+    QtObject {
+        id: colorConfig
+        property color backgroundColor : "#1c1b1f"
+        property color accentColor : "#80deea"
+        property color warningColor : "#FFC444"
+        property color errorColor : "#FF5244"
+        property color okColor : "#3AD755"
+        property color textColor : "#ffffff"
+    }
+
+    color: colorConfig.backgroundColor
     title: "Saino Helicopter"
 
     HelicopterView{
@@ -19,7 +30,7 @@ ApplicationWindow {
         anchors.left: parent.left
         width: parent.width*3/4
         height: parent.height*2/5
-        bgColor: "#202020"
+        bgColor: colorConfig.backgroundColor
         copterColor: "white"
         id : view
     }
@@ -31,10 +42,13 @@ ApplicationWindow {
         anchors.bottom: parent.bottom
         anchors.left: parent.left
         anchors.leftMargin: 10
+        overlayColor : colorConfig.errorColor
     }
 
     TumblerSelector{
         id: selector
+        textColor: colorConfig.textColor
+        separatorColor: colorConfig.okColor
         anchors.top: parent.top
         anchors.right: parent.right
         height: parent.height
@@ -109,21 +123,21 @@ ApplicationWindow {
         id:batteryIndicator
         start:0
         end:100
-        midRangeColor: "#37f7ff"
+        midRangeColor: colorConfig.accentColor
 
         value : controlPanel.battery
         barsCount: 20
         barsSpacing: 5
         postfix: "%"
         boxText: "Battery Charge"
-        boxTextColor: "white"
+        boxTextColor: colorConfig.textColor
         innerLoaderBackgroundColor: window.color
 
-        circleColor : "#37f7ff"
-        outerRotatorColor: "#37f7ff"
-        innerLoaderColor: "#37f7ff"
-        valueColor: "#37f7ff"
-        outerBoxColor: "#37f7ff"
+        circleColor : colorConfig.accentColor
+        outerRotatorColor: colorConfig.accentColor
+        innerLoaderColor: colorConfig.accentColor
+        valueColor: colorConfig.accentColor
+        outerBoxColor: colorConfig.accentColor
 
         anchors.bottom: parent.bottom
         anchors.right: selector.left
@@ -138,21 +152,21 @@ ApplicationWindow {
         id:fuelIndicator
         start:0
         end:80
-        midRangeColor: "#37f7ff"
+        midRangeColor: colorConfig.accentColor
 
         value:controlPanel.fuel
         barsCount: 40
         barsSpacing: 2
         postfix: " Gal"
         boxText: "Fuel"
-        boxTextColor: "white"
+        boxTextColor: colorConfig.textColor
         innerLoaderBackgroundColor: window.color
 
-        circleColor : "#37f7ff"
-        outerRotatorColor: "#37f7ff"
-        innerLoaderColor: "#37f7ff"
-        valueColor: "#37f7ff"
-        outerBoxColor: "#37f7ff"
+        circleColor : colorConfig.accentColor
+        outerRotatorColor: colorConfig.accentColor
+        innerLoaderColor: colorConfig.accentColor
+        valueColor: colorConfig.accentColor
+        outerBoxColor: colorConfig.accentColor
 
         anchors.bottom: parent.bottom
         anchors.right: selector.left
@@ -168,21 +182,21 @@ ApplicationWindow {
         id:speedIndicator
         start:0
         end:220
-        midRangeColor: "#37f7ff"
+        midRangeColor: colorConfig.accentColor
 
         value:controlPanel.speed
         barsCount: 100
         barsSpacing: 0
         postfix: " KPH"
         boxText: "Airspeed"
-        boxTextColor: "white"
+        boxTextColor: colorConfig.textColor
         innerLoaderBackgroundColor: window.color
 
-        circleColor : "#37f7ff"
-        outerRotatorColor: "#37f7ff"
-        innerLoaderColor: "#37f7ff"
-        valueColor: "#37f7ff"
-        outerBoxColor: "#37f7ff"
+        circleColor : colorConfig.accentColor
+        outerRotatorColor: colorConfig.accentColor
+        innerLoaderColor: colorConfig.accentColor
+        valueColor: colorConfig.accentColor
+        outerBoxColor: colorConfig.accentColor
 
         anchors.bottom: parent.bottom
         anchors.right: selector.left
@@ -200,23 +214,23 @@ ApplicationWindow {
         end:80
         lowRangeThreshold: 0
         highRangeThreshold: 60
-        midRangeColor: "#ff9e37"
-        highRangeColor: "#ff3a37"
-        lowRangeColor: "#37f7ff"
+        midRangeColor: colorConfig.warningColor
+        highRangeColor: colorConfig.errorColor
+        lowRangeColor: colorConfig.accentColor
 
         value : controlPanel.indoorTemp
         barsCount: 100
         barsSpacing: 0
         postfix: "°"
         boxText: "Cockpit Temperature"
-        boxTextColor: "white"
+        boxTextColor: colorConfig.textColor
         innerLoaderBackgroundColor: window.color
 
-        circleColor : "#37f7ff"
-        outerRotatorColor: "#ff9e37"
-        innerLoaderColor: "#ff3a37"
-        valueColor: "#37f7ff"
-        outerBoxColor: "#37f7ff"
+        circleColor : colorConfig.accentColor
+        outerRotatorColor: colorConfig.warningColor
+        innerLoaderColor: colorConfig.errorColor
+        valueColor: colorConfig.accentColor
+        outerBoxColor: colorConfig.accentColor
 
         anchors.bottom: parent.bottom
         anchors.right: selector.left
@@ -233,23 +247,23 @@ ApplicationWindow {
         end:80
         lowRangeThreshold: 0
         highRangeThreshold: 60
-        midRangeColor: "#ff9e37"
-        highRangeColor: "#ff3a37"
-        lowRangeColor: "#37f7ff"
+        midRangeColor: colorConfig.warningColor
+        highRangeColor: colorConfig.errorColor
+        lowRangeColor: colorConfig.accentColor
 
         value : controlPanel.outdoorTemp
         barsCount: 100
         barsSpacing: 0
         postfix: "°"
         boxText: "Outside Temperature"
-        boxTextColor: "white"
+        boxTextColor: colorConfig.textColor
         innerLoaderBackgroundColor: window.color
 
-        circleColor : "#37f7ff"
-        outerRotatorColor: "#ff9e37"
-        innerLoaderColor: "#ff3a37"
-        valueColor: "#37f7ff"
-        outerBoxColor: "#37f7ff"
+        circleColor : colorConfig.accentColor
+        outerRotatorColor: colorConfig.warningColor
+        innerLoaderColor: colorConfig.errorColor
+        valueColor: colorConfig.accentColor
+        outerBoxColor: colorConfig.accentColor
 
         anchors.top: topDownView.top
         anchors.right: selector.left
@@ -268,15 +282,15 @@ ApplicationWindow {
 
         value:controlPanel.lampsStatus
         boxText: "Lamps"
-        boxTextColor: "white"
-        swipeTextColor: "white"
+        boxTextColor: colorConfig.textColor
+        swipeTextColor: colorConfig.textColor
         innerLoaderBackgroundColor: window.color
 
 
-        circleColor : "#37f7ff"
-        outerRotatorColor: "#37f7ff"
-        innerLoaderColor: "#37f7ff"
-        outerBoxColor: "#37f7ff"
+        circleColor : colorConfig.accentColor
+        outerRotatorColor: colorConfig.accentColor
+        innerLoaderColor: colorConfig.accentColor
+        outerBoxColor: colorConfig.accentColor
 
         anchors.bottom: parent.bottom
         anchors.right: selector.left
@@ -286,7 +300,7 @@ ApplicationWindow {
 
         model: ["On","Off"]
         sources: ["qrc:/assets/lamp-on.svg","qrc:/assets/lamp-off.svg"]
-        valueImageColors: ["#ffd037","white"]
+        valueImageColors: [colorConfig.warningColor,"white"]
 
         visible: false
     }
@@ -296,15 +310,15 @@ ApplicationWindow {
 
         value:controlPanel.cameraStatus
         boxText: "Fixed Camera"
-        boxTextColor: "white"
-        swipeTextColor: "white"
+        boxTextColor: colorConfig.textColor
+        swipeTextColor: colorConfig.textColor
         innerLoaderBackgroundColor: window.color
 
 
-        circleColor : "#37f7ff"
-        outerRotatorColor: "#37f7ff"
-        innerLoaderColor: "#37f7ff"
-        outerBoxColor: "#37f7ff"
+        circleColor : colorConfig.accentColor
+        outerRotatorColor: colorConfig.accentColor
+        innerLoaderColor: colorConfig.accentColor
+        outerBoxColor: colorConfig.accentColor
 
         anchors.bottom: parent.bottom
         anchors.right: selector.left
@@ -314,7 +328,7 @@ ApplicationWindow {
 
         model: ["Good","Warning","Error"]
         sources: ["qrc:/assets/ok.svg","qrc:/assets/warning.svg","qrc:/assets/error.svg"]
-        valueImageColors: ["#37f7ff","#ffd037","#ff3a37"]
+        valueImageColors: [colorConfig.okColor,colorConfig.warningColor,colorConfig.errorColor]
 
         visible: false
     }
@@ -323,15 +337,15 @@ ApplicationWindow {
 
         value:controlPanel.controlPanelCheck
         boxText: "Control Panel Check"
-        boxTextColor: "white"
-        swipeTextColor: "white"
+        boxTextColor: colorConfig.textColor
+        swipeTextColor: colorConfig.textColor
         innerLoaderBackgroundColor: window.color
 
 
-        circleColor : "#37f7ff"
-        outerRotatorColor: "#37f7ff"
-        innerLoaderColor: "#37f7ff"
-        outerBoxColor: "#37f7ff"
+        circleColor : colorConfig.accentColor
+        outerRotatorColor: colorConfig.accentColor
+        innerLoaderColor: colorConfig.accentColor
+        outerBoxColor: colorConfig.accentColor
 
         anchors.bottom: parent.bottom
         anchors.right: selector.left
@@ -341,7 +355,7 @@ ApplicationWindow {
 
         model: ["Pass","Fail"]
         sources: ["qrc:/assets/ok.svg","qrc:/assets/error.svg"]
-        valueImageColors: ["#37f7ff","#ff3a37"]
+        valueImageColors: [colorConfig.okColor,colorConfig.errorColor]
 
         visible: false
     }
@@ -350,15 +364,15 @@ ApplicationWindow {
 
         value:controlPanel.radioSignalStrength
         boxText: "Radio Signal"
-        boxTextColor: "white"
-        swipeTextColor: "white"
+        boxTextColor: colorConfig.textColor
+        swipeTextColor: colorConfig.textColor
         innerLoaderBackgroundColor: window.color
 
 
-        circleColor : "#37f7ff"
-        outerRotatorColor: "#37f7ff"
-        innerLoaderColor: "#37f7ff"
-        outerBoxColor: "#37f7ff"
+        circleColor : colorConfig.accentColor
+        outerRotatorColor: colorConfig.accentColor
+        innerLoaderColor: colorConfig.accentColor
+        outerBoxColor: colorConfig.accentColor
 
         anchors.bottom: parent.bottom
         anchors.right: selector.left
@@ -368,7 +382,7 @@ ApplicationWindow {
 
         model: ["Weak","Good","Strong"]
         sources: ["qrc:/assets/signal-weak.svg","qrc:/assets/signal-good.svg","qrc:/assets/signal-strong.svg"]
-        valueImageColors: ["#ff3a37","#ffd037","#37f7ff"]
+        valueImageColors: [colorConfig.errorColor,colorConfig.warningColor,colorConfig.okColor]
 
         visible: false
     }
@@ -377,14 +391,14 @@ ApplicationWindow {
 
         value:controlPanel.rotorSpeed
         boxText: "Main Rotor Speed"
-        boxTextColor: "white"
-        swipeTextColor: "white"
+        boxTextColor: colorConfig.textColor
+        swipeTextColor: colorConfig.textColor
         innerLoaderBackgroundColor: window.color
 
-        circleColor : "#37f7ff"
-        outerRotatorColor: "#37f7ff"
-        innerLoaderColor: "#37f7ff"
-        outerBoxColor: "#37f7ff"
+        circleColor : colorConfig.accentColor
+        outerRotatorColor: colorConfig.accentColor
+        innerLoaderColor: colorConfig.accentColor
+        outerBoxColor: colorConfig.accentColor
 
         anchors.bottom: parent.bottom
         anchors.right: selector.left
@@ -403,12 +417,12 @@ ApplicationWindow {
         id: description
         width:(topDownView.width - topDownView.actualWidth)
         height:topDownView.height
-        frameColor: "#37f7ff"
+        frameColor: colorConfig.accentColor
         anchors.bottom: parent.bottom
         anchors.right: topDownView.right
         opacity: 0.85
         text: "The Apache AH-64 is an advanced attack helicopter manufactured by Boeing (originally by Hughes Helicopters). First produced in 1983, it features superior air resistance with a streamlined fuselage and rotor design. It has a maximum altitude of approximately 21,000 feet (6,400 meters), making it highly effective in diverse combat environments."
-        textColor: "white"
+        textColor: colorConfig.textColor
     }
 
     Item{
@@ -423,7 +437,7 @@ ApplicationWindow {
         Material.theme: Material.Dark
         Material.accent: Material.Cyan
         id : controlPanel
-        opacity: 0.95
+        opacity: 1
         visible: false
 
     }

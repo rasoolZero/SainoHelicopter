@@ -4,6 +4,10 @@ import QtQuick.Controls
 
 Tumbler {
     id: control
+
+    required property color textColor
+    required property color separatorColor
+
     model: ListModel {
         ListElement { text: "Description" }
         ListElement { text: "Fuel" }
@@ -42,7 +46,7 @@ Tumbler {
         horizontalAlignment: Text.AlignHCenter
         verticalAlignment: Text.AlignVCenter
         opacity: 1.0 - Math.abs(Tumbler.displacement) / (control.visibleItemCount / 2)
-        color:"white"
+        color: control.textColor
         required property var modelData
         required property int index
     }
@@ -52,7 +56,7 @@ Tumbler {
         y: control.height * 0.4
         width: control.width * 0.8
         height: 1
-        color: "#21be2b"
+        color: control.separatorColor
     }
 
     Rectangle {
@@ -60,6 +64,6 @@ Tumbler {
         y: control.height * 0.6
         width: control.width * 0.8
         height: 1
-        color: "#21be2b"
+        color: control.separatorColor
     }
 }

@@ -7,6 +7,7 @@ Item{
     property alias source : overlay.source
     property alias enabled : colorOverlay.visible
     property alias actualWidth: mainImage.implicitWidth
+    property alias overlayColor: colorOverlay.color
 
     Image{
         id: mainImage

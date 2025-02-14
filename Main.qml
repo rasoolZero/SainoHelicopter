@@ -30,7 +30,6 @@ ApplicationWindow {
         anchors.left: parent.left
         width: parent.width*3/4
         height: parent.height*2/5
-        bgColor: colorConfig.backgroundColor
         copterColor: "white"
         id : view
     }

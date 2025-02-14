@@ -5,15 +5,12 @@ import QtQuick3D.Helpers
 
 View3D {
     id : view
-    property alias bgColor : env.clearColor
     property alias copterColor : copter.copterColor
-
 
     // renderFormat: ShaderEffectSource.RGBA16F
     environment: SceneEnvironment {
         id: env
-        clearColor: "black"
-        backgroundMode: SceneEnvironment.Color
+        backgroundMode: SceneEnvironment.Transparent
         antialiasingMode: SceneEnvironment.MSAA
         antialiasingQuality: SceneEnvironment.High
     }

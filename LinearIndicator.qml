@@ -194,6 +194,22 @@ Item {
                 radiusX: box.height/2
             }
         }
+        SH.ShapePath {
+            property int offset : height / 2
+
+            id: outerBoxThickness
+            fillColor: "transparent"
+            strokeColor: outerBox.strokeColor
+            strokeWidth: outerBox.strokeWidth + 2
+            startX:height/2 + offset
+            startY:0
+            capStyle:SH.ShapePath.RoundCap
+            PathLine{x: box.width - outerBoxThickness.offset;}
+            PathMove{y: box.height/2; x: box.width;}
+            PathLine{relativeX: -barsLayout.width/4; relativeY:0}
+            PathMove{relativeX: -barsLayout.width/4; y:box.height}
+            PathLine{x: box.height/2 + outerBoxThickness.offset; relativeY: 0;}
+        }
     }
     Rectangle{
         id: textHolder

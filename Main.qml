@@ -3,6 +3,7 @@ import QtQuick
 import QtQuick.Window
 import QtQuick.Controls
 import QtQuick.Controls.Material
+import Qt5Compat.GraphicalEffects
 
 ApplicationWindow {
     id: window
@@ -20,6 +21,7 @@ ApplicationWindow {
         property color errorColor : "#FF5244"
         property color okColor : "#3AD755"
         property color textColor : "#ffffff"
+        property color scanlineColor: okColor
     }
 
     color: colorConfig.backgroundColor
@@ -32,6 +34,50 @@ ApplicationWindow {
         height: parent.height*2/5
         copterColor: "white"
         id : view
+    }
+    LinearGradient{
+        id: mask
+        anchors.fill: view
+        gradient: Gradient {
+            id: maskGradient
+            property real size : 0.035
+            property real spread: 0.002
+            property real position : 0.4
+            GradientStop { position: 0.0; color: "transparent"}
+            GradientStop { position: maskGradient.position - maskGradient.size / 2 - maskGradient.spread; color: "transparent"}
+            GradientStop { position: maskGradient.position - maskGradient.size / 2; color: "green"}
+            GradientStop { position: maskGradient.position + maskGradient.size / 2; color: "green"}
+            GradientStop { position: maskGradient.position + maskGradient.size / 2 + maskGradient.spread; color: "transparent"}
+            GradientStop { position: 1.0; color: "transparent"}
+
+            SequentialAnimation on position{
+                loops:Animation.Infinite
+                NumberAnimation{
+                    from: 0.0
+                    to:1.0
+                    duration:2500
+                }
+                PauseAnimation {
+                    duration: 500
+                }
+                NumberAnimation{
+                    from: 1.0
+                    to:0.0
+                    duration:2500
+                }
+                PauseAnimation {
+                    duration: 500
+                }
+            }
+        }
+        visible: false
+    }
+    Blend {
+        source: view
+        foregroundSource: mask
+        mode: "hardLight"
+        anchors.fill: view
+        opacity:1
     }
 
     HelicopterTopDown {

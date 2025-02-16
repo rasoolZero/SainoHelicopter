@@ -1,12 +1,18 @@
 import QtQuick
 import QtQuick.Controls.Basic
 import QtQuick.Controls
+import QtQuick.Layouts
+import Qt5Compat.GraphicalEffects
 
 Tumbler {
     id: control
 
     required property color textColor
     required property color separatorColor
+    property list<string> icons : [
+        "description", "fuel", "battery", "temperature", "camera", "speed",
+        "lamps", "rotor", "control_panel", "radio"
+    ]
 
     model: ListModel {
         ListElement { text: "Description" }
@@ -40,15 +46,36 @@ Tumbler {
         }
     }
 
-    delegate: Text {
-        text: modelData
-        font: control.font
-        horizontalAlignment: Text.AlignHCenter
-        verticalAlignment: Text.AlignVCenter
-        opacity: 1.0 - Math.abs(Tumbler.displacement) / (control.visibleItemCount / 2)
-        color: control.textColor
+    delegate: Row{
+
         required property var modelData
         required property int index
+        opacity: 1.0 - Math.abs(Tumbler.displacement) / (control.visibleItemCount / 2)
+        anchors.horizontalCenter: parent.horizontalCenter
+        spacing : width*0.1
+        leftPadding: width*0.15
+        Image{
+            height : parent.height*0.35
+            anchors.verticalCenter: parent.verticalCenter
+            source : "qrc:/assets/" + control.icons[parent.index] + ".svg"
+            smooth: true
+            // mipmap: true
+            fillMode: Image.PreserveAspectFit
+            ColorOverlay{
+                anchors.fill: parent
+                source:parent
+                antialiasing: true
+                smooth:true
+                color:"white"
+            }
+        }
+        Text {
+            text: parent.modelData
+            font: control.font
+            verticalAlignment: Text.AlignVCenter
+            color: control.textColor
+            height : parent.height
+        }
     }
 
     Rectangle {

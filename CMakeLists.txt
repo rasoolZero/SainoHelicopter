@@ -35,6 +35,7 @@ qt_add_qml_module(appSainoHelicopter
     RESOURCES vectors.qrc
     RESOURCES images.qrc
     RESOURCES mesh.qrc
+    RESOURCES tumbler-icons.qrc
 )
 
 

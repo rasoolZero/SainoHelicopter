@@ -1,0 +1,7 @@
+keyboard control for tumbler selector (with hint)
+horizontal tumbler for List Indicator
+better ditails for indicators
+responsive windows
+add gradient background
+switch between wireframe and model view for 3d helicopter (with hint)
+add component highlight to 3d helicopter

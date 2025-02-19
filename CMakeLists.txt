@@ -36,6 +36,7 @@ qt_add_qml_module(appSainoHelicopter
     RESOURCES images.qrc
     RESOURCES mesh.qrc
     RESOURCES tumbler-icons.qrc
+    QML_FILES PulseLoader.qml
 )
 
 

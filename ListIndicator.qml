@@ -9,11 +9,16 @@ Item {
     id : indicator
     property alias circleColor : circle.border.color
     property alias outerRotatorColor: outerRotatorPath.strokeColor
+    property alias outerRotatorOpacity: outerRotator.opacity
     property alias innerLoaderColor: innerLoaderColorGradient.color
     property alias innerLoaderBackgroundColor: innerLoaderBackground.fillColor
     property alias outerBoxColor: outerBox.strokeColor
     property alias boxText: boxText.text
     property alias boxTextColor: boxText.color
+
+    property alias loadingBarsColor: horizontalLoaderBars.color
+    property alias loadingBarsSpacing: horizontalLoaderBars.spacing
+    property alias loadingBarsCount : horizontalLoaderBars.barCount
 
     property color swipeTextColor: "black"
 
@@ -44,17 +49,18 @@ Item {
         border.width: 3
         anchors.left: parent.left // Aligns the circle to the left of the indicator
         SH.Shape {
+            id:outerRotator
+            opacity: 0.5
             z:parent.z-1
             antialiasing: true
             smooth: true
-            id:outerRotator
             anchors.centerIn: parent // Align the arcs to the center of the circle
             anchors.fill: parent
             SH.ShapePath {
                 id: outerRotatorPath
                 strokeColor: "black"
                 fillColor:"transparent"
-                strokeWidth: 5
+                strokeWidth: 7
                 startX: width / 2
                 startY: 0
                 capStyle: SH.ShapePath.RoundCap
@@ -186,7 +192,7 @@ Item {
             startY:0
             capStyle:SH.ShapePath.SquareCap
             PathLine{x: box.width;}
-            PathLine{y: box.height/2; relativeX: 0;}
+            PathLine{y: box.height * 3 / 4; relativeX: 0;}
             PathLine{relativeX: -swipeViewHolder.width/4; relativeY:0}
             PathLine{relativeX: -swipeViewHolder.width/4; y:box.height}
             PathLine{x: box.height/2; relativeY: 0;}
@@ -209,7 +215,8 @@ Item {
             startY:0
             capStyle:SH.ShapePath.RoundCap
             PathLine{x: box.width - outerBoxThickness.offset;}
-            PathMove{y: box.height/2; x: box.width;}
+            PathMove{y: box.height/2 - 5; x: box.width;}
+            PathLine{relativeY: box.height / 4 + 5; relativeX:0}
             PathLine{relativeX: -swipeViewHolder.width/4; relativeY:0}
             PathMove{relativeX: -swipeViewHolder.width/4; y:box.height}
             PathLine{x: box.height/2 + outerBoxThickness.offset; relativeY: 0;}
@@ -257,9 +264,21 @@ Item {
             }
         }
         width: parent.width - circle.width - 20
+        anchors.leftMargin: 10
+        anchors.rightMargin: 10
         anchors.right: parent.right
         anchors.top : parent.top
-        height:parent.height/2 - anchors.margins*2
+        height:parent.height/2 - 5
+    }
+    PulseLoader{
+        id:horizontalLoaderBars
+        spacing: 2
+        barCount : 7
+        width: (swipeViewHolder.width / 4) - (barCount) * spacing - 5
+        anchors.right: swipeViewHolder.right
+        anchors.top : swipeViewHolder.bottom
+        height:indicator.height/ 4
+        running: true
     }
 }
 

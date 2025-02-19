@@ -335,7 +335,7 @@ ApplicationWindow {
         boxTextColor: colorConfig.textColor
         swipeTextColor: colorConfig.textColor
         innerLoaderBackgroundColor: window.color
-
+        loadingBarsColor: colorConfig.accentColor
 
         circleColor : colorConfig.accentColor
         outerRotatorColor: colorConfig.accentColor
@@ -369,6 +369,7 @@ ApplicationWindow {
         outerRotatorColor: colorConfig.accentColor
         innerLoaderColor: colorConfig.accentColor
         outerBoxColor: colorConfig.accentColor
+        loadingBarsColor: colorConfig.accentColor
 
         anchors.bottom: parent.bottom
         anchors.right: selector.left
@@ -396,6 +397,7 @@ ApplicationWindow {
         outerRotatorColor: colorConfig.accentColor
         innerLoaderColor: colorConfig.accentColor
         outerBoxColor: colorConfig.accentColor
+        loadingBarsColor: colorConfig.accentColor
 
         anchors.bottom: parent.bottom
         anchors.right: selector.left
@@ -423,6 +425,7 @@ ApplicationWindow {
         outerRotatorColor: colorConfig.accentColor
         innerLoaderColor: colorConfig.accentColor
         outerBoxColor: colorConfig.accentColor
+        loadingBarsColor: colorConfig.accentColor
 
         anchors.bottom: parent.bottom
         anchors.right: selector.left
@@ -449,6 +452,7 @@ ApplicationWindow {
         outerRotatorColor: colorConfig.accentColor
         innerLoaderColor: colorConfig.accentColor
         outerBoxColor: colorConfig.accentColor
+        loadingBarsColor: colorConfig.accentColor
 
         anchors.bottom: parent.bottom
         anchors.right: selector.left

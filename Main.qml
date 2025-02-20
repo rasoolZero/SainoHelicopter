@@ -4,6 +4,7 @@ import QtQuick.Window
 import QtQuick.Controls
 import QtQuick.Controls.Material
 import Qt5Compat.GraphicalEffects
+import QtCore
 
 ApplicationWindow {
     id: window
@@ -500,5 +501,22 @@ ApplicationWindow {
         opacity: 0.92
         visible: false
 
+    }
+
+    FirstRunInfo{
+        // Material.theme: Material.Dark
+        // Material.accent: Material.Cyan
+        id: firstRunInfoDialog
+        Settings{
+            id:settings
+            property bool firstTimeRun: true
+        }
+
+        Component.onCompleted: {
+            if (settings.firstTimeRun) {
+                firstRunInfoDialog.open();
+                settings.firstTimeRun = false;
+            }
+        }
     }
 }

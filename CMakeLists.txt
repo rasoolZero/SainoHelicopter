@@ -30,13 +30,14 @@ qt_add_qml_module(appSainoHelicopter
     QML_FILES ListIndicator.qml
     QML_FILES TextDisplay.qml
     QML_FILES ControlPanel.qml
+    QML_FILES PulseLoader.qml
+    QML_FILES FirstRunInfo.qml
     RESOURCES fonts.qrc
     RESOURCES icon.qrc
     RESOURCES vectors.qrc
     RESOURCES images.qrc
     RESOURCES mesh.qrc
     RESOURCES tumbler-icons.qrc
-    QML_FILES PulseLoader.qml
 )
 
 

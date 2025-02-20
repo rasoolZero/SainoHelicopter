@@ -246,7 +246,8 @@ Item {
             id: swipeView
             orientation: Qt.Horizontal
             interactive: false
-            anchors.fill: parent
+            width:parent.width/3
+            height:parent.height
             anchors.centerIn: parent
             Repeater{
             id: swipeViewRepeater
@@ -259,7 +260,7 @@ Item {
                     color: indicator.swipeTextColor
                     horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignVCenter
-                    visible:isCurrItm
+                    opacity:isCurrItm?1:0.4
                 }
             }
         }

@@ -1,5 +1,5 @@
-horizontal tumbler for List Indicator
-better ditails for indicators (change size circle, separator line, circle details) 
+better ditails for indicators 
+		(change size circle, separator line, circle details, separator for list items) 
 responsive windows
 add gradient background
 switch between wireframe and model view for 3d helicopter (with hint)

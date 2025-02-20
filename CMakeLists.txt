@@ -3,6 +3,7 @@ cmake_minimum_required(VERSION 3.16)
 project(SainoHelicopter VERSION 1.0 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(QT_QUICK_CONTROLS_IGNORE_CUSTOMIZATION_WARNINGS ON)
 
 find_package(Qt6 6.5 REQUIRED COMPONENTS Quick)
 find_package(Qt6 COMPONENTS ShaderTools)

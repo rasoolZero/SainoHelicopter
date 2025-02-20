@@ -504,9 +504,10 @@ ApplicationWindow {
     }
 
     FirstRunInfo{
-        // Material.theme: Material.Dark
-        // Material.accent: Material.Cyan
         id: firstRunInfoDialog
+        width:300
+        height:400
+
         Settings{
             id:settings
             property bool firstTimeRun: true
@@ -514,7 +515,7 @@ ApplicationWindow {
 
         Component.onCompleted: {
             if (settings.firstTimeRun) {
-                firstRunInfoDialog.open();
+                firstRunInfoDialog.show();
                 settings.firstTimeRun = false;
             }
         }

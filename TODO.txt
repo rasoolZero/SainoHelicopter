@@ -1,4 +1,3 @@
-keyboard control for tumbler selector (with hint)
 horizontal tumbler for List Indicator
 better ditails for indicators
 responsive windows

@@ -1,23 +1,50 @@
-import QtQuick.Dialogs
 
-MessageDialog  {
+import QtQuick
+import QtQuick.Controls
+import QtQuick.Controls.Material
+import QtQuick.Layouts
+
+ApplicationWindow  {
+    Material.theme: Material.Dark
+    Material.accent: Material.Cyan
     id: root
-    property bool firstTimeRun : true
-    buttons: MessageDialog.Ok
-    text:{
-        return "Welcome!\n"+
-                "It looks like this is your first time running SainoHelicopter.\n"}
-    detailedText: {
-        return "You can use the selector on the right hand side by drag and drop or up and down keys.\n"+
-                "You can open the control panel window by pressing the space key."
+
+    title: "Welcome!"
+
+    flags: Qt.Dialog
+    modality: Qt.ApplicationModal
+
+
+    component CustomLabel : Label{
+        property int margin: 5
+        Layout.margins: margin
+        Layout.maximumWidth: root.width - margin * 2
+        wrapMode: Text.Wrap
     }
-    onButtonClicked: {
-        root.firstTimeRun = false;
-    }
-    onAccepted: {
-        root.firstTimeRun = false;
-    }
-    onRejected: {
-        root.firstTimeRun = false;
+
+    ScrollView{
+        anchors.fill: parent
+        ColumnLayout{
+            id: mainColumn
+            spacing:10
+            anchors.fill: parent
+            anchors.margins: 5
+            CustomLabel{
+                text: "It looks like this is your first time running SainoHelicopter."
+            }
+            CustomLabel{
+                text: "You can use the selector on the right hand side by drag and drop or up and down keys."
+            }
+            CustomLabel{
+                text: "You can open the control panel window by pressing the space key."
+            }
+            Button{
+                text:"OK!"
+                onClicked: {
+                    root.close();
+                }
+                Layout.alignment: Qt.AlignHCenter
+            }
+        }
     }
 }

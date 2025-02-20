@@ -488,9 +488,11 @@ ApplicationWindow {
         }
         Keys.onUpPressed: {
             selector.currentIndex = (selector.currentIndex === 0) ? selector.model.count-1 : selector.currentIndex - 1;
+            selector.positionViewAtIndex(selector.currentIndex,Tumbler.Center);
         }
         Keys.onDownPressed: {
             selector.currentIndex = (selector.currentIndex === selector.model.count - 1) ? 0 : selector.currentIndex + 1;
+            selector.positionViewAtIndex(selector.currentIndex,Tumbler.Center);
         }
     }
 

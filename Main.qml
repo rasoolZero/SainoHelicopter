@@ -185,6 +185,7 @@ ApplicationWindow {
         valueColor: colorConfig.accentColor
         outerBoxColor: colorConfig.accentColor
         loadingBarsColor: colorConfig.accentColor
+        seperatorColor: colorConfig.accentColor
 
         anchors.bottom: parent.bottom
         anchors.right: selector.left
@@ -215,6 +216,7 @@ ApplicationWindow {
         valueColor: colorConfig.accentColor
         outerBoxColor: colorConfig.accentColor
         loadingBarsColor: colorConfig.accentColor
+        seperatorColor: colorConfig.accentColor
 
         anchors.bottom: parent.bottom
         anchors.right: selector.left
@@ -246,6 +248,7 @@ ApplicationWindow {
         valueColor: colorConfig.accentColor
         outerBoxColor: colorConfig.accentColor
         loadingBarsColor: colorConfig.accentColor
+        seperatorColor: colorConfig.accentColor
 
         anchors.bottom: parent.bottom
         anchors.right: selector.left
@@ -281,6 +284,7 @@ ApplicationWindow {
         valueColor: colorConfig.accentColor
         outerBoxColor: colorConfig.accentColor
         loadingBarsColor: colorConfig.accentColor
+        seperatorColor: colorConfig.accentColor
 
         anchors.bottom: parent.bottom
         anchors.right: selector.left
@@ -315,6 +319,7 @@ ApplicationWindow {
         valueColor: colorConfig.accentColor
         outerBoxColor: colorConfig.accentColor
         loadingBarsColor: colorConfig.accentColor
+        seperatorColor: colorConfig.accentColor
 
         anchors.top: topDownView.top
         anchors.right: selector.left
@@ -342,6 +347,7 @@ ApplicationWindow {
         outerRotatorColor: colorConfig.accentColor
         innerLoaderColor: colorConfig.accentColor
         outerBoxColor: colorConfig.accentColor
+        seperatorColor: colorConfig.accentColor
 
         anchors.bottom: parent.bottom
         anchors.right: selector.left
@@ -371,6 +377,7 @@ ApplicationWindow {
         innerLoaderColor: colorConfig.accentColor
         outerBoxColor: colorConfig.accentColor
         loadingBarsColor: colorConfig.accentColor
+        seperatorColor: colorConfig.accentColor
 
         anchors.bottom: parent.bottom
         anchors.right: selector.left
@@ -399,6 +406,7 @@ ApplicationWindow {
         innerLoaderColor: colorConfig.accentColor
         outerBoxColor: colorConfig.accentColor
         loadingBarsColor: colorConfig.accentColor
+        seperatorColor: colorConfig.accentColor
 
         anchors.bottom: parent.bottom
         anchors.right: selector.left
@@ -427,6 +435,7 @@ ApplicationWindow {
         innerLoaderColor: colorConfig.accentColor
         outerBoxColor: colorConfig.accentColor
         loadingBarsColor: colorConfig.accentColor
+        seperatorColor: colorConfig.accentColor
 
         anchors.bottom: parent.bottom
         anchors.right: selector.left
@@ -454,6 +463,7 @@ ApplicationWindow {
         innerLoaderColor: colorConfig.accentColor
         outerBoxColor: colorConfig.accentColor
         loadingBarsColor: colorConfig.accentColor
+        seperatorColor: colorConfig.accentColor
 
         anchors.bottom: parent.bottom
         anchors.right: selector.left

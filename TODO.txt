@@ -1,5 +1,5 @@
 better ditails for indicators 
-		(change size circle, separator line, circle details, separator for list items) 
+		(change size circle, circle details) 
 responsive windows
 add gradient background
 switch between wireframe and model view for 3d helicopter (with hint)

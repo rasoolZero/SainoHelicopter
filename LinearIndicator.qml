@@ -18,10 +18,11 @@ Item {
     property alias boxText: boxText.text
     property alias boxTextColor: boxText.color
     property alias barsSpacing: barsLayout.spacing
+    property alias seperatorColor: seperator.color
 
-    property alias loadingBarsColor: horizontalLoaderBars.color
-    property alias loadingBarsSpacing: horizontalLoaderBars.spacing
-    property alias loadingBarsCount : horizontalLoaderBars.barCount
+    property alias loadingBarsColor: loadingBars.color
+    property alias loadingBarsSpacing: loadingBars.spacing
+    property alias loadingBarsCount : loadingBars.barCount
 
     property bool verticalFlip: false
 
@@ -286,7 +287,7 @@ Item {
     }
 
     PulseLoader{
-        id:horizontalLoaderBars
+        id:loadingBars
         spacing: 2
         barCount : 7
         width: (barsLayout.width / 4) - (barCount) * spacing - 5
@@ -295,6 +296,30 @@ Item {
         anchors.topMargin: 5
         height:indicator.height/ 4
         running: true
+    }
+    Item{
+        property color color: "white"
+        id: seperator
+        anchors.top: circle.verticalCenter
+        anchors.left: circle.right
+        anchors.right: loadingBars.left
+        anchors.leftMargin: 10
+        anchors.rightMargin: 10
+        height: 5
+        Rectangle{
+            color: parent.color
+            height:1
+            anchors.right: parent.right
+            anchors.left: parent.left
+            anchors.top: parent.top
+        }
+        Rectangle{
+            color: parent.color
+            height:1
+            anchors.right: parent.right
+            anchors.left: parent.left
+            anchors.bottom: parent.bottom
+        }
     }
 
 }

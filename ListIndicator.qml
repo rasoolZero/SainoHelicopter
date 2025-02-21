@@ -20,7 +20,7 @@ Item {
     property alias loadingBarsSpacing: horizontalLoaderBars.spacing
     property alias loadingBarsCount : horizontalLoaderBars.barCount
 
-    property color swipeTextColor: "black"
+    property color swipeTextColor: "white"
 
     property alias model: swipeViewRepeater.model
     required property list<string> sources
@@ -252,7 +252,6 @@ Item {
             Repeater{
             id: swipeViewRepeater
             delegate:Text{
-                    property bool isCurrItm: ListView.isCurrentItem
                     required property string modelData
                     text:modelData
                     fontSizeMode:Text.Fit
@@ -260,7 +259,9 @@ Item {
                     color: indicator.swipeTextColor
                     horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignVCenter
-                    opacity:isCurrItm?1:0.4
+                    opacity:SwipeView.isCurrentItem?1.0:0.3
+                    visible: SwipeView.isCurrentItem || SwipeView.isNextItem || SwipeView.isPreviousItem
+
                 }
             }
         }

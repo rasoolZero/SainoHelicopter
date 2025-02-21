@@ -1,21 +1,29 @@
 import QtQuick
 import QtQuick3D
-
-Model {
-
+Node{
+    id: root
+    property real scaleFactor: 1
+    onScaleFactorChanged: {
+        let height = (bounds.maximum.y - bounds.minimum.y) * scaleFactor;
+        let yTransform = height * 4 / 5; // Center the model correctly
+        position = Qt.vector3d(0, -yTransform, 0);
+    }
+    position: Qt.vector3d(0, 0, 0)
+    scale:Qt.vector3d(scaleFactor,scaleFactor,scaleFactor)
     property real r:0
     property color copterColor : "#EFEFEFFF"
-
-    position: Qt.vector3d(0, 0, 0)
-    source: "qrc:/mesh/APACHE_1.mesh"
-    scale:Qt.vector3d(0.45,0.45,0.45)
-    eulerRotation: Qt.vector3d(0,r,0)
-    castsShadows: true
-    receivesShadows: true
-    materials: [ DefaultMaterial {
-            diffuseColor: copterColor
-        }
-    ]
+    property alias bounds : model.bounds
+    Model {
+        id: model
+        source: "qrc:/mesh/APACHE_1.mesh"
+        eulerRotation: Qt.vector3d(0,r,0)
+        castsShadows: true
+        receivesShadows: true
+        materials: [ DefaultMaterial {
+                diffuseColor: root.copterColor
+            }
+        ]
+    }
     SequentialAnimation on r {
         loops: Animation.Infinite
         NumberAnimation {

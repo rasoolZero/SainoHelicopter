@@ -8,10 +8,14 @@ import QtCore
 
 ApplicationWindow {
     id: window
-    minimumWidth : 1000
-    maximumWidth : 1000
-    minimumHeight : 600
-    maximumHeight : 600
+    // minimumWidth : 1000
+    // maximumWidth : 1000
+    // minimumHeight : 600
+    // maximumHeight : 600
+    minimumHeight: 400
+    minimumWidth: 600
+    height: 600
+    width: 1000
     visible: true
 
     QtObject {

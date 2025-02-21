@@ -31,14 +31,29 @@ ApplicationWindow {
         font.bold: true
     }
 
+    component Seperator : Rectangle{
+        height: 1
+        Layout.fillWidth: true
+        gradient: Gradient{
+            orientation: Gradient.Horizontal
+            GradientStop{position: 0.0; color:"transparent";}
+            GradientStop{position: 0.2; color:"white";}
+            GradientStop{position: 0.8; color:"white";}
+            GradientStop{position: 1.0; color:"transparent";}
+        }
+        opacity:0.9
+        visible: controlPanel.width < 800
+        Layout.margins: 14
+    }
+
     ScrollView{
+        id: scrollView
         anchors.fill: parent
         anchors.margins: 5
         GridLayout{
             columns: controlPanel.width < 800 ? 1 : 2
             rows: controlPanel.width < 800 ? 2 : 1
-            anchors.fill: controlPanel
-            anchors.margins: 5
+            columnSpacing: 15
             ColumnLayout{
                 spacing: 5
                 Layout.fillHeight: true
@@ -138,6 +153,8 @@ ApplicationWindow {
                 spacing: 5
                 Layout.fillHeight: true
                 Layout.fillWidth: true
+                Seperator{}
+
                 GridLayout{
                     columns: controlPanel.width < 450 ? 1 : 4
                     rows: controlPanel.width < 450 ? 4 : 1
@@ -178,6 +195,9 @@ ApplicationWindow {
                         Layout.fillWidth: true
                     }
                 }
+
+                Seperator{}
+
                 RowLayout{
                     Layout.fillHeight: true
                     Layout.fillWidth: true
@@ -194,6 +214,9 @@ ApplicationWindow {
                         }
                     }
                 }
+
+                Seperator{}
+
                 RowLayout{
                     Layout.fillHeight: true
                     Layout.fillWidth: true
@@ -210,6 +233,9 @@ ApplicationWindow {
                         }
                     }
                 }
+
+                Seperator{}
+
                 GridLayout{
                     Layout.fillHeight: true
                     Layout.fillWidth: true
@@ -250,6 +276,9 @@ ApplicationWindow {
                         }
                     }
                 }
+
+                Seperator{}
+
                 RowLayout{
                     Layout.fillHeight: true
                     Layout.fillWidth: true

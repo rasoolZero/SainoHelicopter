@@ -1,6 +1,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Controls.Material
+import QtQuick.Layouts
 
 ApplicationWindow {
     property alias fuel : fuelSlider.value
@@ -23,78 +24,129 @@ ApplicationWindow {
     visible: true
     flags: Qt.Dialog
 
-
-    component CustomRow : Row{
-        spacing: 10
-    }
     component CustomLabel : Label{
         verticalAlignment: Text.AlignVCenter
-        horizontalAlignment: Text.AlignHCenter
+        horizontalAlignment: controlPanel.width < 800 ? Text.AlignLeft : Text.AlignHCenter
         height: parent.height
+        font.bold: true
     }
+
     ScrollView{
         anchors.fill: parent
-        CustomRow{
-            anchors.margins: 15
-            anchors.fill: parent
-            Column{
+        anchors.margins: 5
+        GridLayout{
+            columns: controlPanel.width < 800 ? 1 : 2
+            rows: controlPanel.width < 800 ? 2 : 1
+            anchors.fill: controlPanel
+            anchors.margins: 5
+            ColumnLayout{
                 spacing: 5
-                CustomRow{
+                Layout.fillHeight: true
+                Layout.fillWidth: true
+                GridLayout{
+                    Layout.fillHeight: true
+                    Layout.fillWidth: true
+                    columns: controlPanel.width < 330 ? 1 : 2
+                    rows: controlPanel.width < 330 ? 2 : 1
                     CustomLabel{
                         text:"Fuel"
+                        Layout.fillHeight: true
+                        Layout.fillWidth: true
                     }
                     Slider{
                         id: fuelSlider
                         from: 0
                         to: 80
+                        Layout.fillHeight: true
+                        Layout.fillWidth: true
                     }
                 }
-                CustomRow{
+                GridLayout{
+                    Layout.fillHeight: true
+                    Layout.fillWidth: true
+                    columns: controlPanel.width < 330 ? 1 : 2
+                    rows: controlPanel.width < 330 ? 2 : 1
                     CustomLabel{
                         text:"Battery"
+                        Layout.fillHeight: true
+                        Layout.fillWidth: true
                     }
                     Slider{
                         id: batterySlider
                         from: 0
                         to: 100
+                        Layout.fillHeight: true
+                        Layout.fillWidth: true
                     }
                 }
-                CustomRow{
+                GridLayout{
+                    columns: controlPanel.width < 330 ? 1 : 2
+                    rows: controlPanel.width < 330 ? 2 : 1
+                    Layout.fillHeight: true
+                    Layout.fillWidth: true
                     CustomLabel{
                         text:"Cockpit\nTemperature"
+                        Layout.fillHeight: true
+                        Layout.fillWidth: true
                     }
                     Slider{
                         id: indoorTempSlider
                         from: -20
                         to: 80
+                        Layout.fillHeight: true
+                        Layout.fillWidth: true
                     }
                 }
-                CustomRow{
+                GridLayout{
+                    columns: controlPanel.width < 330 ? 1 : 2
+                    rows: controlPanel.width < 330 ? 2 : 1
+                    Layout.fillHeight: true
+                    Layout.fillWidth: true
                     CustomLabel{
                         text:"Outside\nTemperature"
+                        Layout.fillHeight: true
+                        Layout.fillWidth: true
                     }
                     Slider{
                         id: outdoorTempSlider
                         from: -20
                         to: 80
+                        Layout.fillHeight: true
+                        Layout.fillWidth: true
                     }
                 }
-                CustomRow{
+                GridLayout{
+                    columns: controlPanel.width < 330 ? 1 : 2
+                    rows: controlPanel.width < 330 ? 2 : 1
+                    Layout.fillHeight: true
+                    Layout.fillWidth: true
                     CustomLabel{
                         text:"Speed"
+                        Layout.fillHeight: true
+                        Layout.fillWidth: true
                     }
                     Slider{
                         id: speedSlider
                         from: 0
                         to: 220
+                        Layout.fillHeight: true
+                        Layout.fillWidth: true
                     }
                 }
             }
-            Column{
+            ColumnLayout{
                 spacing: 5
-                CustomRow{
+                Layout.fillHeight: true
+                Layout.fillWidth: true
+                GridLayout{
+                    columns: controlPanel.width < 450 ? 1 : 4
+                    rows: controlPanel.width < 450 ? 4 : 1
+                    Layout.fillHeight: true
+                    Layout.fillWidth: true
                     CustomLabel{
                         text:"Camera State"
+                        Layout.fillHeight: true
+                        Layout.fillWidth: true
                     }
                     RadioButton{
                         text:"Good"
@@ -103,6 +155,8 @@ ApplicationWindow {
                             if(checked)
                                 controlPanel.cameraStatus = 0;
                         }
+                        Layout.fillHeight: true
+                        Layout.fillWidth: true
                     }
                     RadioButton{
                         text:"Warning"
@@ -110,6 +164,8 @@ ApplicationWindow {
                             if(checked)
                                 controlPanel.cameraStatus = 1;
                         }
+                        Layout.fillHeight: true
+                        Layout.fillWidth: true
                     }
 
                     RadioButton{
@@ -118,9 +174,13 @@ ApplicationWindow {
                             if(checked)
                                 controlPanel.cameraStatus = 2;
                         }
+                        Layout.fillHeight: true
+                        Layout.fillWidth: true
                     }
                 }
-                CustomRow{
+                RowLayout{
+                    Layout.fillHeight: true
+                    Layout.fillWidth: true
                     CustomLabel{
                         text:"Lamps"
                     }
@@ -134,8 +194,12 @@ ApplicationWindow {
                         }
                     }
                 }
-                CustomRow{
+                RowLayout{
+                    Layout.fillHeight: true
+                    Layout.fillWidth: true
                     CheckBox{
+                        Layout.fillHeight: true
+                        Layout.fillWidth: true
                         text:"Control Panel Check"
                         checked : true
                         onCheckedChanged:{
@@ -146,11 +210,19 @@ ApplicationWindow {
                         }
                     }
                 }
-                CustomRow{
+                GridLayout{
+                    Layout.fillHeight: true
+                    Layout.fillWidth: true
+                    columns: controlPanel.width < 450 ? 1 : 4
+                    rows: controlPanel.width < 450 ? 4 : 1
                     CustomLabel{
+                        Layout.fillHeight: true
+                        Layout.fillWidth: true
                         text:"Radio Signal Strength"
                     }
                     RadioButton{
+                        Layout.fillHeight: true
+                        Layout.fillWidth: true
                         text:"Weak"
                         checked : true
                         onCheckedChanged: {
@@ -159,6 +231,8 @@ ApplicationWindow {
                         }
                     }
                     RadioButton{
+                        Layout.fillHeight: true
+                        Layout.fillWidth: true
                         text:"Good"
                         onCheckedChanged: {
                             if (checked)
@@ -167,6 +241,8 @@ ApplicationWindow {
                     }
 
                     RadioButton{
+                        Layout.fillHeight: true
+                        Layout.fillWidth: true
                         text:"Strong"
                         onCheckedChanged: {
                             if (checked)
@@ -174,7 +250,10 @@ ApplicationWindow {
                         }
                     }
                 }
-                CustomRow{
+                RowLayout{
+                    Layout.fillHeight: true
+                    Layout.fillWidth: true
+                    spacing: 10
                     CustomLabel{
                         text:"Rotor Speed"
                     }

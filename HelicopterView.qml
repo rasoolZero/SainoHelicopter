@@ -37,6 +37,7 @@ View3D {
 
     Helicopter {
         id: copter
+        onBoundsChanged: view.adjustCamera()
     }
 
 //     Text{
@@ -51,8 +52,6 @@ View3D {
 
     onWidthChanged: adjustCamera()
     onHeightChanged: adjustCamera()
-    Component.onCompleted: adjustCamera()
-
     function adjustCamera() {
 
         var bounds = copter.bounds;
@@ -64,6 +63,8 @@ View3D {
         var modelWidth = (maxPoint.x - minPoint.x) * padding;
         var modelHeight = (maxPoint.y - minPoint.y) * padding;
         var modelDepth = (maxPoint.z - minPoint.z) * padding;
+        if(!modelWidth)
+            return;
 
 
         // Determine the maximum model dimension

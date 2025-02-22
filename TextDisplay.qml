@@ -7,6 +7,16 @@ Item {
     property alias frameColor : frameOverlay.color
     property alias text: text.text
     property alias textColor: text.color
+    property alias backgroundColor : background.color
+
+    Rectangle{
+        id: background
+        anchors.fill:parent
+        anchors.leftMargin: parent.width * 7/100
+        anchors.rightMargin: parent.width * 7/100
+        anchors.topMargin: parent.height * 4/100
+        anchors.bottomMargin: parent.height * 4/100
+    }
 
     Image{
         id: frame
@@ -14,6 +24,7 @@ Item {
         anchors.fill: parent
         smooth: true
         antialiasing: true
+        mipmap: true
     }
 
     ColorOverlay{

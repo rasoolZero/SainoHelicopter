@@ -15,11 +15,7 @@ ApplicationWindow {
     width: 1000
     visible: true
     readonly property real aspectRatio: width/height
-    readonly property real lanscapeThreshold: 1.87
-
-    // onAspectRatioChanged: {
-    //     console.log(aspectRatio)
-    // }
+    readonly property real lanscapeThreshold: 1.9
 
     QtObject {
         id: colorConfig
@@ -483,12 +479,13 @@ ApplicationWindow {
 
         TextDisplay{
             id: description
-            width: mainLayout.visible? Math.min(height*(300/350) ,topDownView.width - topDownView.paintedWidth) : parent.width
+            width: mainLayout.visible? height*(300/350) : parent.width
             height:topDownView.height
             frameColor: mainLayout.visible ? colorConfig.accentColor : colorConfig.warningColor
             anchors.bottom: parent.bottom
             anchors.right: parent.right
             opacity: 0.85
+            backgroundColor: colorConfig.backgroundColor
             text: "The Apache AH-64 is an advanced attack helicopter manufactured by Boeing (originally by Hughes Helicopters). First produced in 1983, it features superior air resistance with a streamlined fuselage and rotor design. It has a maximum altitude of approximately 21,000 feet (6,400 meters), making it highly effective in diverse combat environments."
             textColor: colorConfig.textColor
         }
@@ -570,7 +567,7 @@ ApplicationWindow {
             Layout.fillHeight: true
             Layout.fillWidth: true
         }
-        visible: false
+        visible: true
     }
 
     GridLayout{
@@ -620,7 +617,9 @@ ApplicationWindow {
             Layout.fillHeight: true
             Layout.fillWidth: true
         }
+        visible: false
     }
+
 
     onAspectRatioChanged:{
         if(aspectRatio > lanscapeThreshold){
@@ -638,5 +637,7 @@ ApplicationWindow {
         for (let i = 0; i < elements.length; i++) {
             elements[i].startAnimations()
         }
+
+        // console.log(aspectRatio)
     }
 }

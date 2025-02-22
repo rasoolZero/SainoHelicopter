@@ -1,7 +1,5 @@
 better details for indicators 
 		(change size circle, circle details) 
-responsive main window 
-		(Tumbler Rows, List Indicator text sizes, Indicator Sizes, Text Display font size)
 Tumbler Rows centeralize images on hidden text
 set size constraints on windows
 add gradient background

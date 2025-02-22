@@ -47,37 +47,47 @@ Tumbler {
         }
     }
 
-    delegate: Row{
+    delegate: RowLayout {
 
         required property var modelData
         required property int index
         opacity: 1.0 - Math.abs(Tumbler.displacement) / (control.visibleItemCount / 2)
         anchors.horizontalCenter: parent.horizontalCenter
-        spacing : width*0.1
-        leftPadding: width*0.15
-        Image{
-            height : hideText ? parent.height*0.5 : parent.height*0.35
-            anchors.verticalCenter: parent.verticalCenter
-            source : "qrc:/assets/" + control.icons[parent.index] + ".svg"
+        height: control.height*0.1
+        width: control.width
+        Image {
+            Layout.leftMargin: hideText? 0 : parent.width * 0.1
+            source: "qrc:/assets/" + control.icons[parent.index] + ".svg"
             smooth: true
-            // mipmap: true
             fillMode: Image.PreserveAspectFit
-            ColorOverlay{
+            ColorOverlay {
                 anchors.fill: parent
-                source:parent
+                source: parent
                 antialiasing: true
-                smooth:true
-                color:"white"
+                smooth: true
+                color: "white"
             }
+            Layout.fillWidth: hideText  // Allows centering when text is hidden
+            Layout.maximumWidth: control.width*0.5
+            Layout.preferredWidth: hideText ? control.width*0.5 : control.width*0.35
+
+            Layout.maximumHeight: Layout.maximumWidth/2
+            Layout.preferredHeight: Layout.preferredWidth/2
+
+            Layout.alignment: Qt.AlignHCenter
         }
-        Text {
-            text: parent.modelData
-            font: control.font
-            verticalAlignment: Text.AlignVCenter
-            color: control.textColor
-            height : parent.height
+
+        Item {
+            Layout.fillWidth: !hideText // Give space to Text only if visible
+            Layout.alignment: Qt.AlignLeft
             visible: !hideText
-            enabled: visible
+
+            Text {
+                text: parent.parent.modelData
+                verticalAlignment: Text.AlignVCenter
+                color: control.textColor
+                height: parent.height
+            }
         }
     }
 

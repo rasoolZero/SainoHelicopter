@@ -1,4 +1,4 @@
-
+import QtQuick.Layouts
 import QtQuick
 import QtQuick.Window
 import QtQuick.Controls
@@ -17,6 +17,12 @@ ApplicationWindow {
     height: 600
     width: 1000
     visible: true
+    readonly property real aspectRatio: width/height
+    readonly property real lanscapeThreshold: 1.87
+
+    // onAspectRatioChanged: {
+    //     console.log(aspectRatio)
+    // }
 
     QtObject {
         id: colorConfig
@@ -32,77 +38,68 @@ ApplicationWindow {
     color: colorConfig.backgroundColor
     title: "Saino Helicopter"
 
-    HelicopterView{
-        anchors.top: parent.top
-        anchors.left: parent.left
-        width: parent.width*3/4
-        height: parent.height*2/5
-        copterColor: "white"
-        id : view
-    }
-    LinearGradient{
-        id: mask
-        anchors.fill: view
-        gradient: Gradient {
-            id: maskGradient
-            property real size : 0.035
-            property real spread: 0.002
-            property real position : 0.4
-            GradientStop { position: 0.0; color: "transparent"}
-            GradientStop { position: maskGradient.position - maskGradient.size / 2 - maskGradient.spread; color: "transparent"}
-            GradientStop { position: maskGradient.position - maskGradient.size / 2; color: "green"}
-            GradientStop { position: maskGradient.position + maskGradient.size / 2; color: "green"}
-            GradientStop { position: maskGradient.position + maskGradient.size / 2 + maskGradient.spread; color: "transparent"}
-            GradientStop { position: 1.0; color: "transparent"}
+    Item{
+        id:view
+        // Layout.fillWidth: true
+        // Layout.fillHeight: true
+        HelicopterView{
+            copterColor: "white"
+            anchors.fill: view
+            id : viewMain
+        }
 
-            SequentialAnimation on position{
-                loops:Animation.Infinite
-                NumberAnimation{
-                    from: 0.0
-                    to:1.0
-                    duration:2500
-                }
-                PauseAnimation {
-                    duration: 500
-                }
-                NumberAnimation{
-                    from: 1.0
-                    to:0.0
-                    duration:2500
-                }
-                PauseAnimation {
-                    duration: 500
+        LinearGradient{
+            id: mask
+            anchors.fill: viewMain
+            gradient: Gradient {
+                id: maskGradient
+                property real size : 0.035
+                property real spread: 0.002
+                property real position : 0.4
+                GradientStop { position: 0.0; color: "transparent"}
+                GradientStop { position: maskGradient.position - maskGradient.size / 2 - maskGradient.spread; color: "transparent"}
+                GradientStop { position: maskGradient.position - maskGradient.size / 2; color: "green"}
+                GradientStop { position: maskGradient.position + maskGradient.size / 2; color: "green"}
+                GradientStop { position: maskGradient.position + maskGradient.size / 2 + maskGradient.spread; color: "transparent"}
+                GradientStop { position: 1.0; color: "transparent"}
+
+                SequentialAnimation on position{
+                    loops:Animation.Infinite
+                    NumberAnimation{
+                        from: 0.0
+                        to:1.0
+                        duration:2500
+                    }
+                    PauseAnimation {
+                        duration: 500
+                    }
+                    NumberAnimation{
+                        from: 1.0
+                        to:0.0
+                        duration:2500
+                    }
+                    PauseAnimation {
+                        duration: 500
+                    }
                 }
             }
+            visible: false
         }
-        visible: false
-    }
-    Blend {
-        source: view
-        foregroundSource: mask
-        mode: "hardLight"
-        anchors.fill: view
-        opacity:1
+        Blend {
+            source: viewMain
+            foregroundSource: mask
+            mode: "hardLight"
+            anchors.fill: viewMain
+            opacity:1
+        }
     }
 
-    HelicopterTopDown {
-        id: topDownView
-        height: window.height * 3/5
-        width : window.width * 3/4
-        anchors.bottom: parent.bottom
-        anchors.left: parent.left
-        anchors.leftMargin: 10
-        overlayColor : colorConfig.errorColor
-    }
 
     TumblerSelector{
         id: selector
+        // Layout.fillHeight: true
         textColor: colorConfig.textColor
         separatorColor: colorConfig.okColor
-        anchors.top: parent.top
-        anchors.right: parent.right
-        height: parent.height
-        width: parent.width*1/4
         onCurrentIndexChanged: {
 
             let elements = [insideTempIndicator, outsideTempIndicator, batteryIndicator
@@ -169,329 +166,339 @@ ApplicationWindow {
         }
     }
 
-    LinearIndicator{
-        id:batteryIndicator
-        start:0
-        end:100
-        midRangeColor: colorConfig.accentColor
+    Item{
+        id: details
+        // Layout.fillHeight: true
+        // Layout.fillWidth: true
+        HelicopterTopDown {
+            id: topDownView
+            overlayColor : colorConfig.errorColor
+            anchors.fill: details
+        }
 
-        value : controlPanel.battery
-        barsCount: 20
-        barsSpacing: 5
-        postfix: "%"
-        boxText: "Battery Charge"
-        boxTextColor: colorConfig.textColor
-        innerLoaderBackgroundColor: window.color
+        LinearIndicator{
+            id:batteryIndicator
+            start:0
+            end:100
+            midRangeColor: colorConfig.accentColor
 
-        circleColor : colorConfig.accentColor
-        outerRotatorColor: colorConfig.accentColor
-        innerLoaderColor: colorConfig.accentColor
-        valueColor: colorConfig.accentColor
-        outerBoxColor: colorConfig.accentColor
-        loadingBarsColor: colorConfig.accentColor
-        seperatorColor: colorConfig.accentColor
+            value : controlPanel.battery
+            barsCount: 20
+            barsSpacing: 5
+            postfix: "%"
+            boxText: "Battery Charge"
+            boxTextColor: colorConfig.textColor
+            innerLoaderBackgroundColor: window.color
 
-        anchors.bottom: parent.bottom
-        anchors.right: selector.left
-        anchors.margins: 10
-        width: Math.min(topDownView.availableSpace,height * 4)
-        height:topDownView.height * (150/460)
-        visible: false
+            circleColor : colorConfig.accentColor
+            outerRotatorColor: colorConfig.accentColor
+            innerLoaderColor: colorConfig.accentColor
+            valueColor: colorConfig.accentColor
+            outerBoxColor: colorConfig.accentColor
+            loadingBarsColor: colorConfig.accentColor
+            seperatorColor: colorConfig.accentColor
 
+            anchors.bottom: parent.bottom
+            anchors.right: parent.right
+            anchors.margins: 10
+            width: Math.min(topDownView.availableSpace,height * 4)
+            height:topDownView.height * (150/460)
+            visible: false
+
+        }
+        LinearIndicator{
+            id:fuelIndicator
+            start:0
+            end:80
+            midRangeColor: colorConfig.accentColor
+
+            value:controlPanel.fuel
+            barsCount: 40
+            barsSpacing: 2
+            postfix: " Gal"
+            boxText: "Fuel"
+            boxTextColor: colorConfig.textColor
+            innerLoaderBackgroundColor: window.color
+
+            circleColor : colorConfig.accentColor
+            outerRotatorColor: colorConfig.accentColor
+            innerLoaderColor: colorConfig.accentColor
+            valueColor: colorConfig.accentColor
+            outerBoxColor: colorConfig.accentColor
+            loadingBarsColor: colorConfig.accentColor
+            seperatorColor: colorConfig.accentColor
+
+            anchors.bottom: parent.bottom
+            anchors.right: parent.right
+            anchors.margins: 10
+            width: Math.min(topDownView.availableSpace,height * 4)
+            height:topDownView.height * (150/460)
+
+            visible: false
+
+        }
+
+        LinearIndicator{
+            id:speedIndicator
+            start:0
+            end:220
+            midRangeColor: colorConfig.accentColor
+
+            value:controlPanel.speed
+            barsCount: 100
+            barsSpacing: 0
+            postfix: " KPH"
+            boxText: "Airspeed"
+            boxTextColor: colorConfig.textColor
+            innerLoaderBackgroundColor: window.color
+
+            circleColor : colorConfig.accentColor
+            outerRotatorColor: colorConfig.accentColor
+            innerLoaderColor: colorConfig.accentColor
+            valueColor: colorConfig.accentColor
+            outerBoxColor: colorConfig.accentColor
+            loadingBarsColor: colorConfig.accentColor
+            seperatorColor: colorConfig.accentColor
+
+            anchors.bottom: parent.bottom
+            anchors.right: parent.right
+            anchors.margins: 10
+            width: Math.min(topDownView.availableSpace,height * 4)
+            height:topDownView.height * (150/460)
+
+            visible: false
+
+        }
+
+        LinearIndicator{
+            id:insideTempIndicator
+            start:-20
+            end:80
+            lowRangeThreshold: 0
+            highRangeThreshold: 60
+            midRangeColor: colorConfig.warningColor
+            highRangeColor: colorConfig.errorColor
+            lowRangeColor: colorConfig.accentColor
+
+            value : controlPanel.indoorTemp
+            barsCount: 100
+            barsSpacing: 0
+            postfix: "°"
+            boxText: "Cockpit Temperature"
+            boxTextColor: colorConfig.textColor
+            innerLoaderBackgroundColor: window.color
+
+            circleColor : colorConfig.accentColor
+            outerRotatorColor: colorConfig.warningColor
+            innerLoaderColor: colorConfig.errorColor
+            valueColor: colorConfig.accentColor
+            outerBoxColor: colorConfig.accentColor
+            loadingBarsColor: colorConfig.accentColor
+            seperatorColor: colorConfig.accentColor
+
+            anchors.bottom: parent.bottom
+            anchors.right: parent.right
+            anchors.margins: 10
+            width: Math.min(topDownView.availableSpace,height * 4)
+            height:topDownView.height * (150/460)
+
+            visible: false
+        }
+
+        LinearIndicator{
+            id:outsideTempIndicator
+            start:-20
+            end:80
+            lowRangeThreshold: 0
+            highRangeThreshold: 60
+            midRangeColor: colorConfig.warningColor
+            highRangeColor: colorConfig.errorColor
+            lowRangeColor: colorConfig.accentColor
+
+            value : controlPanel.outdoorTemp
+            barsCount: 100
+            barsSpacing: 0
+            postfix: "°"
+            boxText: "Outside Temperature"
+            boxTextColor: colorConfig.textColor
+            innerLoaderBackgroundColor: window.color
+
+            circleColor : colorConfig.accentColor
+            outerRotatorColor: colorConfig.warningColor
+            innerLoaderColor: colorConfig.errorColor
+            valueColor: colorConfig.accentColor
+            outerBoxColor: colorConfig.accentColor
+            loadingBarsColor: colorConfig.accentColor
+            seperatorColor: colorConfig.accentColor
+
+            anchors.top: topDownView.top
+            anchors.right: parent.right
+            anchors.margins: 10
+            width: Math.min(topDownView.availableSpace,height * 4)
+            height:topDownView.height * (150/460)
+
+            verticalFlip: true
+
+            visible: false
+        }
+
+        ListIndicator{
+            id:lampsIndicator
+
+            value:controlPanel.lampsStatus
+            boxText: "Lamps"
+            boxTextColor: colorConfig.textColor
+            swipeTextColor: colorConfig.textColor
+            innerLoaderBackgroundColor: window.color
+            loadingBarsColor: colorConfig.accentColor
+
+            circleColor : colorConfig.accentColor
+            outerRotatorColor: colorConfig.accentColor
+            innerLoaderColor: colorConfig.accentColor
+            outerBoxColor: colorConfig.accentColor
+            seperatorColor: colorConfig.accentColor
+
+            anchors.bottom: parent.bottom
+            anchors.right: parent.right
+            anchors.margins: 10
+            width: Math.min(topDownView.availableSpace,height * 4)
+            height:topDownView.height * (150/460)
+
+            model: ["On","Off"]
+            sources: ["qrc:/assets/lamp-on.svg","qrc:/assets/lamp-off.svg"]
+            valueImageColors: [colorConfig.warningColor,"white"]
+
+            visible: false
+        }
+
+        ListIndicator{
+            id:cameraIndicator
+
+            value:controlPanel.cameraStatus
+            boxText: "Fixed Camera"
+            boxTextColor: colorConfig.textColor
+            swipeTextColor: colorConfig.textColor
+            innerLoaderBackgroundColor: window.color
+
+
+            circleColor : colorConfig.accentColor
+            outerRotatorColor: colorConfig.accentColor
+            innerLoaderColor: colorConfig.accentColor
+            outerBoxColor: colorConfig.accentColor
+            loadingBarsColor: colorConfig.accentColor
+            seperatorColor: colorConfig.accentColor
+
+            anchors.bottom: parent.bottom
+            anchors.right: parent.right
+            anchors.margins: 10
+            width: Math.min(topDownView.availableSpace,height * 4)
+            height:topDownView.height * (150/460)
+
+            model: ["Good","Warning","Error"]
+            sources: ["qrc:/assets/ok.svg","qrc:/assets/warning.svg","qrc:/assets/error.svg"]
+            valueImageColors: [colorConfig.okColor,colorConfig.warningColor,colorConfig.errorColor]
+
+            visible: false
+        }
+        ListIndicator{
+            id:controlPanelIndicator
+
+            value:controlPanel.controlPanelCheck
+            boxText: "Control Panel Check"
+            boxTextColor: colorConfig.textColor
+            swipeTextColor: colorConfig.textColor
+            innerLoaderBackgroundColor: window.color
+
+
+            circleColor : colorConfig.accentColor
+            outerRotatorColor: colorConfig.accentColor
+            innerLoaderColor: colorConfig.accentColor
+            outerBoxColor: colorConfig.accentColor
+            loadingBarsColor: colorConfig.accentColor
+            seperatorColor: colorConfig.accentColor
+
+            anchors.bottom: parent.bottom
+            anchors.right: parent.right
+            anchors.margins: 10
+            width: Math.min(topDownView.availableSpace,height * 4)
+            height:topDownView.height * (150/460)
+
+            model: ["Pass","Fail"]
+            sources: ["qrc:/assets/ok.svg","qrc:/assets/error.svg"]
+            valueImageColors: [colorConfig.okColor,colorConfig.errorColor]
+
+            visible: false
+        }
+        ListIndicator{
+            id:radioIndicator
+
+            value:controlPanel.radioSignalStrength
+            boxText: "Radio Signal"
+            boxTextColor: colorConfig.textColor
+            swipeTextColor: colorConfig.textColor
+            innerLoaderBackgroundColor: window.color
+
+
+            circleColor : colorConfig.accentColor
+            outerRotatorColor: colorConfig.accentColor
+            innerLoaderColor: colorConfig.accentColor
+            outerBoxColor: colorConfig.accentColor
+            loadingBarsColor: colorConfig.accentColor
+            seperatorColor: colorConfig.accentColor
+
+            anchors.bottom: parent.bottom
+            anchors.right: parent.right
+            anchors.margins: 10
+            width: Math.min(topDownView.availableSpace,height * 4)
+            height:topDownView.height * (150/460)
+
+            model: ["Weak","Good","Strong"]
+            sources: ["qrc:/assets/signal-weak.svg","qrc:/assets/signal-good.svg","qrc:/assets/signal-strong.svg"]
+            valueImageColors: [colorConfig.errorColor,colorConfig.warningColor,colorConfig.okColor]
+
+            visible: false
+        }
+        ListIndicator{
+            id:rotorSpeedIndicator
+
+            value:controlPanel.rotorSpeed
+            boxText: "Main Rotor Speed"
+            boxTextColor: colorConfig.textColor
+            swipeTextColor: colorConfig.textColor
+            innerLoaderBackgroundColor: window.color
+
+            circleColor : colorConfig.accentColor
+            outerRotatorColor: colorConfig.accentColor
+            innerLoaderColor: colorConfig.accentColor
+            outerBoxColor: colorConfig.accentColor
+            loadingBarsColor: colorConfig.accentColor
+            seperatorColor: colorConfig.accentColor
+
+            anchors.bottom: parent.bottom
+            anchors.right: parent.right
+            anchors.margins: 10
+            width: Math.min(topDownView.availableSpace,height * 4)
+            height:topDownView.height * (150/460)
+
+            model: ["Slowest","Slow","Medium","Fast","Fastest"]
+            sources: ["qrc:/assets/gauge-min.svg","qrc:/assets/gauge-low.svg","qrc:/assets/gauge-middle.svg","qrc:/assets/gauge-high.svg","qrc:/assets/gauge-max.svg"]
+            valueImageColors: ["#ffffff","#ffffff","#ffffff","#ffffff","#ffffff"]
+
+            visible: false
+        }
+
+        TextDisplay{
+            id: description
+            width: Math.min(height*(300/350) ,topDownView.width - topDownView.paintedWidth)
+            height:topDownView.height
+            frameColor: colorConfig.accentColor
+            anchors.bottom: parent.bottom
+            anchors.right: topDownView.right
+            opacity: 0.85
+            text: "The Apache AH-64 is an advanced attack helicopter manufactured by Boeing (originally by Hughes Helicopters). First produced in 1983, it features superior air resistance with a streamlined fuselage and rotor design. It has a maximum altitude of approximately 21,000 feet (6,400 meters), making it highly effective in diverse combat environments."
+            textColor: colorConfig.textColor
+        }
     }
-    LinearIndicator{
-        id:fuelIndicator
-        start:0
-        end:80
-        midRangeColor: colorConfig.accentColor
-
-        value:controlPanel.fuel
-        barsCount: 40
-        barsSpacing: 2
-        postfix: " Gal"
-        boxText: "Fuel"
-        boxTextColor: colorConfig.textColor
-        innerLoaderBackgroundColor: window.color
-
-        circleColor : colorConfig.accentColor
-        outerRotatorColor: colorConfig.accentColor
-        innerLoaderColor: colorConfig.accentColor
-        valueColor: colorConfig.accentColor
-        outerBoxColor: colorConfig.accentColor
-        loadingBarsColor: colorConfig.accentColor
-        seperatorColor: colorConfig.accentColor
-
-        anchors.bottom: parent.bottom
-        anchors.right: selector.left
-        anchors.margins: 10
-        width: Math.min(topDownView.availableSpace,height * 4)
-        height:topDownView.height * (150/460)
-
-        visible: false
-
-    }
-
-    LinearIndicator{
-        id:speedIndicator
-        start:0
-        end:220
-        midRangeColor: colorConfig.accentColor
-
-        value:controlPanel.speed
-        barsCount: 100
-        barsSpacing: 0
-        postfix: " KPH"
-        boxText: "Airspeed"
-        boxTextColor: colorConfig.textColor
-        innerLoaderBackgroundColor: window.color
-
-        circleColor : colorConfig.accentColor
-        outerRotatorColor: colorConfig.accentColor
-        innerLoaderColor: colorConfig.accentColor
-        valueColor: colorConfig.accentColor
-        outerBoxColor: colorConfig.accentColor
-        loadingBarsColor: colorConfig.accentColor
-        seperatorColor: colorConfig.accentColor
-
-        anchors.bottom: parent.bottom
-        anchors.right: selector.left
-        anchors.margins: 10
-        width: Math.min(topDownView.availableSpace,height * 4)
-        height:topDownView.height * (150/460)
-
-        visible: false
-
-    }
-
-    LinearIndicator{
-        id:insideTempIndicator
-        start:-20
-        end:80
-        lowRangeThreshold: 0
-        highRangeThreshold: 60
-        midRangeColor: colorConfig.warningColor
-        highRangeColor: colorConfig.errorColor
-        lowRangeColor: colorConfig.accentColor
-
-        value : controlPanel.indoorTemp
-        barsCount: 100
-        barsSpacing: 0
-        postfix: "°"
-        boxText: "Cockpit Temperature"
-        boxTextColor: colorConfig.textColor
-        innerLoaderBackgroundColor: window.color
-
-        circleColor : colorConfig.accentColor
-        outerRotatorColor: colorConfig.warningColor
-        innerLoaderColor: colorConfig.errorColor
-        valueColor: colorConfig.accentColor
-        outerBoxColor: colorConfig.accentColor
-        loadingBarsColor: colorConfig.accentColor
-        seperatorColor: colorConfig.accentColor
-
-        anchors.bottom: parent.bottom
-        anchors.right: selector.left
-        anchors.margins: 10
-        width: Math.min(topDownView.availableSpace,height * 4)
-        height:topDownView.height * (150/460)
-
-        visible: false
-    }
-
-    LinearIndicator{
-        id:outsideTempIndicator
-        start:-20
-        end:80
-        lowRangeThreshold: 0
-        highRangeThreshold: 60
-        midRangeColor: colorConfig.warningColor
-        highRangeColor: colorConfig.errorColor
-        lowRangeColor: colorConfig.accentColor
-
-        value : controlPanel.outdoorTemp
-        barsCount: 100
-        barsSpacing: 0
-        postfix: "°"
-        boxText: "Outside Temperature"
-        boxTextColor: colorConfig.textColor
-        innerLoaderBackgroundColor: window.color
-
-        circleColor : colorConfig.accentColor
-        outerRotatorColor: colorConfig.warningColor
-        innerLoaderColor: colorConfig.errorColor
-        valueColor: colorConfig.accentColor
-        outerBoxColor: colorConfig.accentColor
-        loadingBarsColor: colorConfig.accentColor
-        seperatorColor: colorConfig.accentColor
-
-        anchors.top: topDownView.top
-        anchors.right: selector.left
-        anchors.margins: 10
-        width: Math.min(topDownView.availableSpace,height * 4)
-        height:topDownView.height * (150/460)
-
-        verticalFlip: true
-
-        visible: false
-    }
-
-    ListIndicator{
-        id:lampsIndicator
-
-        value:controlPanel.lampsStatus
-        boxText: "Lamps"
-        boxTextColor: colorConfig.textColor
-        swipeTextColor: colorConfig.textColor
-        innerLoaderBackgroundColor: window.color
-        loadingBarsColor: colorConfig.accentColor
-
-        circleColor : colorConfig.accentColor
-        outerRotatorColor: colorConfig.accentColor
-        innerLoaderColor: colorConfig.accentColor
-        outerBoxColor: colorConfig.accentColor
-        seperatorColor: colorConfig.accentColor
-
-        anchors.bottom: parent.bottom
-        anchors.right: selector.left
-        anchors.margins: 10
-        width: Math.min(topDownView.availableSpace,height * 4)
-        height:topDownView.height * (150/460)
-
-        model: ["On","Off"]
-        sources: ["qrc:/assets/lamp-on.svg","qrc:/assets/lamp-off.svg"]
-        valueImageColors: [colorConfig.warningColor,"white"]
-
-        visible: false
-    }
-
-    ListIndicator{
-        id:cameraIndicator
-
-        value:controlPanel.cameraStatus
-        boxText: "Fixed Camera"
-        boxTextColor: colorConfig.textColor
-        swipeTextColor: colorConfig.textColor
-        innerLoaderBackgroundColor: window.color
-
-
-        circleColor : colorConfig.accentColor
-        outerRotatorColor: colorConfig.accentColor
-        innerLoaderColor: colorConfig.accentColor
-        outerBoxColor: colorConfig.accentColor
-        loadingBarsColor: colorConfig.accentColor
-        seperatorColor: colorConfig.accentColor
-
-        anchors.bottom: parent.bottom
-        anchors.right: selector.left
-        anchors.margins: 10
-        width: Math.min(topDownView.availableSpace,height * 4)
-        height:topDownView.height * (150/460)
-
-        model: ["Good","Warning","Error"]
-        sources: ["qrc:/assets/ok.svg","qrc:/assets/warning.svg","qrc:/assets/error.svg"]
-        valueImageColors: [colorConfig.okColor,colorConfig.warningColor,colorConfig.errorColor]
-
-        visible: false
-    }
-    ListIndicator{
-        id:controlPanelIndicator
-
-        value:controlPanel.controlPanelCheck
-        boxText: "Control Panel Check"
-        boxTextColor: colorConfig.textColor
-        swipeTextColor: colorConfig.textColor
-        innerLoaderBackgroundColor: window.color
-
-
-        circleColor : colorConfig.accentColor
-        outerRotatorColor: colorConfig.accentColor
-        innerLoaderColor: colorConfig.accentColor
-        outerBoxColor: colorConfig.accentColor
-        loadingBarsColor: colorConfig.accentColor
-        seperatorColor: colorConfig.accentColor
-
-        anchors.bottom: parent.bottom
-        anchors.right: selector.left
-        anchors.margins: 10
-        width: Math.min(topDownView.availableSpace,height * 4)
-        height:topDownView.height * (150/460)
-
-        model: ["Pass","Fail"]
-        sources: ["qrc:/assets/ok.svg","qrc:/assets/error.svg"]
-        valueImageColors: [colorConfig.okColor,colorConfig.errorColor]
-
-        visible: false
-    }
-    ListIndicator{
-        id:radioIndicator
-
-        value:controlPanel.radioSignalStrength
-        boxText: "Radio Signal"
-        boxTextColor: colorConfig.textColor
-        swipeTextColor: colorConfig.textColor
-        innerLoaderBackgroundColor: window.color
-
-
-        circleColor : colorConfig.accentColor
-        outerRotatorColor: colorConfig.accentColor
-        innerLoaderColor: colorConfig.accentColor
-        outerBoxColor: colorConfig.accentColor
-        loadingBarsColor: colorConfig.accentColor
-        seperatorColor: colorConfig.accentColor
-
-        anchors.bottom: parent.bottom
-        anchors.right: selector.left
-        anchors.margins: 10
-        width: Math.min(topDownView.availableSpace,height * 4)
-        height:topDownView.height * (150/460)
-
-        model: ["Weak","Good","Strong"]
-        sources: ["qrc:/assets/signal-weak.svg","qrc:/assets/signal-good.svg","qrc:/assets/signal-strong.svg"]
-        valueImageColors: [colorConfig.errorColor,colorConfig.warningColor,colorConfig.okColor]
-
-        visible: false
-    }
-    ListIndicator{
-        id:rotorSpeedIndicator
-
-        value:controlPanel.rotorSpeed
-        boxText: "Main Rotor Speed"
-        boxTextColor: colorConfig.textColor
-        swipeTextColor: colorConfig.textColor
-        innerLoaderBackgroundColor: window.color
-
-        circleColor : colorConfig.accentColor
-        outerRotatorColor: colorConfig.accentColor
-        innerLoaderColor: colorConfig.accentColor
-        outerBoxColor: colorConfig.accentColor
-        loadingBarsColor: colorConfig.accentColor
-        seperatorColor: colorConfig.accentColor
-
-        anchors.bottom: parent.bottom
-        anchors.right: selector.left
-        anchors.margins: 10
-        width: Math.min(topDownView.availableSpace,height * 4)
-        height:topDownView.height * (150/460)
-
-        model: ["Slowest","Slow","Medium","Fast","Fastest"]
-        sources: ["qrc:/assets/gauge-min.svg","qrc:/assets/gauge-low.svg","qrc:/assets/gauge-middle.svg","qrc:/assets/gauge-high.svg","qrc:/assets/gauge-max.svg"]
-        valueImageColors: ["#ffffff","#ffffff","#ffffff","#ffffff","#ffffff"]
-
-        visible: false
-    }
-
-    TextDisplay{
-        id: description
-        width: Math.min(height*(300/350) ,topDownView.width - topDownView.paintedWidth)
-        height:topDownView.height
-        frameColor: colorConfig.accentColor
-        anchors.bottom: parent.bottom
-        anchors.right: topDownView.right
-        opacity: 0.85
-        text: "The Apache AH-64 is an advanced attack helicopter manufactured by Boeing (originally by Hughes Helicopters). First produced in 1983, it features superior air resistance with a streamlined fuselage and rotor design. It has a maximum altitude of approximately 21,000 feet (6,400 meters), making it highly effective in diverse combat environments."
-        textColor: colorConfig.textColor
-    }
-
     Item{
         anchors.fill: parent
         focus: !controlPanel.visible
@@ -532,6 +539,41 @@ ApplicationWindow {
                 firstRunInfoDialog.show();
                 settings.firstTimeRun = false;
             }
+        }
+    }
+
+    GridLayout{
+        rows:2
+        columns:2
+        anchors.fill:parent
+        LayoutItemProxy{
+            target:view
+            Layout.row: 0
+            Layout.column: 0
+            Layout.maximumHeight: window.height * (2 / 5)
+            Layout.maximumWidth: window.width * (3 / 4)
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+        }
+        LayoutItemProxy{
+            target:details
+            Layout.row: 1
+            Layout.column: 0
+            Layout.leftMargin: 5
+            Layout.maximumHeight: window.height * (3 / 5)
+            Layout.maximumWidth: window.width * (3 / 4)
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+        }
+        LayoutItemProxy{
+            target:selector
+            Layout.row: 0
+            Layout.column: 1
+            Layout.rowSpan: 2
+            Layout.maximumHeight: window.height
+            Layout.maximumWidth: window.width * (1 / 4)
+            Layout.fillHeight: true
+            Layout.fillWidth: true
         }
     }
 }

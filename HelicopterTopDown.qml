@@ -15,6 +15,11 @@ Item{
     //                 ,"\npaintedWidth:",paintedWidth
     //                 ,"\n");
     // }
+    // Rectangle{
+    //     anchors.fill:parent
+    //     color:"red"
+    // }
+
     Image{
         id: mainImage
         anchors.fill: parent

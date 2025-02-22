@@ -27,16 +27,21 @@ Item {
     Text{
         id: text
         anchors.fill: parent
-        anchors.leftMargin: parent.width * 12/100
-        anchors.rightMargin: parent.width * 12/100
-        anchors.topMargin: parent.height * 8/100
-        anchors.bottomMargin: parent.height * 8/100
+        anchors.leftMargin: parent.width * 11/100
+        anchors.rightMargin: parent.width * 11/100
+        anchors.topMargin: parent.height * 7/100
+        anchors.bottomMargin: parent.height * 7/100
         verticalAlignment: Text.AlignVCenter
         horizontalAlignment: Text.AlignHCenter
         fontSizeMode: Text.Fit
-        minimumPointSize : 10
+        minimumPointSize : 12
         font.pointSize: 172
         wrapMode: Text.WordWrap
+        // onContentHeightChanged: {
+        //     console.log("\ncontentHeight:",contentHeight
+        //                 ,"\nheight:",height
+        //                 ,"implicitHeight:",implicitHeight)
+        // }
     }
 
     LinearGradient{

@@ -7,23 +7,28 @@ Item{
     property alias source : overlay.source
     property alias enabled : colorOverlay.visible
     property alias actualWidth: mainImage.implicitWidth
+    property alias paintedWidth: mainImage.paintedWidth
     property alias overlayColor: colorOverlay.color
-
+    readonly property int availableSpace : width - paintedWidth + paintedWidth * 0.5
+    // onActualWidthChanged: {
+    //     console.log("\nactualWidth:",actualWidth
+    //                 ,"\npaintedWidth:",paintedWidth
+    //                 ,"\n");
+    // }
     Image{
         id: mainImage
-        anchors.left: parent.left
-        anchors.verticalCenter: parent.verticalCenter
-        height: parent.height
+        anchors.fill: parent
+        horizontalAlignment: Image.AlignLeft
         antialiasing: true
         mipmap:true
         fillMode: Image.PreserveAspectFit
+        smooth: true
         source: "qrc:/assets/top-down.png"
     }
     Image{
         id: overlay
-        anchors.left: parent.left
-        anchors.verticalCenter: parent.verticalCenter
-        height: parent.height
+        anchors.fill: mainImage
+        horizontalAlignment: Image.AlignLeft
         antialiasing: true
         mipmap:true
         fillMode: Image.PreserveAspectFit

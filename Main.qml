@@ -87,8 +87,8 @@ ApplicationWindow {
 
     HelicopterTopDown {
         id: topDownView
-        height: parent.height * 3/5
-        width : parent.width * 3/4
+        height: window.height * 3/5
+        width : window.width * 3/4
         anchors.bottom: parent.bottom
         anchors.left: parent.left
         anchors.leftMargin: 10
@@ -194,9 +194,8 @@ ApplicationWindow {
         anchors.bottom: parent.bottom
         anchors.right: selector.left
         anchors.margins: 10
-        width:(topDownView.width - topDownView.actualWidth)*1.5
-        height:topDownView.height/4
-
+        width: Math.min(topDownView.availableSpace,height * 4)
+        height:topDownView.height * (150/460)
         visible: false
 
     }
@@ -225,8 +224,8 @@ ApplicationWindow {
         anchors.bottom: parent.bottom
         anchors.right: selector.left
         anchors.margins: 10
-        width:(topDownView.width - topDownView.actualWidth)*1.5
-        height:topDownView.height/4
+        width: Math.min(topDownView.availableSpace,height * 4)
+        height:topDownView.height * (150/460)
 
         visible: false
 
@@ -257,8 +256,8 @@ ApplicationWindow {
         anchors.bottom: parent.bottom
         anchors.right: selector.left
         anchors.margins: 10
-        width:(topDownView.width - topDownView.actualWidth)*1.5
-        height:topDownView.height/4
+        width: Math.min(topDownView.availableSpace,height * 4)
+        height:topDownView.height * (150/460)
 
         visible: false
 
@@ -293,8 +292,8 @@ ApplicationWindow {
         anchors.bottom: parent.bottom
         anchors.right: selector.left
         anchors.margins: 10
-        width:(topDownView.width - topDownView.actualWidth)*1.5
-        height:topDownView.height/4
+        width: Math.min(topDownView.availableSpace,height * 4)
+        height:topDownView.height * (150/460)
 
         visible: false
     }
@@ -328,14 +327,13 @@ ApplicationWindow {
         anchors.top: topDownView.top
         anchors.right: selector.left
         anchors.margins: 10
-        width:(topDownView.width - topDownView.actualWidth)*1.5
-        height:topDownView.height/4
+        width: Math.min(topDownView.availableSpace,height * 4)
+        height:topDownView.height * (150/460)
 
         verticalFlip: true
 
         visible: false
     }
-
 
     ListIndicator{
         id:lampsIndicator
@@ -356,8 +354,8 @@ ApplicationWindow {
         anchors.bottom: parent.bottom
         anchors.right: selector.left
         anchors.margins: 10
-        width:(topDownView.width - topDownView.actualWidth)*1.5
-        height:topDownView.height/4
+        width: Math.min(topDownView.availableSpace,height * 4)
+        height:topDownView.height * (150/460)
 
         model: ["On","Off"]
         sources: ["qrc:/assets/lamp-on.svg","qrc:/assets/lamp-off.svg"]
@@ -386,8 +384,8 @@ ApplicationWindow {
         anchors.bottom: parent.bottom
         anchors.right: selector.left
         anchors.margins: 10
-        width:(topDownView.width - topDownView.actualWidth)*1.5
-        height:topDownView.height/4
+        width: Math.min(topDownView.availableSpace,height * 4)
+        height:topDownView.height * (150/460)
 
         model: ["Good","Warning","Error"]
         sources: ["qrc:/assets/ok.svg","qrc:/assets/warning.svg","qrc:/assets/error.svg"]
@@ -415,8 +413,8 @@ ApplicationWindow {
         anchors.bottom: parent.bottom
         anchors.right: selector.left
         anchors.margins: 10
-        width:(topDownView.width - topDownView.actualWidth)*1.5
-        height:topDownView.height/4
+        width: Math.min(topDownView.availableSpace,height * 4)
+        height:topDownView.height * (150/460)
 
         model: ["Pass","Fail"]
         sources: ["qrc:/assets/ok.svg","qrc:/assets/error.svg"]
@@ -444,8 +442,8 @@ ApplicationWindow {
         anchors.bottom: parent.bottom
         anchors.right: selector.left
         anchors.margins: 10
-        width:(topDownView.width - topDownView.actualWidth)*1.5
-        height:topDownView.height/4
+        width: Math.min(topDownView.availableSpace,height * 4)
+        height:topDownView.height * (150/460)
 
         model: ["Weak","Good","Strong"]
         sources: ["qrc:/assets/signal-weak.svg","qrc:/assets/signal-good.svg","qrc:/assets/signal-strong.svg"]
@@ -472,8 +470,8 @@ ApplicationWindow {
         anchors.bottom: parent.bottom
         anchors.right: selector.left
         anchors.margins: 10
-        width:(topDownView.width - topDownView.actualWidth)*1.5
-        height:topDownView.height/4
+        width: Math.min(topDownView.availableSpace,height * 4)
+        height:topDownView.height * (150/460)
 
         model: ["Slowest","Slow","Medium","Fast","Fastest"]
         sources: ["qrc:/assets/gauge-min.svg","qrc:/assets/gauge-low.svg","qrc:/assets/gauge-middle.svg","qrc:/assets/gauge-high.svg","qrc:/assets/gauge-max.svg"]
@@ -484,7 +482,7 @@ ApplicationWindow {
 
     TextDisplay{
         id: description
-        width:(topDownView.width - topDownView.actualWidth)
+        width: Math.min(height*(300/350) ,topDownView.width - topDownView.paintedWidth)
         height:topDownView.height
         frameColor: colorConfig.accentColor
         anchors.bottom: parent.bottom

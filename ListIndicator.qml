@@ -262,7 +262,7 @@ Item {
                     verticalAlignment: Text.AlignVCenter
                     opacity:SwipeView.isCurrentItem?1.0:0.3
                     visible: SwipeView.isCurrentItem || SwipeView.isNextItem || SwipeView.isPreviousItem
-
+                    padding:2
                 }
             }
         }
@@ -275,7 +275,7 @@ Item {
     }
     PulseLoader{
         id:loadingBars
-        spacing: 2
+        spacing: 1
         barCount : 7
         width: (swipeViewHolder.width / 4) - (barCount) * spacing - 5
         anchors.right: swipeViewHolder.right

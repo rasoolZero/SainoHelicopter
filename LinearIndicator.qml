@@ -288,7 +288,7 @@ Item {
 
     PulseLoader{
         id:loadingBars
-        spacing: 2
+        spacing: 1
         barCount : 7
         width: (barsLayout.width / 4) - (barCount) * spacing - 5
         anchors.right: barsLayout.right

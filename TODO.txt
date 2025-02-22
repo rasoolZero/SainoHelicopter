@@ -1,7 +1,8 @@
 better ditails for indicators 
 		(change size circle, circle details) 
-responsive main window
+responsive main window 
+		(Tumbler Rows, List Indicator text sizes, Indicator Sizes, Text Display font size)
 set size constraints on windows
 add gradient background
+grammar check the welcome message
 switch between wireframe and model view for 3d helicopter (with hint)
-add component highlight to 3d helicopter

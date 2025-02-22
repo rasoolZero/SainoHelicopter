@@ -7,6 +7,11 @@ Item {
     property color color: "white"
     property int spacing: layout.spacing
     property bool running: true
+    property real minimumBarWidth:0
+    onWidthChanged: updateMinimumWidth()
+    function updateMinimumWidth(){
+        minimumBarWidth = Number.POSITIVE_INFINITY;
+    }
 
     id: root
     onRunningChanged: {
@@ -48,6 +53,10 @@ Item {
                 }
                 transformOrigin: Item.Center
                 color: root.color
+                onWidthChanged: {
+                    if(width < root.minimumBarWidth)
+                        root.minimumBarWidth = width;
+                }
 
                 SequentialAnimation {
                     id: anim

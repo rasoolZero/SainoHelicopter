@@ -45,6 +45,11 @@ Item {
                         origin.y: indicator.height / 2
                     }
 
+    function startAnimations(){
+        outerRotatorAnimation.start()
+        innerLoaderAnimation.start()
+    }
+
     Rectangle {
         id: circle
         width: height // Ensures the circle is a perfect circle
@@ -87,6 +92,7 @@ Item {
                 }
             }
             RotationAnimator {
+                id: outerRotatorAnimation
                 loops: Animation.Infinite
                 target: outerRotator
                 from: 0
@@ -148,6 +154,7 @@ Item {
                 }
             }
             RotationAnimator {
+                id: innerLoaderAnimation
                 loops: Animation.Infinite
                 target: innerLoader
                 from: 0
@@ -296,6 +303,7 @@ Item {
         anchors.topMargin: 5
         height:indicator.height/ 4
         running: true
+        visible: minimumBarWidth >= 2
     }
     Item{
         property color color: "white"

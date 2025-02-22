@@ -8,12 +8,9 @@ import QtCore
 
 ApplicationWindow {
     id: window
-    // minimumWidth : 1000
-    // maximumWidth : 1000
-    // minimumHeight : 600
-    // maximumHeight : 600
-    minimumHeight: 400
-    minimumWidth: 600
+
+    minimumHeight: 500
+    minimumWidth: 800
     height: 600
     width: 1000
     visible: true
@@ -40,8 +37,6 @@ ApplicationWindow {
 
     Item{
         id:view
-        // Layout.fillWidth: true
-        // Layout.fillHeight: true
         HelicopterView{
             copterColor: "white"
             anchors.fill: view
@@ -97,7 +92,7 @@ ApplicationWindow {
 
     TumblerSelector{
         id: selector
-        // Layout.fillHeight: true
+        hideText: !mainLayout.visible
         textColor: colorConfig.textColor
         separatorColor: colorConfig.okColor
         onCurrentIndexChanged: {
@@ -168,12 +163,11 @@ ApplicationWindow {
 
     Item{
         id: details
-        // Layout.fillHeight: true
-        // Layout.fillWidth: true
         HelicopterTopDown {
             id: topDownView
             overlayColor : colorConfig.errorColor
             anchors.fill: details
+            visible: !mainLayout.visible ? !description.visible : true
         }
 
         LinearIndicator{
@@ -489,11 +483,11 @@ ApplicationWindow {
 
         TextDisplay{
             id: description
-            width: Math.min(height*(300/350) ,topDownView.width - topDownView.paintedWidth)
+            width: mainLayout.visible? Math.min(height*(300/350) ,topDownView.width - topDownView.paintedWidth) : parent.width
             height:topDownView.height
-            frameColor: colorConfig.accentColor
+            frameColor: mainLayout.visible ? colorConfig.accentColor : colorConfig.warningColor
             anchors.bottom: parent.bottom
-            anchors.right: topDownView.right
+            anchors.right: parent.right
             opacity: 0.85
             text: "The Apache AH-64 is an advanced attack helicopter manufactured by Boeing (originally by Hughes Helicopters). First produced in 1983, it features superior air resistance with a streamlined fuselage and rotor design. It has a maximum altitude of approximately 21,000 feet (6,400 meters), making it highly effective in diverse combat environments."
             textColor: colorConfig.textColor
@@ -543,6 +537,7 @@ ApplicationWindow {
     }
 
     GridLayout{
+        id:mainLayout
         rows:2
         columns:2
         anchors.fill:parent
@@ -574,6 +569,74 @@ ApplicationWindow {
             Layout.maximumWidth: window.width * (1 / 4)
             Layout.fillHeight: true
             Layout.fillWidth: true
+        }
+        visible: false
+    }
+
+    GridLayout{
+        id:landscapeLayout
+        rows:1
+        columns:2
+        anchors.fill:parent
+        Item{
+            Layout.column: 0
+            Layout.maximumHeight: window.height
+            Layout.maximumWidth: window.width * (4 / 5)
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+            SwipeView{
+                id:lanscapeSwipeView
+                anchors.fill:parent
+                LayoutItemProxy{
+                    target:view
+                    Layout.fillHeight: true
+                    Layout.fillWidth: true
+                    visible: SwipeView.isCurrentItem
+                }
+                LayoutItemProxy{
+                    target:details
+                    Layout.fillHeight: true
+                    Layout.fillWidth: true
+                    visible: SwipeView.isCurrentItem
+                }
+            }
+            PageIndicator {
+                Material.theme: Material.Dark
+                Material.accent: Material.Cyan
+                id: indicator
+
+                count: lanscapeSwipeView.count
+                currentIndex: lanscapeSwipeView.currentIndex
+
+                anchors.bottom: lanscapeSwipeView.bottom
+                anchors.horizontalCenter: lanscapeSwipeView.horizontalCenter
+            }
+        }
+        LayoutItemProxy{
+            target:selector
+            Layout.column: 1
+            Layout.maximumHeight: window.height
+            Layout.maximumWidth: window.width * (1 / 5)
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+        }
+    }
+
+    onAspectRatioChanged:{
+        if(aspectRatio > lanscapeThreshold){
+            mainLayout.visible = false;
+            landscapeLayout.visible = true;
+        }
+        else{
+            mainLayout.visible = true;
+            landscapeLayout.visible = false;
+        }
+        let elements = [insideTempIndicator, outsideTempIndicator, batteryIndicator
+                        , fuelIndicator, speedIndicator, lampsIndicator, cameraIndicator
+                        , controlPanelIndicator, radioIndicator, rotorSpeedIndicator];
+
+        for (let i = 0; i < elements.length; i++) {
+            elements[i].startAnimations()
         }
     }
 }

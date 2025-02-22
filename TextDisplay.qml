@@ -34,7 +34,7 @@ Item {
         verticalAlignment: Text.AlignVCenter
         horizontalAlignment: Text.AlignHCenter
         fontSizeMode: Text.Fit
-        minimumPointSize : 12
+        minimumPointSize : 10
         font.pointSize: 172
         wrapMode: Text.WordWrap
         // onContentHeightChanged: {

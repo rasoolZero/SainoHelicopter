@@ -6,6 +6,7 @@ import Qt5Compat.GraphicalEffects
 
 Tumbler {
     id: control
+    property bool hideText : false
 
     required property color textColor
     required property color separatorColor
@@ -55,7 +56,7 @@ Tumbler {
         spacing : width*0.1
         leftPadding: width*0.15
         Image{
-            height : parent.height*0.35
+            height : hideText ? parent.height*0.5 : parent.height*0.35
             anchors.verticalCenter: parent.verticalCenter
             source : "qrc:/assets/" + control.icons[parent.index] + ".svg"
             smooth: true
@@ -75,6 +76,8 @@ Tumbler {
             verticalAlignment: Text.AlignVCenter
             color: control.textColor
             height : parent.height
+            visible: !hideText
+            enabled: visible
         }
     }
 

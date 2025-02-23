@@ -278,12 +278,12 @@ ApplicationWindow {
             boxText: "Lamps"
             boxTextColor: colorConfig.textColor
             swipeTextColor: colorConfig.textColor
-            innerLoaderBackgroundColor: window.color
+            // innerLoaderBackgroundColor: window.color
             loadingBarsColor: colorConfig.accentColor
 
             circleColor : colorConfig.accentColor
             outerRotatorColor: colorConfig.accentColor
-            innerLoaderColor: colorConfig.accentColor
+            // innerLoaderColor: colorConfig.accentColor
             outerBoxColor: colorConfig.accentColor
             seperatorColor: colorConfig.accentColor
 
@@ -305,12 +305,12 @@ ApplicationWindow {
             boxText: "Fixed Camera"
             boxTextColor: colorConfig.textColor
             swipeTextColor: colorConfig.textColor
-            innerLoaderBackgroundColor: window.color
+            // innerLoaderBackgroundColor: window.color
 
 
             circleColor : colorConfig.accentColor
             outerRotatorColor: colorConfig.accentColor
-            innerLoaderColor: colorConfig.accentColor
+            // innerLoaderColor: colorConfig.accentColor
             outerBoxColor: colorConfig.accentColor
             loadingBarsColor: colorConfig.accentColor
             seperatorColor: colorConfig.accentColor
@@ -333,12 +333,12 @@ ApplicationWindow {
             boxText: "Control Panel Check"
             boxTextColor: colorConfig.textColor
             swipeTextColor: colorConfig.textColor
-            innerLoaderBackgroundColor: window.color
+            // innerLoaderBackgroundColor: window.color
 
 
             circleColor : colorConfig.accentColor
             outerRotatorColor: colorConfig.accentColor
-            innerLoaderColor: colorConfig.accentColor
+            // innerLoaderColor: colorConfig.accentColor
             outerBoxColor: colorConfig.accentColor
             loadingBarsColor: colorConfig.accentColor
             seperatorColor: colorConfig.accentColor
@@ -360,12 +360,12 @@ ApplicationWindow {
             boxText: "Radio Signal"
             boxTextColor: colorConfig.textColor
             swipeTextColor: colorConfig.textColor
-            innerLoaderBackgroundColor: window.color
+            // innerLoaderBackgroundColor: window.color
 
 
             circleColor : colorConfig.accentColor
             outerRotatorColor: colorConfig.accentColor
-            innerLoaderColor: colorConfig.accentColor
+            // innerLoaderColor: colorConfig.accentColor
             outerBoxColor: colorConfig.accentColor
             loadingBarsColor: colorConfig.accentColor
             seperatorColor: colorConfig.accentColor
@@ -387,11 +387,11 @@ ApplicationWindow {
             boxText: "Main Rotor Speed"
             boxTextColor: colorConfig.textColor
             swipeTextColor: colorConfig.textColor
-            innerLoaderBackgroundColor: window.color
+            // innerLoaderBackgroundColor: window.color
 
             circleColor : colorConfig.accentColor
             outerRotatorColor: colorConfig.accentColor
-            innerLoaderColor: colorConfig.accentColor
+            // innerLoaderColor: colorConfig.accentColor
             outerBoxColor: colorConfig.accentColor
             loadingBarsColor: colorConfig.accentColor
             seperatorColor: colorConfig.accentColor

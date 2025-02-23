@@ -10,8 +10,8 @@ Item {
     property alias circleColor : circle.border.color
     property alias outerRotatorColor: outerRotatorPath.strokeColor
     property alias outerRotatorOpacity: outerRotator.opacity
-    property alias innerLoaderColor: innerLoaderColorGradient.color
-    property alias innerLoaderBackgroundColor: innerLoaderBackground.fillColor
+    // property alias innerLoaderColor: innerLoaderColorGradient.color
+    // property alias innerLoaderBackgroundColor: innerLoaderBackground.fillColor
     property alias outerBoxColor: outerBox.strokeColor
     property alias boxText: boxText.text
     property alias boxTextColor: boxText.color
@@ -29,10 +29,11 @@ Item {
     property alias value: swipeView.currentIndex
     property string currentSource: sources[value]
     property color currentColor: valueImageColors[value]
+    property int thickness: height/25
 
     function startAnimations(){
         outerRotatorAnimation.start()
-        innerLoaderAnimation.start()
+        // innerLoaderAnimation.start()
     }
 
     Rectangle {
@@ -41,7 +42,7 @@ Item {
         height: parent.height // Fills the height of the indicator
         radius: height / 2 // Makes it a circle
         color: "transparent" // Example color; change as needed
-        border.width: 3
+        border.width: indicator.thickness
         anchors.left: parent.left // Aligns the circle to the left of the indicator
         SH.Shape {
             id:outerRotator
@@ -55,23 +56,23 @@ Item {
                 id: outerRotatorPath
                 strokeColor: "black"
                 fillColor:"transparent"
-                strokeWidth: 7
+                strokeWidth: indicator.thickness * 2
                 startX: width / 2
                 startY: 0
                 capStyle: SH.ShapePath.RoundCap
                 PathAngleArc{
                     radiusX: outerRotator.width/2
                     radiusY: outerRotator.height/2
-                    centerX: outerRotator.height/2
-                    centerY: outerRotator.width/2
+                    centerX: outerRotator.width/2
+                    centerY: outerRotator.height/2
                     startAngle: 0
                     sweepAngle: 90
                 }
                 PathAngleArc{
                     radiusX: outerRotator.width/2
                     radiusY: outerRotator.height/2
-                    centerX: outerRotator.height/2
-                    centerY: outerRotator.width/2
+                    centerX: outerRotator.width/2
+                    centerY: outerRotator.height/2
                     startAngle: 180
                     sweepAngle: 90
                 }
@@ -86,70 +87,70 @@ Item {
                 running: true
             }
         }
-        SH.Shape {
-            visible : false
-            enabled: false
-            id:innerLoader
-            antialiasing: true
-            smooth: false
-            anchors.centerIn: parent // Align the arcs to the center of the circle
-            width:parent.width*3/4
-            height:parent.height*3/4
-            SH.ShapePath{
-                strokeColor:"transparent"
-                fillGradient: SH.ConicalGradient {
-                        id: fillGradient
-                        centerX: innerLoader.height/2
-                        centerY: innerLoader.width/2
-                        GradientStop {
+        // SH.Shape {
+        //     visible : false
+        //     enabled: false
+        //     id:innerLoader
+        //     antialiasing: true
+        //     smooth: false
+        //     anchors.centerIn: parent // Align the arcs to the center of the circle
+        //     width:parent.width - indicator.thickness * 5
+        //     height:parent.height - indicator.thickness * 5
+        //     SH.ShapePath{
+        //         strokeColor:"transparent"
+        //         fillGradient: SH.ConicalGradient {
+        //                 id: fillGradient
+        //                 centerX: innerLoader.width/2
+        //                 centerY: innerLoader.height/2
+        //                 GradientStop {
 
-                            id:innerLoaderColorGradient
-                            position: 0
-                            color: "black"
-                        }
-                        GradientStop {
-                            position: 0.75
-                            color: "transparent"
-                        }
-                    }
-                startX: 0
-                startY: 0
-                capStyle: SH.ShapePath.SquareCap
-                PathAngleArc{
-                    radiusX: innerLoader.width/2
-                    radiusY: innerLoader.height/2
-                    centerX: innerLoader.height/2
-                    centerY: innerLoader.width/2
-                    startAngle: 0
-                    sweepAngle: 360
-                }
-            }
-            SH.ShapePath{
-                id: innerLoaderBackground
-                strokeColor:"transparent"
-                fillColor: "white"
-                startX: 0
-                startY: 0
-                capStyle: SH.ShapePath.SquareCap
-                PathAngleArc{
-                    radiusX: innerLoader.width/2-3
-                    radiusY: innerLoader.height/2-3
-                    centerX: innerLoader.height/2
-                    centerY: innerLoader.width/2
-                    startAngle: 0
-                    sweepAngle: 360
-                }
-            }
-            RotationAnimator {
-                id:innerLoaderAnimation
-                loops: Animation.Infinite
-                target: innerLoader
-                from: 0
-                to: 360
-                duration: 5000
-                running: true
-            }
-        }
+        //                     id:innerLoaderColorGradient
+        //                     position: 0
+        //                     color: "black"
+        //                 }
+        //                 GradientStop {
+        //                     position: 0.75
+        //                     color: "transparent"
+        //                 }
+        //             }
+        //         startX: 0
+        //         startY: 0
+        //         capStyle: SH.ShapePath.SquareCap
+        //         PathAngleArc{
+        //             radiusX: innerLoader.width/2
+        //             radiusY: innerLoader.height/2
+        //             centerX: innerLoader.width/2
+        //             centerY: innerLoader.height/2
+        //             startAngle: 0
+        //             sweepAngle: 360
+        //         }
+        //     }
+        //     SH.ShapePath{
+        //         id: innerLoaderBackground
+        //         strokeColor:"transparent"
+        //         fillColor: "white"
+        //         startX: 0
+        //         startY: 0
+        //         capStyle: SH.ShapePath.SquareCap
+        //         PathAngleArc{
+        //             radiusX: innerLoader.width/2-indicator.thickness
+        //             radiusY: innerLoader.height/2-indicator.thickness
+        //             centerX: innerLoader.width/2
+        //             centerY: innerLoader.height/2
+        //             startAngle: 0
+        //             sweepAngle: 360
+        //         }
+        //     }
+        //     RotationAnimator {
+        //         id:innerLoaderAnimation
+        //         loops: Animation.Infinite
+        //         target: innerLoader
+        //         from: 0
+        //         to: 360
+        //         duration: 5000
+        //         running: true
+        //     }
+        // }
 
         Item{
             id: valueImageHolder
@@ -192,7 +193,7 @@ Item {
             id: outerBox
             fillColor: "transparent"
             strokeColor: "black"
-            strokeWidth: 2
+            strokeWidth: Math.max(indicator.thickness / 2,2)
             startX:height/2
             startY:0
             capStyle:SH.ShapePath.SquareCap
@@ -215,7 +216,7 @@ Item {
             id: outerBoxThickness
             fillColor: "transparent"
             strokeColor: outerBox.strokeColor
-            strokeWidth: outerBox.strokeWidth + 2
+            strokeWidth: outerBox.strokeWidth * 1.5
             startX:height/2 + offset
             startY:0
             capStyle:SH.ShapePath.RoundCap

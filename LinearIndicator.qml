@@ -39,6 +39,7 @@ Item {
     required property int start
     required property int end
     property string postfix
+    property int thickness: height/25
 
     transform: Scale{   yScale: verticalFlip?-1:1
                         origin.x: indicator.width / 2
@@ -56,7 +57,7 @@ Item {
         height: parent.height // Fills the height of the indicator
         radius: height / 2 // Makes it a circle
         color: "transparent" // Example color; change as needed
-        border.width: 3
+        border.width: indicator.thickness
         anchors.left: parent.left // Aligns the circle to the left of the indicator
         SH.Shape {
             id:outerRotator
@@ -70,23 +71,23 @@ Item {
                 id: outerRotatorPath
                 strokeColor: "black"
                 fillColor:"transparent"
-                strokeWidth: 7
+                strokeWidth: indicator.thickness*2
                 startX: width / 2
                 startY: 0
                 capStyle: SH.ShapePath.RoundCap
                 PathAngleArc{
                     radiusX: outerRotator.width/2
                     radiusY: outerRotator.height/2
-                    centerX: outerRotator.height/2
-                    centerY: outerRotator.width/2
+                    centerX: outerRotator.width/2
+                    centerY: outerRotator.height/2
                     startAngle: 0
                     sweepAngle: 90
                 }
                 PathAngleArc{
                     radiusX: outerRotator.width/2
                     radiusY: outerRotator.height/2
-                    centerX: outerRotator.height/2
-                    centerY: outerRotator.width/2
+                    centerX: outerRotator.width/2
+                    centerY: outerRotator.height/2
                     startAngle: 180
                     sweepAngle: 90
                 }
@@ -106,14 +107,14 @@ Item {
             antialiasing: true
             smooth: false
             anchors.centerIn: parent // Align the arcs to the center of the circle
-            width:parent.width*3/4
-            height:parent.height*3/4
+            width:parent.width - indicator.thickness * 5
+            height:parent.height - indicator.thickness * 5
             SH.ShapePath{
                 strokeColor:"transparent"
                 fillGradient: SH.ConicalGradient {
                         id: fillGradient
-                        centerX: innerLoader.height/2
-                        centerY: innerLoader.width/2
+                        centerX: innerLoader.width/2
+                        centerY: innerLoader.height/2
                         GradientStop {
 
                             id:innerLoaderColorGradient
@@ -131,8 +132,8 @@ Item {
                 PathAngleArc{
                     radiusX: innerLoader.width/2
                     radiusY: innerLoader.height/2
-                    centerX: innerLoader.height/2
-                    centerY: innerLoader.width/2
+                    centerX: innerLoader.width/2
+                    centerY: innerLoader.height/2
                     startAngle: 0
                     sweepAngle: 360
                 }
@@ -145,8 +146,8 @@ Item {
                 startY: 0
                 capStyle: SH.ShapePath.SquareCap
                 PathAngleArc{
-                    radiusX: innerLoader.width/2-3
-                    radiusY: innerLoader.height/2-3
+                    radiusX: innerLoader.width/2-indicator.thickness
+                    radiusY: innerLoader.height/2-indicator.thickness
                     centerX: innerLoader.height/2
                     centerY: innerLoader.width/2
                     startAngle: 0
@@ -192,7 +193,7 @@ Item {
             id: outerBox
             fillColor: "transparent"
             strokeColor: "black"
-            strokeWidth: 2
+            strokeWidth: Math.max(indicator.thickness / 2,2)
             startX:height/2
             startY:0
             capStyle:SH.ShapePath.SquareCap
@@ -215,7 +216,7 @@ Item {
             id: outerBoxThickness
             fillColor: "transparent"
             strokeColor: outerBox.strokeColor
-            strokeWidth: outerBox.strokeWidth + 2
+            strokeWidth: outerBox.strokeWidth * 1.5
             startX:height/2 + offset
             startY:0
             capStyle:SH.ShapePath.RoundCap

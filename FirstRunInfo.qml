@@ -33,10 +33,10 @@ ApplicationWindow  {
                 text: "It looks like this is your first time running SainoHelicopter."
             }
             CustomLabel{
-                text: "You can use the selector on the right hand side by drag and drop or up and down keys."
+                text: "You can use the selector on the right-hand side by dragging and dropping or using the up and down keys."
             }
             CustomLabel{
-                text: "You can open the control panel window by pressing the space key."
+                text: "You can open the control panel window by pressing the Space key."
             }
             Button{
                 text:"OK!"

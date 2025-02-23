@@ -510,6 +510,10 @@ ApplicationWindow {
     }
 
     ControlPanel{
+        width: 800
+        height: 600
+        minimumHeight: 300
+        minimumWidth: 300
         Material.theme: Material.Dark
         Material.accent: Material.Cyan
         id : controlPanel
@@ -522,6 +526,8 @@ ApplicationWindow {
         id: firstRunInfoDialog
         width:300
         height:400
+        minimumWidth: 200
+        minimumHeight: 300
 
         Settings{
             id:settings

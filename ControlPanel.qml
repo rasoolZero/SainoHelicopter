@@ -16,8 +16,6 @@ ApplicationWindow {
     property int rotorSpeed : 0
 
     id: controlPanel
-    width: 800
-    height: 600
     title: "Control Panel"
     Material.theme: Material.Dark
     Material.accent: Material.Cyan

@@ -91,83 +91,26 @@ ApplicationWindow {
         hideText: !mainLayout.visible
         textColor: colorConfig.textColor
         separatorColor: colorConfig.okColor
-        onCurrentIndexChanged: {
-
-            let elements = [insideTempIndicator, outsideTempIndicator, batteryIndicator
-                            , fuelIndicator, speedIndicator, lampsIndicator, cameraIndicator
-                            , controlPanelIndicator, radioIndicator, rotorSpeedIndicator, description];
-
-
-            for (let i = 0; i < elements.length; i++) {
-                elements[i].visible = false;
-            }
-
-            switch (currentIndex) {
-                case 0:
-                    topDownView.source = "qrc:/assets/top-down.png";
-                    topDownView.enabled = false
-                    description.visible = true
-                    break;
-                case 1:
-                    topDownView.source = "qrc:/assets/fuel.png";
-                    topDownView.enabled = true
-                    fuelIndicator.visible = true;
-                    break;
-                case 2:
-                    topDownView.source = "qrc:/assets/battery.png";
-                    topDownView.enabled = true
-                    batteryIndicator.visible = true;
-                    break;
-                case 3:
-                    topDownView.source = "qrc:/assets/cockpit.png";
-                    topDownView.enabled = true
-                    insideTempIndicator.visible = outsideTempIndicator.visible = true;
-                    break;
-                case 4:
-                    topDownView.source = "qrc:/assets/camera.png";
-                    topDownView.enabled = true
-                    cameraIndicator.visible = true
-                    break;
-                case 5:
-                    topDownView.source = "qrc:/assets/top-down.png";
-                    topDownView.enabled = true
-                    speedIndicator.visible = true
-                    break;
-                case 6:
-                    topDownView.source = "qrc:/assets/lamps.png";
-                    topDownView.enabled = true
-                    lampsIndicator.visible = true
-                    break;
-                case 7:
-                    topDownView.source = "qrc:/assets/rotor.png";
-                    topDownView.enabled = true
-                    rotorSpeedIndicator.visible = true
-                    break;
-                case 8:
-                    topDownView.source = "qrc:/assets/control-panel.png";
-                    topDownView.enabled = true
-                    controlPanelIndicator.visible = true
-                    break;
-                case 9:
-                    topDownView.source = "qrc:/assets/radio.png";
-                    topDownView.enabled = true
-                    radioIndicator.visible = true
-                    break;
-            }
-        }
     }
 
     Item{
         id: details
         HelicopterTopDown {
             id: topDownView
+            readonly property list<string> sources:["qrc:/assets/top-down.png","qrc:/assets/fuel.png","qrc:/assets/battery.png"
+                                ,"qrc:/assets/cockpit.png","qrc:/assets/camera.png","qrc:/assets/top-down.png"
+                                ,"qrc:/assets/lamps.png","qrc:/assets/rotor.png","qrc:/assets/control-panel.png"
+                                ,"qrc:/assets/radio.png"]
             overlayColor : colorConfig.errorColor
             anchors.fill: details
             visible: !mainLayout.visible ? !description.visible : true
+            enabled: selector.currentIndex > 0
+            source: sources[selector.currentIndex]
         }
 
         LinearIndicator{
             id:batteryIndicator
+            visible: selector.currentIndex === 2
             start:0
             end:100
             midRangeColor: colorConfig.accentColor
@@ -193,11 +136,11 @@ ApplicationWindow {
             anchors.margins: 10
             width: Math.min(topDownView.availableSpace,height * 4)
             height:topDownView.height * (150/460)
-            visible: false
 
         }
         LinearIndicator{
             id:fuelIndicator
+            visible: selector.currentIndex === 1
             start:0
             end:80
             midRangeColor: colorConfig.accentColor
@@ -224,12 +167,11 @@ ApplicationWindow {
             width: Math.min(topDownView.availableSpace,height * 4)
             height:topDownView.height * (150/460)
 
-            visible: false
-
         }
 
         LinearIndicator{
             id:speedIndicator
+            visible: selector.currentIndex === 5
             start:0
             end:220
             midRangeColor: colorConfig.accentColor
@@ -256,12 +198,11 @@ ApplicationWindow {
             width: Math.min(topDownView.availableSpace,height * 4)
             height:topDownView.height * (150/460)
 
-            visible: false
-
         }
 
         LinearIndicator{
             id:insideTempIndicator
+            visible: selector.currentIndex === 3
             start:-20
             end:80
             lowRangeThreshold: 0
@@ -292,11 +233,11 @@ ApplicationWindow {
             width: Math.min(topDownView.availableSpace,height * 4)
             height:topDownView.height * (150/460)
 
-            visible: false
         }
 
         LinearIndicator{
             id:outsideTempIndicator
+            visible: selector.currentIndex === 3
             start:-20
             end:80
             lowRangeThreshold: 0
@@ -328,13 +269,11 @@ ApplicationWindow {
             height:topDownView.height * (150/460)
 
             verticalFlip: true
-
-            visible: false
         }
 
         ListIndicator{
             id:lampsIndicator
-
+            visible: selector.currentIndex === 6
             value:controlPanel.lampsStatus
             boxText: "Lamps"
             boxTextColor: colorConfig.textColor
@@ -357,13 +296,11 @@ ApplicationWindow {
             model: ["On","Off"]
             sources: ["qrc:/assets/lamp-on.svg","qrc:/assets/lamp-off.svg"]
             valueImageColors: [colorConfig.warningColor,"white"]
-
-            visible: false
         }
 
         ListIndicator{
             id:cameraIndicator
-
+            visible: selector.currentIndex === 4
             value:controlPanel.cameraStatus
             boxText: "Fixed Camera"
             boxTextColor: colorConfig.textColor
@@ -388,11 +325,10 @@ ApplicationWindow {
             sources: ["qrc:/assets/ok.svg","qrc:/assets/warning.svg","qrc:/assets/error.svg"]
             valueImageColors: [colorConfig.okColor,colorConfig.warningColor,colorConfig.errorColor]
 
-            visible: false
         }
         ListIndicator{
             id:controlPanelIndicator
-
+            visible: selector.currentIndex === 8
             value:controlPanel.controlPanelCheck
             boxText: "Control Panel Check"
             boxTextColor: colorConfig.textColor
@@ -416,12 +352,10 @@ ApplicationWindow {
             model: ["Pass","Fail"]
             sources: ["qrc:/assets/ok.svg","qrc:/assets/error.svg"]
             valueImageColors: [colorConfig.okColor,colorConfig.errorColor]
-
-            visible: false
         }
         ListIndicator{
             id:radioIndicator
-
+            visible: selector.currentIndex === 9
             value:controlPanel.radioSignalStrength
             boxText: "Radio Signal"
             boxTextColor: colorConfig.textColor
@@ -445,12 +379,10 @@ ApplicationWindow {
             model: ["Weak","Good","Strong"]
             sources: ["qrc:/assets/signal-weak.svg","qrc:/assets/signal-good.svg","qrc:/assets/signal-strong.svg"]
             valueImageColors: [colorConfig.errorColor,colorConfig.warningColor,colorConfig.okColor]
-
-            visible: false
         }
         ListIndicator{
             id:rotorSpeedIndicator
-
+            visible: selector.currentIndex === 7
             value:controlPanel.rotorSpeed
             boxText: "Main Rotor Speed"
             boxTextColor: colorConfig.textColor
@@ -473,8 +405,6 @@ ApplicationWindow {
             model: ["Slowest","Slow","Medium","Fast","Fastest"]
             sources: ["qrc:/assets/gauge-min.svg","qrc:/assets/gauge-low.svg","qrc:/assets/gauge-middle.svg","qrc:/assets/gauge-high.svg","qrc:/assets/gauge-max.svg"]
             valueImageColors: ["#ffffff","#ffffff","#ffffff","#ffffff","#ffffff"]
-
-            visible: false
         }
 
         TextDisplay{
@@ -491,6 +421,7 @@ ApplicationWindow {
             backgroundColor: colorConfig.backgroundColor
             text: "The Apache AH-64 is an advanced attack helicopter manufactured by Boeing (originally by Hughes Helicopters). First produced in 1983, it features superior air resistance with a streamlined fuselage and rotor design. It has a maximum altitude of approximately 21,000 feet (6,400 meters), making it highly effective in diverse combat environments."
             textColor: colorConfig.textColor
+            visible: selector.currentIndex === 0
         }
     }
     Item{
@@ -579,7 +510,7 @@ ApplicationWindow {
             Layout.fillHeight: true
             Layout.fillWidth: true
         }
-        visible: true
+        visible: !(aspectRatio > lanscapeThreshold)
     }
 
     GridLayout{
@@ -629,19 +560,11 @@ ApplicationWindow {
             Layout.fillHeight: true
             Layout.fillWidth: true
         }
-        visible: false
+        visible: aspectRatio > lanscapeThreshold
     }
 
 
     onAspectRatioChanged:{
-        if(aspectRatio > lanscapeThreshold){
-            mainLayout.visible = false;
-            landscapeLayout.visible = true;
-        }
-        else{
-            mainLayout.visible = true;
-            landscapeLayout.visible = false;
-        }
         let elements = [insideTempIndicator, outsideTempIndicator, batteryIndicator
                         , fuelIndicator, speedIndicator, lampsIndicator, cameraIndicator
                         , controlPanelIndicator, radioIndicator, rotorSpeedIndicator];

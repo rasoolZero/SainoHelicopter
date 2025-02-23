@@ -227,14 +227,13 @@ Item {
             PathLine{x: box.height/2 + outerBoxThickness.offset; relativeY: 0;}
         }
     }
-    Rectangle{
+    Item{
         id: textHolder
         width:box.width-circle.width-barsLayout.width/2
         height:box.height/2
         anchors.bottom:circle.bottom
         anchors.left:circle.right
         anchors.leftMargin: 8
-        color:"transparent"
         Text{
             textFormat: Text.PlainText
             id: boxText

@@ -29,24 +29,6 @@ Tumbler {
 
     }
 
-    background: Item {
-        Rectangle {
-            opacity: control.enabled ? 0.2 : 0.1
-            border.color: "#000000"
-            width: parent.width
-            height: 1
-            anchors.top: parent.top
-        }
-
-        Rectangle {
-            opacity: control.enabled ? 0.2 : 0.1
-            border.color: "#000000"
-            width: parent.width
-            height: 1
-            anchors.bottom: parent.bottom
-        }
-    }
-
     delegate: RowLayout {
 
         required property var modelData

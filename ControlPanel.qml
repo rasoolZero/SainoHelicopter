@@ -36,11 +36,10 @@ ApplicationWindow {
         gradient: Gradient{
             orientation: Gradient.Horizontal
             GradientStop{position: 0.0; color:"transparent";}
-            GradientStop{position: 0.2; color:"white";}
-            GradientStop{position: 0.8; color:"white";}
+            GradientStop{position: 0.2; color: Qt.darker("white",1.15);}
+            GradientStop{position: 0.8; color: Qt.darker("white",1.15);}
             GradientStop{position: 1.0; color:"transparent";}
         }
-        opacity:0.9
         visible: controlPanel.width < 800
         Layout.margins: 14
     }

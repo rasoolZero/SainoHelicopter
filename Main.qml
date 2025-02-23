@@ -451,7 +451,6 @@ ApplicationWindow {
         Material.theme: Material.Dark
         Material.accent: Material.Cyan
         id : controlPanel
-        opacity: 0.92
         visible: false
 
     }

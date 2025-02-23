@@ -48,7 +48,7 @@ Item {
             opacity: 0.5
             z:parent.z-1
             antialiasing: true
-            smooth: true
+            smooth: false
             anchors.centerIn: parent // Align the arcs to the center of the circle
             anchors.fill: parent
             SH.ShapePath {
@@ -91,7 +91,7 @@ Item {
             enabled: false
             id:innerLoader
             antialiasing: true
-            smooth: true
+            smooth: false
             anchors.centerIn: parent // Align the arcs to the center of the circle
             width:parent.width*3/4
             height:parent.height*3/4
@@ -168,7 +168,7 @@ Item {
                     anchors.fill: valueImageHolder
                     antialiasing: true
                     fillMode: Image.PreserveAspectFit
-                    smooth:true
+                    smooth: false
                     visible:indicator.value === index
                     ColorOverlay{
                         id: valueImageOverlay
@@ -176,7 +176,7 @@ Item {
                         source:parent
                         color: indicator.currentColor
                         antialiasing: true
-                        smooth:true
+                        smooth: false
                     }
                 }
             }
@@ -186,7 +186,7 @@ Item {
         z:circle.z-1
         id: box
         antialiasing: true
-        smooth: true
+        smooth: false
         anchors.fill: parent
         SH.ShapePath {
             id: outerBox

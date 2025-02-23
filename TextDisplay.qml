@@ -22,7 +22,7 @@ Item {
         id: frame
         source:"qrc:/assets/frame.svg"
         anchors.fill: parent
-        smooth: true
+        smooth: false
         antialiasing: true
         mipmap: true
     }
@@ -32,7 +32,7 @@ Item {
         anchors.fill: frame
         source: frame
         antialiasing: true
-        smooth: true
+        smooth: false
     }
 
     Text{

@@ -27,7 +27,7 @@ Item{
         antialiasing: true
         mipmap:true
         fillMode: Image.PreserveAspectFit
-        smooth: true
+        smooth: false
         source: "qrc:/assets/top-down.png"
     }
     Image{
@@ -37,7 +37,7 @@ Item{
         antialiasing: true
         mipmap:true
         fillMode: Image.PreserveAspectFit
-        smooth: true
+        smooth: false
         source: "qrc:/assets/top-down.png"
         visible: false
     }

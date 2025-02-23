@@ -59,13 +59,13 @@ Tumbler {
         Image {
             Layout.leftMargin: hideText? 0 : parent.width * 0.1
             source: "qrc:/assets/" + control.icons[parent.index] + ".svg"
-            smooth: true
+            smooth: false
             fillMode: Image.PreserveAspectFit
             ColorOverlay {
                 anchors.fill: parent
                 source: parent
                 antialiasing: true
-                smooth: true
+                smooth: false
                 color: "white"
             }
             Layout.fillWidth: hideText  // Allows centering when text is hidden

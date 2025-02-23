@@ -63,7 +63,7 @@ Item {
             opacity: 0.5
             z:parent.z-1
             antialiasing: true
-            smooth: true
+            smooth: false
             anchors.centerIn: parent // Align the arcs to the center of the circle
             anchors.fill: parent
             SH.ShapePath {
@@ -104,7 +104,7 @@ Item {
         SH.Shape {
             id:innerLoader
             antialiasing: true
-            smooth: true
+            smooth: false
             anchors.centerIn: parent // Align the arcs to the center of the circle
             width:parent.width*3/4
             height:parent.height*3/4
@@ -186,7 +186,7 @@ Item {
         z:circle.z-1
         id: box
         antialiasing: true
-        smooth: true
+        smooth: false
         anchors.fill: parent
         SH.ShapePath {
             id: outerBox

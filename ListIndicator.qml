@@ -175,6 +175,7 @@ Item {
             fillMode: Image.PreserveAspectFit
             smooth:true
             visible:true
+            mipmap: true
         }
         ColorOverlay{
             id: valueImageOverlay

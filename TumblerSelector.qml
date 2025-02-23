@@ -11,8 +11,8 @@ Tumbler {
     required property color textColor
     required property color separatorColor
     property list<string> icons : [
-        "description", "fuel", "battery", "temperature", "camera", "speed",
-        "lamps", "rotor", "control_panel", "radio"
+        "description", "fuel_icon", "battery_icon", "temperature", "camera_icon", "speed",
+        "lamps_icon", "rotor_icon", "control_panel", "radio_icon"
     ]
 
     model: ListModel {
@@ -57,7 +57,7 @@ Tumbler {
         width: control.width
         Image {
             Layout.leftMargin: hideText? 0 : parent.width * 0.1
-            source: "qrc:/assets/" + control.icons[parent.index] + ".svg"
+            source: "qrc:/assets/" + control.icons[parent.index] + ".png"
             smooth: true
             fillMode: Image.PreserveAspectFit
             ColorOverlay {

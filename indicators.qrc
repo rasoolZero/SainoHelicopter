@@ -1,0 +1,18 @@
+<RCC>
+    <qresource prefix="/">
+        <file>assets/error.png</file>
+        <file>assets/frame.png</file>
+        <file>assets/gauge-high.png</file>
+        <file>assets/gauge-low.png</file>
+        <file>assets/gauge-max.png</file>
+        <file>assets/gauge-middle.png</file>
+        <file>assets/gauge-min.png</file>
+        <file>assets/lamp-off.png</file>
+        <file>assets/lamp-on.png</file>
+        <file>assets/ok.png</file>
+        <file>assets/signal-good.png</file>
+        <file>assets/signal-strong.png</file>
+        <file>assets/signal-weak.png</file>
+        <file>assets/warning.png</file>
+    </qresource>
+</RCC>

@@ -1,14 +1,14 @@
 <RCC>
     <qresource prefix="/">
-        <file>assets/battery.svg</file>
-        <file>assets/camera.svg</file>
-        <file>assets/control_panel.svg</file>
-        <file>assets/description.svg</file>
-        <file>assets/fuel.svg</file>
-        <file>assets/radio.svg</file>
-        <file>assets/rotor.svg</file>
-        <file>assets/speed.svg</file>
-        <file>assets/temperature.svg</file>
-        <file>assets/lamps.svg</file>
+        <file>assets/battery_icon.png</file>
+        <file>assets/camera_icon.png</file>
+        <file>assets/control_panel.png</file>
+        <file>assets/description.png</file>
+        <file>assets/fuel_icon.png</file>
+        <file>assets/radio_icon.png</file>
+        <file>assets/rotor_icon.png</file>
+        <file>assets/speed.png</file>
+        <file>assets/temperature.png</file>
+        <file>assets/lamps_icon.png</file>
     </qresource>
 </RCC>

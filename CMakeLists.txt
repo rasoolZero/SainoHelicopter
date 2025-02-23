@@ -35,7 +35,7 @@ qt_add_qml_module(appSainoHelicopter
     QML_FILES FirstRunInfo.qml
     RESOURCES fonts.qrc
     RESOURCES icon.qrc
-    RESOURCES vectors.qrc
+    RESOURCES indicators.qrc
     RESOURCES images.qrc
     RESOURCES mesh.qrc
     RESOURCES tumbler-icons.qrc

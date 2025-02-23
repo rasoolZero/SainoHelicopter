@@ -20,7 +20,7 @@ Item {
 
     Image{
         id: frame
-        source:"qrc:/assets/frame.svg"
+        source:"qrc:/assets/frame.png"
         anchors.fill: parent
         smooth: true
         antialiasing: true

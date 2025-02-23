@@ -452,7 +452,7 @@ ApplicationWindow {
         Material.accent: Material.Cyan
         id : controlPanel
         visible: false
-
+        opacity: 0.92
     }
 
     FirstRunInfo{

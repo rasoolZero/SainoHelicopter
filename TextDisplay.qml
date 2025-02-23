@@ -37,6 +37,7 @@ Item {
 
     Text{
         id: text
+        textFormat: Text.PlainText
         readonly property real horzizontalMargin: parent.width * 11/100
         readonly property real verticalMargin: parent.height * 7/100
         anchors.fill: parent

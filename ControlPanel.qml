@@ -27,6 +27,7 @@ ApplicationWindow {
         horizontalAlignment: controlPanel.width < 800 ? Text.AlignLeft : Text.AlignHCenter
         height: parent.height
         font.bold: true
+        textFormat: Text.PlainText
     }
 
     component Seperator : Rectangle{

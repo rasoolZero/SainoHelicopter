@@ -236,6 +236,7 @@ Item {
         anchors.leftMargin: 5
         color:"transparent"
         Text{
+            textFormat: Text.PlainText
             id: boxText
             text: "Loading..."
             anchors.fill: parent

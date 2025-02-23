@@ -20,6 +20,7 @@ ApplicationWindow  {
         Layout.margins: margin
         Layout.maximumWidth: root.width - margin * 2
         wrapMode: Text.Wrap
+        textFormat: Text.PlainText
     }
 
     ScrollView{

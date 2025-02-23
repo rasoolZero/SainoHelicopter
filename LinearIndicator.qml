@@ -165,6 +165,7 @@ Item {
         }
 
         Text {
+            textFormat: Text.PlainText
             id: valueText
             text: indicator.value + indicator.postfix
             color: "black"
@@ -235,6 +236,7 @@ Item {
         anchors.leftMargin: 8
         color:"transparent"
         Text{
+            textFormat: Text.PlainText
             id: boxText
             text: "Loading..."
             anchors.fill: textHolder

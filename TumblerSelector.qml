@@ -84,6 +84,7 @@ Tumbler {
             visible: !hideText
 
             Text {
+                textFormat: Text.PlainText
                 text: parent.parent.modelData
                 verticalAlignment: Text.AlignVCenter
                 color: control.textColor

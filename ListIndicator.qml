@@ -26,7 +26,7 @@ Item {
     property alias model: swipeViewRepeater.model
     required property list<string> sources
     required property list<color> valueImageColors
-    property alias value:swipeView.currentIndex
+    property alias value: swipeView.currentIndex
     property string currentSource: sources[value]
     property color currentColor: valueImageColors[value]
 
@@ -151,30 +151,36 @@ Item {
             }
         }
 
-        Image  {
-            id: valueImage
-            source : indicator.currentSource
+        Item{
+            id: valueImageHolder
+            height:width
+            anchors.centerIn: parent
             width:{
                 var r = circle.height - circle.border.width - 1
                 var x = Math.sqrt(r*r/2)
                 return x
             }
-            height:width
-            anchors.centerIn: parent
-            antialiasing: true
-            fillMode: Image.PreserveAspectFit
-            smooth:true
-            visible:true
+            Repeater{
+                model: indicator.model
+                delegate: Image  {
+                    required property int index
+                    source : indicator.sources[index]
+                    anchors.fill: valueImageHolder
+                    antialiasing: true
+                    fillMode: Image.PreserveAspectFit
+                    smooth:true
+                    visible:indicator.value === index
+                    ColorOverlay{
+                        id: valueImageOverlay
+                        anchors.fill: parent
+                        source:parent
+                        color: indicator.currentColor
+                        antialiasing: true
+                        smooth:true
+                    }
+                }
+            }
         }
-        ColorOverlay{
-            id: valueImageOverlay
-            anchors.fill: valueImage
-            source:valueImage
-            color: indicator.currentColor
-            antialiasing: true
-            smooth:true
-        }
-
     }
     SH.Shape {
         z:circle.z-1

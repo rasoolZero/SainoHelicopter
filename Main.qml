@@ -563,7 +563,12 @@ ApplicationWindow {
     }
 
 
-    onAspectRatioChanged:{
+
+    onAspectRatioChanged: restartAnimations()
+    onWidthChanged: restartAnimations()
+    onHeightChanged: restartAnimations()
+
+    function restartAnimations() {
         let elements = [insideTempIndicator, outsideTempIndicator, batteryIndicator
                         , fuelIndicator, speedIndicator, lampsIndicator, cameraIndicator
                         , controlPanelIndicator, radioIndicator, rotorSpeedIndicator];

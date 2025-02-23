@@ -26,20 +26,9 @@ Item {
     property alias model: swipeViewRepeater.model
     required property list<string> sources
     required property list<color> valueImageColors
-    property int value:0
-    onValueChanged: {
-        swipeView.currentIndex = value;
-        if(valueImageColors.length)
-            valueImageOverlay.color = valueImageColors[value];
-        if(sources.length)
-            valueImage.source = sources[value];
-    }
-    onSourcesChanged: {
-        valueImage.source = sources[value];
-    }
-    onValueImageColorsChanged: {
-        valueImageOverlay.color = valueImageColors[value];
-    }
+    property alias value:swipeView.currentIndex
+    property string currentSource: sources[value]
+    property color currentColor: valueImageColors[value]
 
     function startAnimations(){
         outerRotatorAnimation.start()
@@ -164,6 +153,7 @@ Item {
 
         Image  {
             id: valueImage
+            source : indicator.currentSource
             width:{
                 var r = circle.height - circle.border.width - 1
                 var x = Math.sqrt(r*r/2)
@@ -180,6 +170,7 @@ Item {
             id: valueImageOverlay
             anchors.fill: valueImage
             source:valueImage
+            color: indicator.currentColor
             antialiasing: true
             smooth:true
         }
@@ -251,6 +242,7 @@ Item {
     Item{
         id:swipeViewHolder
         SwipeView{
+            currentIndex: indicator.value
             id: swipeView
             orientation: Qt.Horizontal
             interactive: false

@@ -18,6 +18,8 @@ Item {
     property alias boxText: boxText.text
     property alias boxTextColor: boxText.color
     property alias barsSpacing: barsLayout.spacing
+    property alias textOuterRotatorColor: textOuterRotatorPath.strokeColor
+    property alias textOuterRotatorOpacity: textOuterRotator.opacity
     property color seperatorColor: "white"
 
     property alias loadingBarsColor: loadingBars.color
@@ -49,6 +51,7 @@ Item {
     function startAnimations(){
         outerRotatorAnimation.start()
         innerLoaderAnimation.start()
+        textOuterRotatorAnimation.start()
     }
 
     Rectangle {
@@ -181,6 +184,57 @@ Item {
                                 origin.x: valueText.width / 2
                                 origin.y: valueText.height / 2
                             }
+        }
+        SH.Shape {
+            id:textOuterRotator
+            opacity: 0.75
+            antialiasing: true
+            smooth: false
+            anchors.centerIn: parent // Align the arcs to the center of the circle
+            anchors.fill:innerLoader
+            anchors.margins: indicator.thickness * 4
+            SH.ShapePath {
+                id: textOuterRotatorPath
+                strokeColor: "black"
+                fillColor:"transparent"
+                strokeWidth: Math.max(indicator.thickness / 2,2)
+                startX: width / 2
+                startY: 0
+                capStyle: SH.ShapePath.FlatCap
+                PathAngleArc{
+                    radiusX: textOuterRotator.width/2
+                    radiusY: textOuterRotator.height/2
+                    centerX: textOuterRotator.width/2
+                    centerY: textOuterRotator.height/2
+                    startAngle: 0
+                    sweepAngle: 100
+                }
+                PathAngleArc{
+                    radiusX: textOuterRotator.width/2
+                    radiusY: textOuterRotator.height/2
+                    centerX: textOuterRotator.width/2
+                    centerY: textOuterRotator.height/2
+                    startAngle: 120
+                    sweepAngle: 100
+                }
+                PathAngleArc{
+                    radiusX: textOuterRotator.width/2
+                    radiusY: textOuterRotator.height/2
+                    centerX: textOuterRotator.width/2
+                    centerY: textOuterRotator.height/2
+                    startAngle: 240
+                    sweepAngle: 100
+                }
+            }
+            RotationAnimator {
+                id: textOuterRotatorAnimation
+                loops: Animation.Infinite
+                target: textOuterRotator
+                from: 0
+                to: 360
+                duration: 10000
+                running: true
+            }
         }
     }
     SH.Shape {

@@ -130,6 +130,7 @@ ApplicationWindow {
             outerBoxColor: colorConfig.accentColor
             loadingBarsColor: colorConfig.accentColor
             seperatorColor: colorConfig.accentColor
+            textOuterRotatorColor: colorConfig.accentColor
 
             anchors.bottom: parent.bottom
             anchors.right: parent.right
@@ -160,6 +161,7 @@ ApplicationWindow {
             outerBoxColor: colorConfig.accentColor
             loadingBarsColor: colorConfig.accentColor
             seperatorColor: colorConfig.accentColor
+            textOuterRotatorColor: colorConfig.accentColor
 
             anchors.bottom: parent.bottom
             anchors.right: parent.right
@@ -191,6 +193,7 @@ ApplicationWindow {
             outerBoxColor: colorConfig.accentColor
             loadingBarsColor: colorConfig.accentColor
             seperatorColor: colorConfig.accentColor
+            textOuterRotatorColor: colorConfig.accentColor
 
             anchors.bottom: parent.bottom
             anchors.right: parent.right
@@ -226,6 +229,7 @@ ApplicationWindow {
             outerBoxColor: colorConfig.accentColor
             loadingBarsColor: colorConfig.accentColor
             seperatorColor: colorConfig.accentColor
+            textOuterRotatorColor: colorConfig.accentColor
 
             anchors.bottom: parent.bottom
             anchors.right: parent.right
@@ -261,6 +265,7 @@ ApplicationWindow {
             outerBoxColor: colorConfig.accentColor
             loadingBarsColor: colorConfig.accentColor
             seperatorColor: colorConfig.accentColor
+            textOuterRotatorColor: colorConfig.accentColor
 
             anchors.top: topDownView.top
             anchors.right: parent.right

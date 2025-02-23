@@ -9,7 +9,7 @@ Item{
     property alias actualWidth: mainImage.implicitWidth
     property alias paintedWidth: mainImage.paintedWidth
     property alias overlayColor: colorOverlay.color
-    readonly property int availableSpace : width - paintedWidth + paintedWidth * 0.5
+    readonly property int availableSpace : width - paintedWidth * 0.5
     // onActualWidthChanged: {
     //     console.log("\nactualWidth:",actualWidth
     //                 ,"\npaintedWidth:",paintedWidth

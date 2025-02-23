@@ -10,7 +10,13 @@ Item {
     property real minimumBarWidth:0
     onWidthChanged: updateMinimumWidth()
     function updateMinimumWidth(){
-        minimumBarWidth = Number.POSITIVE_INFINITY;
+        let minimumSoFar = Number.POSITIVE_INFINITY;
+        for(var i = 0 ; i < repeater.count ; i++){
+            let w = repeater.itemAt(i).width;
+            if(w < minimumSoFar)
+                minimumSoFar = w;
+        }
+        minimumBarWidth = minimumSoFar;
     }
 
     id: root

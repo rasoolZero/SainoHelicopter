@@ -311,7 +311,7 @@ Item {
         id: seperator
         anchors.top: circle.verticalCenter
         anchors.left: circle.right
-        anchors.right: loadingBars.left
+        anchors.right: loadingBars.visible ? loadingBars.left : indicator.right
         anchors.leftMargin: 10
         anchors.rightMargin: 10
         height: 5

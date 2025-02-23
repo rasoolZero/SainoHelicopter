@@ -1,3 +1,2 @@
 better details for indicators 
 		(change size circle, circle details)
-fps test (optimize everything)

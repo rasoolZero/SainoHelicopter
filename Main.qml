@@ -294,7 +294,7 @@ ApplicationWindow {
             height:topDownView.height * (150/460)
 
             model: ["On","Off"]
-            sources: ["qrc:/assets/lamp-on.svg","qrc:/assets/lamp-off.svg"]
+            sources: ["qrc:/assets/lamp-on.png","qrc:/assets/lamp-off.png"]
             valueImageColors: [colorConfig.warningColor,"white"]
         }
 
@@ -322,7 +322,7 @@ ApplicationWindow {
             height:topDownView.height * (150/460)
 
             model: ["Good","Warning","Error"]
-            sources: ["qrc:/assets/ok.svg","qrc:/assets/warning.svg","qrc:/assets/error.svg"]
+            sources: ["qrc:/assets/ok.png","qrc:/assets/warning.png","qrc:/assets/error.png"]
             valueImageColors: [colorConfig.okColor,colorConfig.warningColor,colorConfig.errorColor]
 
         }
@@ -350,7 +350,7 @@ ApplicationWindow {
             height:topDownView.height * (150/460)
 
             model: ["Pass","Fail"]
-            sources: ["qrc:/assets/ok.svg","qrc:/assets/error.svg"]
+            sources: ["qrc:/assets/ok.png","qrc:/assets/error.png"]
             valueImageColors: [colorConfig.okColor,colorConfig.errorColor]
         }
         ListIndicator{
@@ -377,7 +377,7 @@ ApplicationWindow {
             height:topDownView.height * (150/460)
 
             model: ["Weak","Good","Strong"]
-            sources: ["qrc:/assets/signal-weak.svg","qrc:/assets/signal-good.svg","qrc:/assets/signal-strong.svg"]
+            sources: ["qrc:/assets/signal-weak.png","qrc:/assets/signal-good.png","qrc:/assets/signal-strong.png"]
             valueImageColors: [colorConfig.errorColor,colorConfig.warningColor,colorConfig.okColor]
         }
         ListIndicator{
@@ -403,7 +403,7 @@ ApplicationWindow {
             height:topDownView.height * (150/460)
 
             model: ["Slowest","Slow","Medium","Fast","Fastest"]
-            sources: ["qrc:/assets/gauge-min.svg","qrc:/assets/gauge-low.svg","qrc:/assets/gauge-middle.svg","qrc:/assets/gauge-high.svg","qrc:/assets/gauge-max.svg"]
+            sources: ["qrc:/assets/gauge-min.png","qrc:/assets/gauge-low.png","qrc:/assets/gauge-middle.png","qrc:/assets/gauge-high.png","qrc:/assets/gauge-max.png"]
             valueImageColors: ["#ffffff","#ffffff","#ffffff","#ffffff","#ffffff"]
         }
 

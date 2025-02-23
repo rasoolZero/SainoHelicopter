@@ -18,7 +18,7 @@ Item {
     property alias boxText: boxText.text
     property alias boxTextColor: boxText.color
     property alias barsSpacing: barsLayout.spacing
-    property alias seperatorColor: seperator.color
+    property color seperatorColor: "white"
 
     property alias loadingBarsColor: loadingBars.color
     property alias loadingBarsSpacing: loadingBars.spacing
@@ -307,7 +307,6 @@ Item {
         visible: minimumBarWidth >= 2
     }
     Item{
-        property color color: "white"
         id: seperator
         anchors.top: circle.verticalCenter
         anchors.left: circle.right
@@ -316,14 +315,14 @@ Item {
         anchors.rightMargin: 10
         height: 5
         Rectangle{
-            color: parent.color
+            color: indicator.seperatorColor
             height:1
             anchors.right: parent.right
             anchors.left: parent.left
             anchors.top: parent.top
         }
         Rectangle{
-            color: parent.color
+            color: indicator.seperatorColor
             height:1
             anchors.right: parent.right
             anchors.left: parent.left

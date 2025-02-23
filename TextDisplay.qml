@@ -37,11 +37,13 @@ Item {
 
     Text{
         id: text
+        readonly property real horzizontalMargin: parent.width * 11/100
+        readonly property real verticalMargin: parent.height * 7/100
         anchors.fill: parent
-        anchors.leftMargin: parent.width * 11/100
-        anchors.rightMargin: parent.width * 11/100
-        anchors.topMargin: parent.height * 7/100
-        anchors.bottomMargin: parent.height * 7/100
+        anchors.leftMargin: horzizontalMargin
+        anchors.rightMargin: horzizontalMargin
+        anchors.topMargin: verticalMargin
+        anchors.bottomMargin: verticalMargin
         verticalAlignment: Text.AlignVCenter
         horizontalAlignment: Text.AlignHCenter
         fontSizeMode: Text.Fit
@@ -62,14 +64,12 @@ Item {
         end:Qt.point(width*2,height)
         gradient: Gradient {
             id: maskGradient
-            property real size : 0.02
-            property real spread: 0.001
             property real position : 0.4
             GradientStop { position: 0.0; color: "transparent"}
-            GradientStop { position: maskGradient.position - maskGradient.size / 2 - maskGradient.spread; color: "transparent"}
-            GradientStop { position: maskGradient.position - maskGradient.size / 2; color: "white"}
-            GradientStop { position: maskGradient.position + maskGradient.size / 2; color: "white"}
-            GradientStop { position: maskGradient.position + maskGradient.size / 2 + maskGradient.spread; color: "transparent"}
+            GradientStop { position: maskGradient.position - 0.01 - 0.001; color: "transparent"}
+            GradientStop { position: maskGradient.position - 0.01; color: "white"}
+            GradientStop { position: maskGradient.position + 0.01; color: "white"}
+            GradientStop { position: maskGradient.position + 0.01 + 0.001; color: "transparent"}
             GradientStop { position: 1.0; color: "transparent"}
 
             SequentialAnimation on position{

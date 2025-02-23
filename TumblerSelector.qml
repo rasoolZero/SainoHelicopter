@@ -51,7 +51,8 @@ Tumbler {
 
         required property var modelData
         required property int index
-        opacity: 1.0 - Math.abs(Tumbler.displacement) / (control.visibleItemCount / 2)
+        readonly property real factor: (control.visibleItemCount / 2)
+        opacity: 1.0 - Math.abs(Tumbler.displacement) / factor
         anchors.horizontalCenter: parent.horizontalCenter
         height: control.height*0.1
         width: control.width

@@ -479,11 +479,14 @@ ApplicationWindow {
 
         TextDisplay{
             id: description
-            width: mainLayout.visible? height*(300/350) : parent.width
-            height:topDownView.height
+            readonly property bool full : !mainLayout.visible
+            readonly property int offset : full ? (parent.width) / 10 : 0
+            width: full ? parent.width - offset * 2 : height*(300/350)
+            height: topDownView.height - offset * 2
             frameColor: mainLayout.visible ? colorConfig.accentColor : colorConfig.warningColor
             anchors.bottom: parent.bottom
             anchors.right: parent.right
+            anchors.margins: offset
             opacity: 0.85
             backgroundColor: colorConfig.backgroundColor
             text: "The Apache AH-64 is an advanced attack helicopter manufactured by Boeing (originally by Hughes Helicopters). First produced in 1983, it features superior air resistance with a streamlined fuselage and rotor design. It has a maximum altitude of approximately 21,000 feet (6,400 meters), making it highly effective in diverse combat environments."

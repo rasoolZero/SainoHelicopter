@@ -269,7 +269,7 @@ Item {
                     verticalAlignment: Text.AlignVCenter
                     opacity:SwipeView.isCurrentItem?1.0:0.3
                     visible: SwipeView.isCurrentItem || SwipeView.isNextItem || SwipeView.isPreviousItem
-                    padding:2
+                    padding:indicator.width/50
                 }
             }
         }

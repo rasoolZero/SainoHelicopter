@@ -11,13 +11,11 @@ Node{
     }
     position: Qt.vector3d(0, 0, 0)
     scale:Qt.vector3d(scaleFactor,scaleFactor,scaleFactor)
-    property real r:0
     property color copterColor : "#EFEFEFFF"
     property alias bounds : model.bounds
     Model {
         id: model
         source: "qrc:/mesh/APACHE_1_lower.mesh"
-        eulerRotation: Qt.vector3d(0,r,0)
         castsShadows: true
         receivesShadows: true
         materials: [ DefaultMaterial {
@@ -25,10 +23,18 @@ Node{
             }
         ]
         visible: root.showWireframe
+
+        Vector3dAnimation on eulerRotation {
+            loops: Animation.Infinite
+            duration: 20000
+            from: Qt.vector3d(0,0,0)
+            to: Qt.vector3d(0,360,0)
+            easing.type:Easing.Linear
+        }
     }
     Model {
         source: "qrc:/mesh/ah64_APACHE_mesh.mesh"
-        eulerRotation: Qt.vector3d(0,r,0)
+        eulerRotation: model.eulerRotation
         castsShadows: true
         receivesShadows: true
         materials: [ DefaultMaterial {
@@ -36,14 +42,5 @@ Node{
             }
         ]
         visible: !root.showWireframe
-    }
-    SequentialAnimation on r {
-        loops: Animation.Infinite
-        NumberAnimation {
-            duration: 20000
-            to: 360
-            from: 0
-            easing.type:Easing.Linear
-        }
     }
 }

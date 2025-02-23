@@ -1,5 +1,3 @@
 better details for indicators 
 		(change size circle, circle details)
-switch between wireframe and model view for 3d helicopter (with hint)
-optimize wireframe model
 fps test (optimize everything)

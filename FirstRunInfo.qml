@@ -38,6 +38,11 @@ ApplicationWindow  {
             CustomLabel{
                 text: "You can open the control panel window by pressing the Space key."
             }
+            CustomLabel{
+                text: "You can switch between Wireframe view and Solid view of the 3D model by pressing the Tab key."
+            }
+
+
             Button{
                 text:"OK!"
                 onClicked: {

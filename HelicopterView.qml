@@ -6,6 +6,7 @@ import QtQuick3D.Helpers
 View3D {
     id : view
     property alias copterColor : copter.copterColor
+    property alias showWireframe : copter.showWireframe
 
     // renderFormat: ShaderEffectSource.RGBA16F
     environment: SceneEnvironment {

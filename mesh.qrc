@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/">
-        <file>mesh/APACHE_1.mesh</file>
+        <file>mesh/ah64_APACHE_mesh.mesh</file>
+        <file>mesh/APACHE_1_lower.mesh</file>
     </qresource>
 </RCC>

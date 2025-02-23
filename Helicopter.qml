@@ -3,6 +3,7 @@ import QtQuick3D
 Node{
     id: root
     property real scaleFactor: 1
+    property bool showWireframe : true
     onScaleFactorChanged: {
         let height = (bounds.maximum.y - bounds.minimum.y) * scaleFactor;
         let yTransform = height * 4 / 5; // Center the model correctly
@@ -15,7 +16,7 @@ Node{
     property alias bounds : model.bounds
     Model {
         id: model
-        source: "qrc:/mesh/APACHE_1.mesh"
+        source: "qrc:/mesh/APACHE_1_lower.mesh"
         eulerRotation: Qt.vector3d(0,r,0)
         castsShadows: true
         receivesShadows: true
@@ -23,6 +24,18 @@ Node{
                 diffuseColor: root.copterColor
             }
         ]
+        visible: root.showWireframe
+    }
+    Model {
+        source: "qrc:/mesh/ah64_APACHE_mesh.mesh"
+        eulerRotation: Qt.vector3d(0,r,0)
+        castsShadows: true
+        receivesShadows: true
+        materials: [ DefaultMaterial {
+                diffuseColor: Qt.darker(root.copterColor,1.15)
+            }
+        ]
+        visible: !root.showWireframe
     }
     SequentialAnimation on r {
         loops: Animation.Infinite

@@ -507,6 +507,9 @@ ApplicationWindow {
             selector.currentIndex = (selector.currentIndex === selector.model.count - 1) ? 0 : selector.currentIndex + 1;
             selector.positionViewAtIndex(selector.currentIndex,Tumbler.Center);
         }
+        Keys.onTabPressed: {
+            viewMain.showWireframe = !viewMain.showWireframe
+        }
     }
 
     ControlPanel{
